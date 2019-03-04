@@ -1,0 +1,62 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .example-is-mobile .example-toolbar {
+    position: fixed;
+    z-index: 2;
+  }
+  
+  h1.example-app-name {
+    margin-left: 8px;
+  }
+  
+  .example-sidenav-container {
+    flex: 1;
+  }
+  
+  .example-is-mobile .example-sidenav-container {
+    flex: 1 0 auto;
+  }
+
+  .list{
+    width:2px;
+  }
+
+  .notes{
+    padding-left: 50px;
+  }
+
+  .remainders{
+    padding-left: 50px;
+  }
+
+  .labels{
+    padding-left: 50px;
+  }
+
+  .archive{
+    padding-left: 50px;
+  }
+
+  .trash{
+    padding-left: 50px;
+  }
+
+  .navList{
+    width: 250px;
+  }
+
+  #para{
+    padding-left: 20px;
+  }
+
+
+
+  

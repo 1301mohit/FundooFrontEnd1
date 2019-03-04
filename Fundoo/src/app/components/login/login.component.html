@@ -1,0 +1,72 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="main" fxFlex="23">
+      <mat-card-header fxLayoutAlign="center center">
+          <mat-card-title class="fundoo" >
+             <div fxLayoutAlign="center center"><h1>Fundoo</h1></div>
+          </mat-card-title>
+          <mat-card-subtitle class="signin">
+            <div fxLayoutAlign="center center"><h2>SIGN IN</h2></div>
+            <div fxLayoutAlign="center center"><h4>with your fundoo account</h4></div>
+          </mat-card-subtitle>
+      </mat-card-header>
+      <form>
+      <div>
+          <mat-form-field appearance="outline" fxFlex = "95">
+              <mat-label>email</mat-label>
+              <input matInput placeholder="" [formControl]="email" required>
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+      </div>
+      <div>
+          <mat-form-field appearance="outline" fxFlex="95">
+              <mat-label>password</mat-label>
+              <input matInput placeholder="" [formControl]="password" [type]="hide ? 'password' : 'text'" required>
+              <mat-error *ngIf="email.invalid">{{getErrorMessage1()}}</mat-error>
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+      </div>
+      <div fxLayoutAlign="center center">
+          <button mat-raised-button color="primary" (click)="login()">Submit</button>
+      </div>
+      <div class="forgetpassword" >
+          <a mat-button routerLink="/forgetpassword">Forget Password</a>
+          <a mat-button routerLink="/register">SIGN UP</a>
+      </div>
+      </form>
+  </mat-card>
+</div>
+  
+  
+  
+  <!-- <div class="main">
+  <mat-card>
+    <mat-card-header>
+        <mat-card-title class="fundoo"><h2>Fundoo</h2></mat-card-title>
+        <mat-card-subtitle class="signin">
+          <div><h3>SIGN IN</h3></div>
+          <div><h4>with your fundoo account</h4></div>
+        </mat-card-subtitle>
+    </mat-card-header> 
+    <form>
+    <div>
+    <mat-form-field appearance="outline" class="email">
+          <mat-label>email</mat-label>
+          <input matInput placeholder="" [formControl]="email">
+          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    </div>
+    <div>
+    <mat-form-field appearance="outline" class="password">
+          <mat-label >password</mat-label>
+          <input matInput placeholder="" [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+    </div>
+    <div>
+    <mat-form-field>
+          <button mat-raised-button color="primary">Primary</button>
+    </mat-form-field>
+    </div>
+    </form>
+  </mat-card>
+  </div> -->

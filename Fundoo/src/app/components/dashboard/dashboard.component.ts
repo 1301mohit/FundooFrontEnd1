@@ -1,5 +1,6 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { Router } from '@angular/router';
 //import {MediaMatcher} from '@angular/cdk/layout';
 //import {ChangeDetectorRef, OnDestroy} from '@angular/core';
 
@@ -8,7 +9,9 @@ import { MediaMatcher } from '@angular/cdk/layout';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
+
+  titleName : string
 
   ngOnInit() {
   }
@@ -18,7 +21,7 @@ export class DashboardComponent implements OnInit {
   fillerNav = Array.from({length: 5}, (_, i) => `Nav Item ${i + 1}`);
 
   
-
+  private router: Router;
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
@@ -29,6 +32,34 @@ export class DashboardComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  addAccount(){
+    this.router.navigate(['register']);
+  }
+
+  signOut(){
+    this.router.navigate(['login']);
+  }
+
+  Note(){
+  this.titleName = "Note"
+  }
+
+  Remainder(){
+    this.titleName = "Reminder"
+  }
+
+  editLabels(){
+    this.titleName = "EditLable"
+  }
+
+  archive(){
+    this.titleName = "Archive"
+  }
+
+  trash(){
+    this.titleName = "Trash"
   }
 
 }

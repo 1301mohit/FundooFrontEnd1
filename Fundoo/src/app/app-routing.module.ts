@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component'
 import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component'
 import { ResetpasswordComponent } from  './components/resetpassword/resetpassword.component'
 import { DashboardComponent } from './components/dashboard/dashboard.component'
+import {  MaincardComponent } from './components/maincard/maincard.component'
 const routes: Routes = [
   {
     path : '',
@@ -29,7 +30,17 @@ const routes: Routes = [
   },
   {
     path : 'dashboard',
-    component : DashboardComponent
+    component : DashboardComponent,
+    children:[
+      {
+        path : '',
+        component : MaincardComponent
+      }
+    ]
+  },
+  {
+    path : 'maincard',
+    component : MaincardComponent
   }
 ];
 

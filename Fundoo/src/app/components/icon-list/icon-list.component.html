@@ -1,0 +1,65 @@
+<div fxLayout="row" fxLayoutAlign="space-around start" fxFlex="50">
+  <button id="Remind" matTooltip="Remind me" mat-icon-button>
+    <img id="remindmeImage" src="../../../assets/remindme.svg" />
+  </button>
+  <button id="colaborator" matTooltip="collaborator" mat-icon-button>
+    <img id="remindmeImage" src="../../../assets/collaborator.svg" />
+  </button>
+  <button id="remindme" matTooltip="Change color" mat-icon-button>
+    <img id="remindmeImage" src="../../../assets/remindme.svg" />
+  </button>
+  <button id="addimage" matTooltip="Add image" mat-icon-button>
+    <img id="addimage" src="../../../assets/addimage.svg"/>
+  </button> 
+  <button id="addimage" matTooltip="Add image" mat-icon-button>
+    <img id="addimage" src="../../../assets/archive.svg"/>
+  </button> 
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <span>Add label</span>
+    </button>
+    <button mat-menu-item disabled>
+      <span>Add drawing</span>
+    </button>
+    <button mat-menu-item>
+      <span>show checkboxes</span>
+    </button>
+  </mat-menu>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <mat-menu #menu4="matMenu" class="matmenu">
+    <div class="remindMenu">
+      <mat-nav-list>
+        <mat-list role="List">
+          <mat-list-item role="listitem">
+            <p>Reminder :</p>
+          </mat-list-item>
+          <mat-list-item>
+            <p>Later Today      8:00 PM</p>
+          </mat-list-item>
+          <mat-list-item>
+            <p>Tomorrow         8:00 AM</p>
+          </mat-list-item>
+          <mat-list-item>
+            <p>Next week Monday, 8:00 AM</p>
+          </mat-list-item>
+          <mat-list-item>
+
+          </mat-list-item>
+        </mat-list>
+      </mat-nav-list>
+    </div>
+  </mat-menu> -->

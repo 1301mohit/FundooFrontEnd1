@@ -24,6 +24,8 @@ import { AppComponent } from './app.component';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, Component} from '@angular/core';
 import { MaterialModule } from 'src/material-module';
+import { MaincardComponent } from './components/maincard/maincard.component';
+import { IconListComponent } from './components/icon-list/icon-list.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { MaterialModule } from 'src/material-module';
     LoginComponent,
     ForgetpasswordComponent,
     ResetpasswordComponent,
-    DashboardComponent
+    DashboardComponent,
+    MaincardComponent,
+    IconListComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,7 @@ import { MaterialModule } from 'src/material-module';
     HttpClientModule,
     MatSnackBarModule,
     FlexLayoutModule,
-    MaterialModule
+    MaterialModule,
   //  ChangeDetectorRef
  //   OnDestroy
   ],

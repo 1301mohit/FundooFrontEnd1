@@ -12,7 +12,8 @@
         </div>
         <!-- <div fxFlex="5" fxlayout.gt-xs="row" fxFlex.gt-xs="500" fxHide.xs> -->
         <div>
-          <h5 class="example-app-name">Keep</h5>
+          <h5 class="example-app-name">{{titleName}}</h5>
+          <h5 *ngIf="titleName==null">Keep</h5>
         </div>
       </div>
       <div fxFlex="55">
@@ -21,7 +22,7 @@
             <mat-icon>search</mat-icon>
           </button>
           <input fxFlex="90" type="input" matInput placeholder="Search" [style.fontSize.px]="18" class="searchText"
-            (keyup)="lookFor()" (click)="goSearch()" autocomplete="off">
+             autocomplete="off">
           <!-- /*[(ngModel)]="Search"*/ -->
         </mat-form-field>
       </div>
@@ -51,7 +52,7 @@
           </div>
         </div>
       </div>
-      <div  fxLayout="row">
+      <div fxLayout="row">
         <div>
           <button mat-icon-button color="basic" fxHide.xs matTooltip="Notification">
             <mat-icon>notification_important</mat-icon>
@@ -63,57 +64,93 @@
           </button>
         </div>
         <div>
-          <button mat-mini-fab color="accent">M</button>
+          <button mat-mini-fab color="accent" [matMenuTriggerFor]="profileMenu">M</button>
         </div>
+      </div>
+      <div>
+        <mat-menu #profileMenu="matMenu" class="profileMenu">
+          <button mat-menu-item>
+            <!-- <div>
+              <img id="img" src="../../../assets/profilephoto.jpg" />
+            </div> -->
+            <div>
+              <button mat-mini-fab color="accent">M</button>
+              <!-- <h5>Mohit Kumar</h5>
+              <h6>mohitkr1301@gmail.com</h6> -->
+              <span class="name">Mohit Kumar</span>
+              <!-- <div>
+                Mohit Kumar
+                <p>mohitkr1301@gmail.com</p>
+              </div> -->
+              <!-- <div>mohitkr1301@gmail.com</div> -->
+            </div>
+          </button>
+          <mat-divider></mat-divider>
+          <div fxLayoutAlign="center center">
+              <button mat-menu-item (click)="addAccount()">Add account</button>
+          </div>
+          <mat-divider></mat-divider>
+          <div fxLayoutAlign="center center">
+              <button mat-menu-item (click)="signOut()">Sign out</button>
+          </div>
+          
+            <!-- <div>
+             
+            </div> -->
+          
+        </mat-menu>
       </div>
     </mat-toolbar>
   </div>
-  <mat-divider></mat-divider>
-  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
-      fixedTopGap="56">
-      <mat-nav-list class="navList">
-        <mat-list role="list">
-          <div>
-              <mat-list-item role="listitem" routerLinkActive="router-link-active" (click)="Note()">
-                  <img id="img1" src="../../../assets/noteImg.svg"/>
-                  <span class="notes">Notes</span>
-              </mat-list-item>
-          </div>
-          <div>
+<mat-divider></mat-divider>
+<mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+  <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+    fixedTopGap="56">
+    <mat-nav-list class="navList">
+      <mat-list role="list">
+        <div>
+          <mat-list-item role="listitem" routerLinkActive="router-link-active" (click)="Note()">
+            <img id="img1" src="../../../assets/noteImg.svg" />
+            <span class="notes">Notes</span>
+          </mat-list-item>
+        </div>
+        <div>
           <mat-list-item role="listitem" routerLinkActive="router-link-active" (click)="Remainder()">
-            <img id="img2" src="../../../assets/remainder.svg"/>
+            <img id="img2" src="../../../assets/remainder.svg" />
             <span class="remainders">Remainders</span>
           </mat-list-item>
-          </div>
-          <mat-divider></mat-divider>
-          <div>
-            <p id="para">LABELS</p>
-            <mat-list-item role="listitem" routerLinkActive="router-link-active" (click)="editLabels()">
-              <img id="img2" src="../../../assets/remainder.svg"/>
-              <span class="labels">Edit labels</span>  
-            </mat-list-item>
-          </div>
-          <mat-divider></mat-divider>
-          <div>
-            <mat-list-item role="listitem" routerLinkActive="router-link-active" (click)="editLabels()">
-              <img id="img3" src="../../../assets/archive.svg"/>
-              <span class="archive">Archive</span>
-            </mat-list-item>
-          </div>
-          <div>
-            <mat-list-item role="listitem" routerLinkActive="router-link-active" (click)="editLabels()">
-              <img id="img3" src="../../../assets/trash.svg"/>
-              <span class="trash">Trash</span>
-            </mat-list-item>
-           </div> 
-        </mat-list>
-      </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+        </div>
+        <mat-divider></mat-divider>
+        <div>
+          <p id="para">LABELS</p>
+          <mat-list-item role="listitem" routerLinkActive="router-link-active" (click)="editLabels()">
+            <img id="img2" src="../../../assets/editLabel.svg" />
+            <span class="labels">Edit labels</span>
+          </mat-list-item>
+        </div>
+        <mat-divider></mat-divider>
+        <div>
+          <mat-list-item role="listitem" routerLinkActive="router-link-active" (click)="archive()">
+            <img id="img3" src="../../../assets/archive.svg" />
+            <span class="archive">Archive</span>
+          </mat-list-item>
+        </div>
+        <div>
+          <mat-list-item role="listitem" routerLinkActive="router-link-active" (click)="trash()">
+            <img id="img3" src="../../../assets/trash.svg" />
+            <span class="trash">Trash</span>
+          </mat-list-item>
+        </div>
+      </mat-list>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet>
+
+      
+    </router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 </div>
 
 

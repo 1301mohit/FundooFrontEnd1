@@ -13,7 +13,7 @@
         <!-- <div fxFlex="5" fxlayout.gt-xs="row" fxFlex.gt-xs="500" fxHide.xs> -->
         <div>
           <h5 class="example-app-name">{{titleName}}</h5>
-          <h5 *ngIf="titleName==null">Keep</h5>
+          <h5 *ngIf="titleName==null">Fundoo</h5>
         </div>
       </div>
       <div fxFlex="55">
@@ -86,10 +86,10 @@
             </div>
           </button>
           <mat-divider></mat-divider>
-          <div fxLayoutAlign="center center">
+          <!-- <div fxLayoutAlign="center center">
               <button mat-menu-item (click)="addAccount()">Add account</button>
-          </div>
-          <mat-divider></mat-divider>
+          </div> -->
+          <!-- <mat-divider></mat-divider> -->
           <div fxLayoutAlign="center center">
               <button mat-menu-item (click)="signOut()">Sign out</button>
           </div>
@@ -145,10 +145,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <router-outlet>
-
-      
-    </router-outlet>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
 </div>

@@ -73,14 +73,13 @@ export class RegisterComponent implements OnInit {
       "lastName":this.lastName.value,
       "email":this.email.value,
       "mobileNumber":this.mobileNumber.value,
-      "password":this.password.value,
+      "password":this.password.value
       }
       this.httpService.postRequest('/register',this.model).subscribe(
       data => {
       console.log("RS");
-      console.log("Data:"+data);
-      var response = JSON.parse(data);
-      this.snackbar.open(response.statusMessage, 'End now', {duration: 5000});
+      console.log("Data:",data);
+      this.snackbar.open(data.statusMessage, 'End now', {duration: 5000});
       this.router.navigateByUrl('/login');
     },
     error=> {

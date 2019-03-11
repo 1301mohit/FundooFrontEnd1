@@ -50,13 +50,14 @@ export class LoginComponent implements OnInit {
       }
 
       this.httpService.postRequest('/login', this.model).subscribe(data => {
-        var response = JSON.parse(data);
-        console.log("Data:"+data);
+        
+        console.log("post request Data:",data);
+        //var response = JSON.parse(data);
 //        localStorage.setItem('token', response.token);
-        if(response.statusCode === 3){
-           this.snackbar.open(response.statusMessage, 'logged-in', {duration:3000});
-           console.log(response.token);
-           localStorage.setItem('token', response.token);
+        if(data.statusCode === "101"){
+           localStorage.setItem('token', data.token);
+           this.snackbar.open(data.statusMessage, 'logged-in', {duration:3000});
+           console.log(data.token);
            var token = localStorage.getItem('token')
            console.log("token 2",token);
            this.router.navigateByUrl('/dashboard');

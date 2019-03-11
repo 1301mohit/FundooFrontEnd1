@@ -15,7 +15,7 @@ export class ResetpasswordComponent implements OnInit {
   hide1 = true;
   model: {};
   token: String;
-  response : Object;
+  response : any;
 
   constructor(private httpService: HttpService, 
     private router: Router,
@@ -36,9 +36,11 @@ export class ResetpasswordComponent implements OnInit {
       if(this.newPassword.value == '' || this.confirmPassword.value == '') throw "Fields are empty"
       this.httpService.putRequest("/user/"+this.token+"?password="+this.newPassword.value,'').subscribe(
         data => {
-          var response = JSON.parse(data);
+         // var response = JSON.parse("data");
+          console.log("Data:",data);
+         // console.log("Response:"+response);
  //         localStorage.setItem('token',response.token);
-          this.snackbar.open(response.statusMessage, 'End Now', {duration: 3000});
+          this.snackbar.open((data as any).statusMessage, 'End Now', {duration: 3000});
           this.router.navigate(['/login']);
         },
         error => {

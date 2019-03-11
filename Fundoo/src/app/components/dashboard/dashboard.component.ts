@@ -20,11 +20,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   fillerNav = Array.from({length: 5}, (_, i) => `Nav Item ${i + 1}`);
 
-  
-  private router: Router;
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -34,12 +32,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  addAccount(){
-    this.router.navigate(['register']);
-  }
+  // addAccount(){
+  //   this.router.navigate(['/register']);
+  // }
 
   signOut(){
-    this.router.navigate(['login']);
+    this.router.navigate(['/login']);
   }
 
   Note(){

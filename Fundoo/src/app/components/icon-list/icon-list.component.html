@@ -1,34 +1,35 @@
-<div fxLayout="row" fxLayoutAlign="space-around start" fxFlex="50">
-  <button id="Remind" matTooltip="Remind me" mat-icon-button>
-    <img id="remindmeImage" src="../../../assets/remindme.svg" />
-  </button>
-  <button id="colaborator" matTooltip="collaborator" mat-icon-button>
-    <img id="remindmeImage" src="../../../assets/collaborator.svg" />
-  </button>
-  <button id="remindme" matTooltip="Change color" mat-icon-button>
-    <img id="remindmeImage" src="../../../assets/remindme.svg" />
-  </button>
-  <button id="addimage" matTooltip="Add image" mat-icon-button>
-    <img id="addimage" src="../../../assets/addimage.svg"/>
-  </button> 
-  <button id="addimage" matTooltip="Add image" mat-icon-button>
-    <img id="addimage" src="../../../assets/archive.svg"/>
-  </button> 
-  <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <span>Add label</span>
+
+<div fxLayout="row" fxLayoutAlign="start end" fxFlex="30">
+    <button id="Remind" matTooltip="Remind me" mat-icon-button>
+      <img id="remindmeImage" src="../../../assets/remindme.svg" />
     </button>
-    <button mat-menu-item disabled>
-      <span>Add drawing</span>
+    <button id="collaborator" matTooltip="collaborator" mat-icon-button>
+      <img id="collaborator" src="../../../assets/collaborator.svg" />
     </button>
-    <button mat-menu-item>
-      <span>show checkboxes</span>
+    <button id="color" matTooltip="Change color" mat-icon-button>
+      <img id="color" src="../../../assets/color.svg" />
     </button>
-  </mat-menu>
-</div>
+    <button id="addimage" matTooltip="Add image" mat-icon-button>
+      <img id="addimage" src="../../../assets/addimage.svg" />
+    </button>
+    <button id="archive" matTooltip="Archive" mat-icon-button>
+      <img id="archive" src="../../../assets/archive.svg" />
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <span>Add label</span>
+      </button>
+      <button mat-menu-item disabled>
+        <span>Add drawing</span>
+      </button>
+      <button mat-menu-item>
+        <span>show checkboxes</span>
+      </button>
+    </mat-menu>
+  </div>
 
 
 

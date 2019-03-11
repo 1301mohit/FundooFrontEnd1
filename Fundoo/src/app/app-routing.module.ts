@@ -25,7 +25,7 @@ const routes: Routes = [
     component : ForgetpasswordComponent
   },
   {
-    path : 'resetpassword',
+    path : 'user/:token',
     component : ResetpasswordComponent
   },
   {
@@ -37,11 +37,11 @@ const routes: Routes = [
         component : MaincardComponent
       }
     ]
-  },
-  {
-    path : 'maincard',
-    component : MaincardComponent
   }
+  // {
+  //   path : 'maincard',
+  //   component : MaincardComponent
+  // }
 ];
 
 @NgModule({

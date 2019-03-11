@@ -34,8 +34,8 @@ email : this.email.value
 }
 console.log(this.email.value);
 this.httpService.postRequest('/forgetPassword?email='+this.email.value,'').subscribe(data => {
-  var response = JSON.parse(data);
-  this.snackbar.open(response.statusMessage,"End Now", {duration:3000});
+  //var response = JSON.parse(data);
+  this.snackbar.open(data.statusMessage,"End Now", {duration:3000});
 //this.snackbar.open('Sent a email in your email id', 'End Now', {duration:3000});
 },
 error => {

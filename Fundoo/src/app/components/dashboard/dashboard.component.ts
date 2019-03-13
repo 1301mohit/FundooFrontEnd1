@@ -32,11 +32,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  // addAccount(){
-  //   this.router.navigate(['/register']);
-  // }
-
   signOut(){
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 
@@ -59,7 +56,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   trash(){
     this.titleName = "Trash"
   }
-
 }
 
 

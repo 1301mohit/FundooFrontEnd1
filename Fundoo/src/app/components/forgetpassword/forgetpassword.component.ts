@@ -12,8 +12,8 @@ import { FormControl, Validators } from '@angular/forms';
 export class ForgetpasswordComponent implements OnInit {
 
   constructor(private httpService: HttpService,
-    private router: Router,
-    private snackbar : MatSnackBar) { }
+              private router: Router,
+              private snackbar : MatSnackBar) { }
 
 model : any;
 response : Object;

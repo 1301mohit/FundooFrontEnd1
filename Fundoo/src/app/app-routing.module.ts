@@ -6,6 +6,7 @@ import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassw
 import { ResetpasswordComponent } from  './components/resetpassword/resetpassword.component'
 import { DashboardComponent } from './components/dashboard/dashboard.component'
 import {  MaincardComponent } from './components/maincard/maincard.component'
+import { NoteComponent } from './components/note/note.component';
 const routes: Routes = [
   {
     path : '',
@@ -33,8 +34,13 @@ const routes: Routes = [
     component : DashboardComponent,
     children:[
       {
-        path : '',
-        component : MaincardComponent
+        path:'',
+        redirectTo:'note',
+        pathMatch:'full'
+      },
+      {
+        path : 'note',
+        component : NoteComponent
       }
     ]
   }

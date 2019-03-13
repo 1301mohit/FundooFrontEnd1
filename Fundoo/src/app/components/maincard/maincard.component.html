@@ -1,9 +1,9 @@
 <div *ngIf="flag==true" (click)="reverseFlag()" fxLayout="row" fxLayoutAlign="space-around start" fxFlex="100">
   <mat-card fxFlex="50" fxFlex.xs='97' class="matcard" fxLayoutAlign="space-between center">
     <!-- -->
+
     <div data-text="Take a note.." class="Border" id="noteTitle" fxLayout="column" contenteditable="true"
-      class="maincard">
-    </div>
+      class="maincard"></div>
 
     <div fxLayout="row" fxLayoutAlign="end start" fxFlex.xs="100">
       <mat-icon class="check" matTooltip="New List">check_box</mat-icon>
@@ -23,28 +23,22 @@
 
   <mat-card fxLayout="column" class="matcard" fxFlex="50" fxFlexOffset.xl="20" fxFlex.xs='97'
     [style.backgroundColor]="color">
-      <div fxLayout="row" fxLayoutAlign="end start">
-        <button mat-icon-button color="basic" (click)="pinned()">
-          <!-- <div class="barpin" *ngIf="flag1==true"> -->
-  
-            <!-- <img src="../../../assets/image/note.svg" /> -->
-  
-          <!-- </div> -->
-          <div class="barpin" *ngIf="flag1==false">
-            <img src="../../../assets/barpin.svg">
-          </div>
-          <div class="pin" *ngIf="flag1==true">
-            <img src="../../../assets/pin.svg">
-          </div>
-        </button>
-      </div>
-        <div contenteditable="true" data-text="Title" fxFlex="30"  [formControl]="noteTitle"
-          fxLayout="column" class="title">
+    <div fxLayout="row" fxLayoutAlign="end start">
+      <button mat-icon-button color="basic" (click)="pinned()">
+
+        <div class="barpin" *ngIf="flag1==false">
+          <img src="../../../assets/barpin.svg">
         </div>
-    <!-- <div contenteditable="true" data-text="Take a note.." class="Border" fxLayout="column" class="takenote">
-    </div> -->
+        <div class="pin" *ngIf="flag1==true">
+          <img src="../../../assets/pin.svg">
+        </div>
+      </button>
+    </div>
+    <div fxFlex="30" fxLayout="column" class="title">
+      <input matInput placeholder="title" [formControl]="noteTitle">
+    </div>
     <div class="Border" fxLayout="column" class="takenote">
-      <textarea class="textArea" matTextareaAutosize placeholder="Take a note.. "  [formControl]="noteContent"
+      <textarea class="textArea" matTextareaAutosize placeholder="Take a note.. " [formControl]="noteContent"
         class="textArea"></textarea>
     </div>
     <div fxFlex="10" fxLayout="row" fxLayoutAlign="space-between end">
@@ -53,6 +47,41 @@
     </div>
   </mat-card>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- <div fxLayout="row" fxLayoutAlign="center center" fxFlex=100>
   <mat-card fxFlex="50">

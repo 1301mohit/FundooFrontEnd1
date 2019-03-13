@@ -26,6 +26,8 @@ import {ChangeDetectorRef, Component} from '@angular/core';
 import { MaterialModule } from 'src/material-module';
 import { MaincardComponent } from './components/maincard/maincard.component';
 import { IconListComponent } from './components/icon-list/icon-list.component';
+import { NoteComponent } from './components/note/note.component';
+import { DisplayNotesComponent } from './components/display-notes/display-notes.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { IconListComponent } from './components/icon-list/icon-list.component';
     ResetpasswordComponent,
     DashboardComponent,
     MaincardComponent,
-    IconListComponent
+    IconListComponent,
+    NoteComponent,
+    DisplayNotesComponent
   ],
   imports: [
     BrowserModule,

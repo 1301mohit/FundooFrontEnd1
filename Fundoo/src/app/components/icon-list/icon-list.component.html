@@ -1,35 +1,52 @@
-
 <div fxLayout="row" fxLayoutAlign="start end" fxFlex="30">
-    <button id="Remind" matTooltip="Remind me" mat-icon-button>
-      <img id="remindmeImage" src="../../../assets/remindme.svg" />
+  <button id="Remind" matTooltip="Remind me" mat-icon-button>
+    <img id="remindmeImage" src="../../../assets/remindme.svg" />
+  </button>
+  <button id="collaborator" matTooltip="collaborator" mat-icon-button>
+    <img id="collaborator" src="../../../assets/collaborator.svg" />
+  </button>
+
+
+
+  <button [matMenuTriggerFor]="menu5" style="cursor: pointer;" aria-label="change color" matTooltip="change color"
+    mat-icon-button>
+    <mat-icon>palette</mat-icon>
+  </button>
+  <mat-menu #menu5="matMenu" [overlapTrigger]="false">
+    <ng-template matMenuContent>
+      <div class="buttons">
+        <div fxLayout=row fxLayoutGap=10px style="margin-top:5px" *ngFor='let colors of colorArray'>
+          <div *ngFor='let color of colors'>
+            <button class="colors" [ngStyle]="{'background-color': color.color }" (click)='colorsEdit(color.color, card)'
+              matTooltip="{{color.name}}" mat-mini-fab></button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </mat-menu>
+
+
+  <button id="addimage" matTooltip="Add image" mat-icon-button>
+    <img id="addimage" src="../../../assets/addimage.svg" />
+  </button>
+  <button id="archive" matTooltip="Archive" mat-icon-button>
+    <img id="archive" src="../../../assets/archive.svg" />
+  </button>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <span>Add label</span>
     </button>
-    <button id="collaborator" matTooltip="collaborator" mat-icon-button>
-      <img id="collaborator" src="../../../assets/collaborator.svg" />
+    <button mat-menu-item disabled>
+      <span>Add drawing</span>
     </button>
-    <button id="color" matTooltip="Change color" mat-icon-button>
-      <img id="color" src="../../../assets/color.svg" />
+    <button mat-menu-item>
+      <span>show checkboxes</span>
     </button>
-    <button id="addimage" matTooltip="Add image" mat-icon-button>
-      <img id="addimage" src="../../../assets/addimage.svg" />
-    </button>
-    <button id="archive" matTooltip="Archive" mat-icon-button>
-      <img id="archive" src="../../../assets/archive.svg" />
-    </button>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <span>Add label</span>
-      </button>
-      <button mat-menu-item disabled>
-        <span>Add drawing</span>
-      </button>
-      <button mat-menu-item>
-        <span>show checkboxes</span>
-      </button>
-    </mat-menu>
-  </div>
+  </mat-menu>
+</div>
 
 
 

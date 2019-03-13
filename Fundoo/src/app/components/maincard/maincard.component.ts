@@ -19,18 +19,13 @@ export class MaincardComponent implements OnInit {
   noteContent = new FormControl('');
   model: any;
   response: any;
-  color: any;
-  //= "#fafafa";
+  color = "#fafafa";
   constructor(private httpService: HttpService,
-    private router: Router,
-    private snackbar: MatSnackBar) { }
+              private router: Router,
+              private snackbar: MatSnackBar) { }
 
   ngOnInit() {
   }
-
-  // logout() {
-  //   this.router.navigateByUrl('/login');
-  // }
 
 
 
@@ -42,6 +37,7 @@ export class MaincardComponent implements OnInit {
     this.flag = !this.flag;
     //  this.noteTitle=document.getElementById('noteTitle').innerHTML;
     //  this.noteContent = document.getElementById('noteContent').innerHTML;
+    console.log(this.noteTitle.value);
 
 
     if (this.noteTitle.value != '' || this.noteContent.value != '') {
@@ -49,36 +45,34 @@ export class MaincardComponent implements OnInit {
         "title": this.noteTitle.value,
         "description": this.noteContent.value,
         "isPin": false,
-        "color": "",
+        "color": "this.color",
         "isArchive": false,
         "isTrash": false
       }
       console.log("model data", this.model);
       this.httpService.postRequestForNote('/addNote', this.model).subscribe(data => {
         console.log("addNotes data", data);
-        //this.response = data;
-        console.log("id: ", data.statusCode);
-        console.log("Message: ", data.statusMessage);
         this.snackbar.open(data.statusMessage, 'End now', { duration: 5000 });
         //this.messageEvent.emit(this.model);
       },
         err => {
           this.snackbar.open(err, 'End now', { duration: 5000 });
-          //alert('Something went wrong ');
           console.log("error-------", err);
         })
     }
     else{
       this.snackbar.open("Note is empty", 'End now', { duration: 3000});
     }
-
   }
-  //  Changes($event){ 
-  //    this.color=$event;
-  //    console.log("im reached in main card",this.color);
-  //  }
+
+   
+  Changes($event){ 
+     this.color=$event;
+     console.log("im reached in main card",this.color);
+   }
+
   pinned() {
-    this.flag1 = !this.flag1;
+    this.flag1 =! this.flag1;
   }
 
   reverseFlag($event) {

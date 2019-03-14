@@ -36,6 +36,9 @@
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="delete(card)">
+      <span>Delete note</span>
+    </button>
     <button mat-menu-item>
       <span>Add label</span>
     </button>

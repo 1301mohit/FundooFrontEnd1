@@ -9,6 +9,7 @@ export class DisplayNotesComponent implements OnInit {
 
   constructor() { }
 @Input() cardsArray=[];
+@Input() card;
   ngOnInit() {
   }
 

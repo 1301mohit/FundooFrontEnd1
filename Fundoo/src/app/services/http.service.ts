@@ -55,4 +55,15 @@ export class HttpService {
    }
     return this.http.get(this.baseUrl + url, httOption);
   }
+
+  deleteRequestForNote(url): any{
+    console.log('token is ',localStorage.getItem('token'))
+    const httOption={
+      headers: new HttpHeaders({
+        'Content-Type' : 'application/json',
+        'token': localStorage.getItem('token')
+      })
+  }
+   return 
+}
 }

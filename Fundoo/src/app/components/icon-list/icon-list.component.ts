@@ -4,6 +4,8 @@ import { EventEmitter } from '@angular/core';
 import { Output } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
 import { MatCard } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-icon-list',
@@ -15,8 +17,10 @@ export class IconListComponent implements OnInit {
   @Input() color;
   @Output() colorEmit = new EventEmitter();
   @Output() colorchange = new EventEmitter();
- @Input() card;
-  constructor(private httpService: HttpService) { }
+  @Input() card;
+  constructor(private httpService: HttpService,
+              private snackbar : MatSnackBar,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -34,13 +38,13 @@ export class IconListComponent implements OnInit {
   [{ 'color': '#B39DDB', 'name': 'purple' },
   { 'color': '#F48FB1', 'name': 'pink' },
   { 'color': '#FFAB40', 'name': 'brown' },
-  { 'color': '#E0E0E0', 'name': 'gray' }
-
-  ]]
+  { 'color': '#E0E0E0', 'name': 'gray' }]]
 
   colorsEdit(id, card) {
     console.log('color is ',id);
-    card.color=id;
+    console.log("Card is",card.id);
+    card.color = id;
+    console.log("Color:",card.color);
     this.colorEmit.emit(id)
 
     console.log('color')
@@ -56,6 +60,7 @@ export class IconListComponent implements OnInit {
   })
 
 
+
       // this.noteService.postcolor({
       //   "color": id,
       // //  "noteIdList": [card.id]
@@ -65,5 +70,17 @@ export class IconListComponent implements OnInit {
       //   this.colorchange.emit(id);
       // })
     
+  }
+
+
+  deleteNote(card){
+    console.log("Delete note");
+    console.log("CardId",card.id);
+      this.httpService.deleteRequestForNote('/deleteNote/card.id').subscribe(data =>{
+      this.snackbar.open(data.statusMessage,"End Now", {duration:3000});
+    },
+    error => {
+      this.snackbar.open('Retry','End Now',{duration:3000});
+    });
   }
 }

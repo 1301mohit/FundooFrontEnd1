@@ -26,12 +26,10 @@ card=[];
 
 getAllCard(){
   this.httpService.getRequestForNote('/getAllNotes').subscribe(data=>{
-    console.log('data is  in note',data);
+    console.log('data is in note',data);
     this.card=data;
-    
   },err=>{
     console.log(err);
-    
   })
 }
 

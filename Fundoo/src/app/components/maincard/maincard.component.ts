@@ -20,15 +20,21 @@ export class MaincardComponent implements OnInit {
   model: any;
   response: any;
   color = "#fafafa";
+  
+
   constructor(private httpService: HttpService,
               private router: Router,
               private snackbar: MatSnackBar) { }
 
+
+              
   ngOnInit() {
+    
   }
 
 
 
+  
   // @Output() messageEvent = new EventEmitter<string>();
 
 
@@ -45,7 +51,7 @@ export class MaincardComponent implements OnInit {
         "title": this.noteTitle.value,
         "description": this.noteContent.value,
         "isPin": false,
-        "color": "this.color",
+        "color": this.color,
         "isArchive": false,
         "isTrash": false
       }
@@ -53,12 +59,12 @@ export class MaincardComponent implements OnInit {
       this.httpService.postRequestForNote('/addNote', this.model).subscribe(data => {
         console.log("addNotes data", data);
         this.snackbar.open(data.statusMessage, 'End now', { duration: 5000 });
-        //this.messageEvent.emit(this.model);
+      //this.messageEvent.emit(this.model);
       },
-        err => {
-          this.snackbar.open(err, 'End now', { duration: 5000 });
-          console.log("error-------", err);
-        })
+      err => {
+        this.snackbar.open(err, 'End now', { duration: 5000 });
+        console.log("error-------", err);
+      })
     }
     else{
       this.snackbar.open("Note is empty", 'End now', { duration: 3000});

@@ -1,5 +1,5 @@
 <div *ngIf="flag==true" (click)="reverseFlag()" fxLayout="row" fxLayoutAlign="space-around start" fxFlex="100">
-  <mat-card fxFlex="50" fxFlex.xs='97' class="matcard" fxLayoutAlign="space-between center">
+  <mat-card fxFlex="50" fxFlex.xs='97' class="matcard" fxLayoutAlign="space-between center" >
     <!-- -->
 
     <div data-text="Take a note.." class="Border" id="noteTitle" fxLayout="column" contenteditable="true"
@@ -22,27 +22,29 @@
 <div *ngIf="flag==false" fxLayout="row" fxLayoutAlign="space-around start" fxFlex="100">
 
   <mat-card fxLayout="column" class="matcard" fxFlex="50" fxFlexOffset.xl="20" fxFlex.xs='97'
-    [style.backgroundColor]="color">
+    [style.backgroundColor]=color>
     <div fxLayout="row" fxLayoutAlign="end start">
-      <button mat-icon-button color="basic" (click)="pinned()">
-
-        <div class="barpin" *ngIf="flag1==false">
-          <img src="../../../assets/barpin.svg">
-        </div>
-        <div class="pin" *ngIf="flag1==true">
-          <img src="../../../assets/pin.svg">
-        </div>
-      </button>
-    </div>
-    <div fxFlex="30" fxLayout="column" class="title">
+     
+    
+    <div fxFlex="100" fxLayout="column" class="title">
       <input matInput placeholder="title" [formControl]="noteTitle">
     </div>
+    <button mat-icon-button color="basic" (click)="pinned()">
+
+      <div class="barpin" *ngIf="flag1==false">
+        <img src="../../../assets/barpin.svg">
+      </div>
+      <div class="pin" *ngIf="flag1==true">
+        <img src="../../../assets/pin.svg">
+      </div>
+    </button>
+  </div>
     <div class="Border" fxLayout="column" class="takenote">
       <textarea class="textArea" matTextareaAutosize placeholder="Take a note.. " [formControl]="noteContent"
         class="textArea"></textarea>
     </div>
     <div fxFlex="10" fxLayout="row" fxLayoutAlign="space-between end">
-      <app-icon-list fxLayoutAlign="end end" (colorEmit)="Changes($event)"></app-icon-list>
+      <app-icon-list fxLayoutAlign="end end" (colorchange)="Changes($event)"></app-icon-list>
       <button class="addnote" mat-button (click)="addNote()">close</button>
     </div>
   </mat-card>

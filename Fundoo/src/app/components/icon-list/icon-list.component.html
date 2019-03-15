@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="start end" fxFlex="30">
+<div fxLayout="row" fxLayoutAlign="start end" fxFlex="100">
   <button id="Remind" matTooltip="Remind me" mat-icon-button>
     <img id="remindmeImage" src="../../../assets/remindme.svg" />
   </button>
@@ -17,7 +17,7 @@
       <div class="buttons">
         <div fxLayout=row fxLayoutGap=10px style="margin-top:5px" *ngFor='let colors of colorArray'>
           <div *ngFor='let color of colors'>
-            <button class="colors" [ngStyle]="{'background-color': color.color }" (click)='colorsEdit(color.color, card)'
+            <button class="colors" [ngStyle]="{'background-color': color.color }" (click)='colorsEdit(color.name)'
               matTooltip="{{color.name}}" mat-mini-fab></button>
           </div>
         </div>
@@ -26,17 +26,17 @@
   </mat-menu>
 
 
-  <button id="addimage" matTooltip="Add image" mat-icon-button>
+  <button id="addimage" matTooltip="Add image"  mat-icon-button>
     <img id="addimage" src="../../../assets/addimage.svg" />
   </button>
-  <button id="archive" matTooltip="Archive" mat-icon-button>
+  <button id="archive" matTooltip="Archive" (click)='archiveNote()' mat-icon-button>
     <img id="archive" src="../../../assets/archive.svg" />
   </button>
   <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="delete(card)">
+    <button mat-menu-item (click)="delete()">
       <span>Delete note</span>
     </button>
     <button mat-menu-item>

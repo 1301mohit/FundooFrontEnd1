@@ -19,19 +19,19 @@ export class NoteComponent implements OnInit {
 
   
   ngOnInit() {
-    this.getAllCard();
+    // this.getAllCard();
   }
-card=[];
+// card=[];
 
 
-getAllCard(){
-  this.httpService.getRequestForNote('/getAllNotes').subscribe(data=>{
-    console.log('data is in note',data);
-    this.card=data;
-  },err=>{
-    console.log(err);
-  })
-}
+// getAllCard(){
+//   this.httpService.getRequestForNote('/getAllNotes').subscribe(data=>{
+//     console.log('data is in note',data);
+//     this.card=data;
+//   },err=>{
+//     console.log(err);
+//   })
+// }
 
 //   getAllCard(){
 //     this.httpService.getRequestForNote('/getAllNotes',"").subscribe(data=>

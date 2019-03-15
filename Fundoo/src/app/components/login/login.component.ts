@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   model : any;
   data1 : any;
   message : string;
-  message1: any;
+  message1 : any;
   respose: any;
 
   email = new FormControl('',[Validators.required, Validators.email]);

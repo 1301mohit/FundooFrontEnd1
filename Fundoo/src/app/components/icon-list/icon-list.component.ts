@@ -6,6 +6,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { MatCard } from '@angular/material';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import { log } from 'util';
 
 @Component({
   selector: 'app-icon-list',
@@ -14,13 +15,13 @@ import { Router } from '@angular/router';
 })
 export class IconListComponent implements OnInit {
 
-  @Input() color;
+  // @Input() color;
   @Output() colorEmit = new EventEmitter();
   @Output() colorchange = new EventEmitter();
   @Input() card;
   constructor(private httpService: HttpService,
-              private snackbar : MatSnackBar,
-              private router: Router) { }
+    private snackbar: MatSnackBar,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -39,48 +40,73 @@ export class IconListComponent implements OnInit {
   { 'color': '#F48FB1', 'name': 'pink' },
   { 'color': '#FFAB40', 'name': 'brown' },
   { 'color': '#E0E0E0', 'name': 'gray' }]]
+  //   colorsEdit(id, card) {
+  //     if(card.noteId != undefined)
 
-  colorsEdit(id, card) {
-    console.log('color is ',id);
-    console.log("Card is",card.id);
-    card.color = id;
-    console.log("Color:",card.color);
-    this.colorEmit.emit(id)
+  //     {
+  //     console.log('color is ',id);
+  //     console.log("Card is",card.noteId);
+  //     card.color = id;
+  //     console.log("Color:",card.color);
+  //     this.colorEmit.emit(id)
 
-    console.log('color')
-   //   this.card.type = 'color'
-     
-//        const reqData = {
-//   "color": id,
-//   "noteIdList": [card.id]
-// }
-    console.log("card:",card)
-    this.httpService.postRequest('/color/card.id?color='+this.color.value,'').subscribe(data =>{
-    this.colorchange.emit(id);
-  })
+  //     console.log('color')
+  //    //   this.card.type = 'color'
+
+  // //        const reqData = {
+  // //   "color": id,
+  // //   "noteIdList": [card.id]
+  // // }
+  //     console.log("card:",card)
+  //     this.httpService.postRequest('/color/card.id?color='+this.color.value,'').subscribe(data =>{
+  //       this.snackbar.open(data.statusMessage,"End Now", {duration:3000});
+  //       this.colorchange.emit(id);
+  //   })
+  //     }
 
 
+  // this.noteService.postcolor({
+  //   "color": id,
+  // //  "noteIdList": [card.id]
+  // }).subscribe(data => {
+  //   console.log("color event reached ",data)
+  //   // localStorage.setItem('colorId', this.color.id)
+  //   this.colorchange.emit(id);
+  // })
 
-      // this.noteService.postcolor({
-      //   "color": id,
-      // //  "noteIdList": [card.id]
-      // }).subscribe(data => {
-      //   console.log("color event reached ",data)
-      //   // localStorage.setItem('colorId', this.color.id)
-      //   this.colorchange.emit(id);
-      // })
-    
+  // }
+  //this.colorEmit.emit(colorId);
+
+  colorsEdit(colorId) {
+    if (this.card.noteId != undefined) {
+      console.log("card id is ",this.card.noteId);
+      console.log("card data at icon", this.card);
+      console.log("card color set", colorId);
+
+      this.httpService.postRequestForNote('/color/'+this.card.noteId+'?color=' +colorId, '').subscribe(data => {
+        this.snackbar.open(data.statusMessage, "End Now", { duration: 3000 });
+        this.colorchange.emit(colorId);
+      })
+    }
   }
 
-
-  deleteNote(card){
+  delete() {
     console.log("Delete note");
-    console.log("CardId",card.id);
-      this.httpService.deleteRequestForNote('/deleteNote/card.id').subscribe(data =>{
-      this.snackbar.open(data.statusMessage,"End Now", {duration:3000});
+    console.log("CardId", this.card.noteId);
+    this.httpService.deleteRequestForNote('/deleteNote/'+this.card.noteId).subscribe(data => {
+      this.snackbar.open(data.statusMessage, "End Now", { duration: 3000 });
     },
-    error => {
-      this.snackbar.open('Retry','End Now',{duration:3000});
-    });
+      error => {
+        this.snackbar.open('Retry', 'End Now', { duration: 3000 });
+      });
+  }
+
+  archiveNote(){
+    console.log("Archive note");
+    this.httpService.putRequestForNote('/archiveNote/'+this.card.noteId,'').subscribe(data => {
+      this.snackbar.open(data.statusMessage, "End Now", { duration: 3000 });
+    },
+
+    )
   }
 }

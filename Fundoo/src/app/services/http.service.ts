@@ -4,9 +4,9 @@ import { log } from 'util';
 
 
 const header = {
-  
+
   headers: new HttpHeaders({
-    'Content-Type' : 'application/json',
+    'Content-Type': 'application/json',
     'token': localStorage.getItem('token')
   })
 };
@@ -34,7 +34,7 @@ export class HttpService {
   }
 
   putRequest(url, data) {
-    console.log("url:"+this.baseUrl + url);
+    console.log("url:" + this.baseUrl + url);
     return this.http.put(this.baseUrl + url, data);
     // { responseType: 'text' });
   }
@@ -45,25 +45,37 @@ export class HttpService {
     // { responseType: 'text' });
   }
 
-  getRequestForNote(url): any{
-    console.log('token is  ',localStorage.getItem('token'))
-   const httOption={
-    headers: new HttpHeaders({
-      'Content-Type' : 'application/json',
-      'token': localStorage.getItem('token')
-    })
-   }
+  getRequestForNote(url): any {
+    console.log('token is  ', localStorage.getItem('token'))
+    const httOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token')
+      })
+    }
     return this.http.get(this.baseUrl + url, httOption);
   }
 
-  deleteRequestForNote(url): any{
-    console.log('token is ',localStorage.getItem('token'))
-    const httOption={
+  deleteRequestForNote(url): any {
+    console.log('token is ', localStorage.getItem('token'))
+    const httOption = {
       headers: new HttpHeaders({
-        'Content-Type' : 'application/json',
+        'Content-Type': 'application/json',
         'token': localStorage.getItem('token')
       })
+    }
+    return this.http.delete(this.baseUrl + url, httOption);
   }
-   return 
-}
+
+  putRequestForNote(url, data): any {
+    console.log('token is  ', localStorage.getItem('token'))
+    console.log("url:"+this.baseUrl + url);
+    const httOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token')
+      })
+    }
+    return this.http.get(this.baseUrl + url, httOption);
+  }
 }

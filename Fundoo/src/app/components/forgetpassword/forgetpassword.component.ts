@@ -30,7 +30,7 @@ this.email.hasError('email') ? 'Not a valid email':'';
 
 forgetPassword(){
 this.model ={
-email : this.email.value
+  email : this.email.value
 }
 console.log(this.email.value);
 this.httpService.postRequest('/forgetPassword?email='+this.email.value,'').subscribe(data => {

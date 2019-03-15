@@ -1,7 +1,8 @@
 <div class="display">
   <div class="mininote" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex.xs="98" fxLayoutGap="10px" fxFlex="80">
 
-    <div *ngFor="let items of cardsArray" class="card">
+    <!-- <div *ngFor="let items of cardsArray" class="card"> -->
+      <div *ngFor="let items of card" class="card">
       <mat-card class="minicard" [style.backgroundColor]="items.color">
         <div>
           <div fxLayout="row">
@@ -13,7 +14,7 @@
           <div>{{items.description}}</div>
           <div class="icons-div">
             <app-icon-list fxLayout="row" [card]="items" fxLayoutAlign="space-between end"
-              (colorEmit)="Changescolor($event)" (childObject)="update($event)">
+              (colorchange)="changeOfColor($event)" (childObject)="update($event)">
             </app-icon-list>
           </div>
         </div>

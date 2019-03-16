@@ -103,10 +103,12 @@ export class IconListComponent implements OnInit {
 
   archiveNote(){
     console.log("Archive note");
-    this.httpService.putRequestForNote('/archiveNote/'+this.card.noteId,'').subscribe(data => {
+    this.httpService.putRequestForNote('/archiveNote/'+this.card.noteId).subscribe(data => {
       this.snackbar.open(data.statusMessage, "End Now", { duration: 3000 });
     },
-
+    error =>{
+      this.snackbar.open('Retry', 'End Now', { duration: 3000 });
+    }
     )
   }
 }

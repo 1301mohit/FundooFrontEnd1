@@ -28,6 +28,9 @@ import { MaincardComponent } from './components/maincard/maincard.component';
 import { IconListComponent } from './components/icon-list/icon-list.component';
 import { NoteComponent } from './components/note/note.component';
 import { DisplayNotesComponent } from './components/display-notes/display-notes.component';
+import { DisplayArchiveComponent } from './components/display-archive/display-archive.component';
+import { DisplayTrashComponent } from './components/display-trash/display-trash.component';
+import { EditNoteComponent } from './components/edit-note/edit-note.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { DisplayNotesComponent } from './components/display-notes/display-notes.
     MaincardComponent,
     IconListComponent,
     NoteComponent,
-    DisplayNotesComponent
+    DisplayNotesComponent,
+    DisplayArchiveComponent,
+    DisplayTrashComponent,
+    EditNoteComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +68,7 @@ import { DisplayNotesComponent } from './components/display-notes/display-notes.
   //  ChangeDetectorRef
  //   OnDestroy
   ],
+  entryComponents: [EditNoteComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

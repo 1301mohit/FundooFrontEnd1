@@ -39,6 +39,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   Note(){
   this.titleName = "Note"
+  this.router.navigateByUrl('/dashboard/note')
   }
 
   Remainder(){
@@ -51,10 +52,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   archive(){
     this.titleName = "Archive"
+    this.router.navigateByUrl('/dashboard/display-archive')
   }
 
   trash(){
     this.titleName = "Trash"
+    this.router.navigateByUrl('/dashboard/display-trash')
   }
 }
 

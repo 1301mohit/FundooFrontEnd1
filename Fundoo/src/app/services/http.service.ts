@@ -67,7 +67,7 @@ export class HttpService {
     return this.http.delete(this.baseUrl + url, httOption);
   }
 
-  putRequestForNote(url, data): any {
+  putRequestForNote(url): any {
     console.log('token is  ', localStorage.getItem('token'))
     console.log("url:"+this.baseUrl + url);
     const httOption = {
@@ -76,6 +76,6 @@ export class HttpService {
         'token': localStorage.getItem('token')
       })
     }
-    return this.http.get(this.baseUrl + url, httOption);
+    return this.http.put(this.baseUrl + url, "" ,httOption);
   }
 }

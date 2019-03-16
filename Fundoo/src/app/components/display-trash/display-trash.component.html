@@ -1,25 +1,25 @@
 <div class="display">
-  <div class="mininote" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex.xs="98" fxLayoutGap="10px" fxFlex="80">
-
-    <!-- <div *ngFor="let items of cardsArray" class="card"> -->
-    <div *ngFor="let items of card" class="card">
-      <div *ngIf="items.archive==false && items.trash==false">
+    <div class="mininote" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex.xs="98" fxLayoutGap="10px" fxFlex="80">
+  
+      <!-- <div *ngFor="let items of cardsArray" class="card"> -->
+      <div *ngFor="let items of card" class="card">
+        <div *ngIf="items.trash == true">
         <mat-card class="minicard" [style.backgroundColor]="items.color">
           <div>
             <div fxLayout="row" class="title">
               <span (click)="getNoteId(items)">{{items.title}}</span>
               <!-- <button mat-icon-button color="basic" (click)="pinned(items)" fxLayoutAlign="end start">
-                  <div class="barpin" *ngIf="flag1==false">
-                    <img src="../../../assets/barpin.svg">
-                  </div>
-                  <div class="pin" *ngIf="flage1==true">
-                    <img src="../../../assets/pin.svg">
-                  </div>
-              </button> -->
-
+                    <div class="barpin" *ngIf="flag1==false">
+                      <img src="../../../assets/barpin.svg">
+                    </div>
+                    <div class="pin" *ngIf="flage1==true">
+                      <img src="../../../assets/pin.svg">
+                    </div>
+                </button> -->
+  
               <!-- <div fxLayout="row" fxLayoutAlign="end start">
-              <button mat-icon-button></button>
-            </div> -->
+                <button mat-icon-button></button>
+              </div> -->
             </div>
             <div>{{items.description}}</div>
             <div class="icons-div">
@@ -31,5 +31,5 @@
         </mat-card>
       </div>
     </div>
+    </div>
   </div>
-</div>

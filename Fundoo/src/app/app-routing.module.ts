@@ -7,6 +7,9 @@ import { ResetpasswordComponent } from  './components/resetpassword/resetpasswor
 import { DashboardComponent } from './components/dashboard/dashboard.component'
 import {  MaincardComponent } from './components/maincard/maincard.component'
 import { NoteComponent } from './components/note/note.component';
+import { DisplayNotesComponent } from './components/display-notes/display-notes.component';
+import { DisplayArchiveComponent } from './components/display-archive/display-archive.component';
+import { DisplayTrashComponent } from './components/display-trash/display-trash.component';
 const routes: Routes = [
   {
     path : '',
@@ -41,9 +44,21 @@ const routes: Routes = [
       {
         path : 'note',
         component : NoteComponent
+      },
+      {
+        path : 'display-archive',
+        component : DisplayArchiveComponent
+      },
+      {
+        path : 'display-trash',
+        component : DisplayTrashComponent
       }
     ]
   }
+  // {
+  //   path : 'display-archive',
+  //   component : DisplayArchiveComponent
+  // }
   // {
   //   path : 'maincard',
   //   component : MaincardComponent

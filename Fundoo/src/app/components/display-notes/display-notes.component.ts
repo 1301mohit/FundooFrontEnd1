@@ -20,6 +20,16 @@ export class DisplayNotesComponent implements OnInit {
 //@Input() card;
   color : String;
   card=[];
+
+
+  // title: String
+  // description: String
+  // isPin: boolean
+  // color1: String
+  // isArchive: boolean
+  // isTrash: boolean
+
+
   // flag1 = true;
   ngOnInit() {
     this.getAllCard();
@@ -39,11 +49,30 @@ export class DisplayNotesComponent implements OnInit {
   }
 
   getNoteId(items){
+    console.log(items);
+    
     const dialogRef = this.dialog.open(EditNoteComponent, {
-      width: '30%',
-     // data: {name: this.name, animal: this.animal}
+      width: 'auto',
+      height: 'auto',
+      data: {
+        title: items.title,
+        description: items.description,
+        isPin: items.pinned,
+        color1: items.color,
+        isArchive: items.archive,
+        isTrash: items.trash,
+        noteId:items.noteId
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.getAllCard();
     });
   }
+
+  // :host/ deep/ {
+
+  // }
 
   // pinned(card){
   //   console.log("pin:",card.isPinned);
@@ -53,4 +82,7 @@ export class DisplayNotesComponent implements OnInit {
   //   })
     // this.flag1 = !this.flag1;
   // }
+  update(event){
+    this.getAllCard();
+  }
 }

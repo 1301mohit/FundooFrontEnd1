@@ -33,4 +33,7 @@ export class DisplayArchiveComponent implements OnInit {
   changeOfColor($event){
     this.color = $event;
   }
+  update(event){
+    this.getAllCard();
+  }
 }

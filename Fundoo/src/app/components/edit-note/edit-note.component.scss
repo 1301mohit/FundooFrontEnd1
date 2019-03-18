@@ -1,15 +1,19 @@
-.minicard{
-    margin-bottom: 24px
-}
+// .minicard{
+//     margin-bottom: 24px
+// }
 .mininote{
     display: flex;
-    flex-direction: row;
-   margin-top: 3%
+min-width: 406px;
+padding: 20px;
 }
-.display{
-    justify-content:center;
+// .display{
+//     justify-content:center;
+// }
+.textArea{
+    background-color: transparent;
+    border: none;
 }
 
-.title{
-    margin-bottom: 5%;
+::ng-deep .mat-dialog-container{
+    padding:0px; 
 }

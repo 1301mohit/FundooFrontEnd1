@@ -1,21 +1,32 @@
-<div class="display">
-    <div class="mininote" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex.xs="98" fxLayoutGap="10px" fxFlex="80">
-  
-      <!-- <div *ngFor="let items of cardsArray" class="card"> -->
-      <div *ngFor="let items of card" class="card">
-        <div *ngIf="items.archive==false && items.trash==false">
-          <mat-card class="minicard" [style.backgroundColor]="items.color">
-            <div>
-              <div fxLayout="row" class="title">
-                  <span #fontSize value="16px"></span>
+
+  <div class="mininote" fxLayout="column wrap" [style.backgroundColor]="color" fxLayoutAlign="start start" fxLayoutGap="10px">
+
+    <!-- <div *ngFor="let items of cardsArray" class="card"> -->
+    <!-- <div *ngFor="let items of card" class="card"> -->
+    <!-- <div class="card"> -->
+    <!-- <div *ngIf="items.archive==false && items.trash==false"> -->
+    <!-- <div class="minicard" > -->
+    <!-- [style.backgroundColor]="items.color"> -->
+    <div fxLayout="row" fxLayoutAlign="start start" class="title">
+      <input matInput [formControl] = "title">
+    </div>
+    
+    <div>
+      <textarea class="textArea" matTextareaAutosize [formControl] = "description" class="textArea"></textarea>
+    </div>
+
+
+    <!-- <span #fontSize value="16px"></span>
                   <div [style.fontSize]="fontSize.value">
                     {{items.title}}
                     <textarea matInput
                               cdkTextareaAutosize
                               #autosize="cdkTextareaAutosize"></textarea>
-                  </div>
-                <!-- <span (click)="getNoteId(items)">{{items.title}}</span> -->
-                <!-- <button mat-icon-button color="basic" (click)="pinned(items)" fxLayoutAlign="end start">
+                  </div> -->
+
+
+    <!-- <span (click)="getNoteId(items)">{{items.title}}</span> -->
+    <!-- <button mat-icon-button color="basic" (click)="pinned(items)" fxLayoutAlign="end start">
                     <div class="barpin" *ngIf="flag1==false">
                       <img src="../../../assets/barpin.svg">
                     </div>
@@ -23,20 +34,21 @@
                       <img src="../../../assets/pin.svg">
                     </div>
                 </button> -->
-  
-                <!-- <div fxLayout="row" fxLayoutAlign="end start">
+
+    <!-- <div fxLayout="row" fxLayoutAlign="end start">
                 <button mat-icon-button></button>
               </div> -->
-              </div>
-              <div>{{items.description}}</div>
-              <div class="icons-div">
-                <app-icon-list fxLayout="row" [card]="items" fxLayoutAlign="space-between end"
-                  (colorchange)="changeOfColor($event)" (childObject)="update($event)">
-                </app-icon-list>
-              </div>
-            </div>
-          </mat-card>
-        </div>
-      </div>
+
+    <!-- <div>{{data.description}}</div> -->
+    <div class="icons-div" fxLayout="row" fxLayoutAlign="space-between end" >
+      <app-icon-list fxLayout="row" [card]="data"
+        (colorchange)="changeOfColor($event)" (childObject)="update($event)">
+      </app-icon-list>
+      <button class="updatenote" mat-button (click)="save()">close</button>
     </div>
+
   </div>
+
+
+
+<!-- </div> -->

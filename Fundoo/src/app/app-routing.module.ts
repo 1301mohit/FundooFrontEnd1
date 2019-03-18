@@ -10,6 +10,7 @@ import { NoteComponent } from './components/note/note.component';
 import { DisplayNotesComponent } from './components/display-notes/display-notes.component';
 import { DisplayArchiveComponent } from './components/display-archive/display-archive.component';
 import { DisplayTrashComponent } from './components/display-trash/display-trash.component';
+import { EditNoteComponent } from './components/edit-note/edit-note.component';
 const routes: Routes = [
   {
     path : '',
@@ -52,6 +53,10 @@ const routes: Routes = [
       {
         path : 'display-trash',
         component : DisplayTrashComponent
+      },
+      {
+        path : 'edit-note',
+        component : EditNoteComponent
       }
     ]
   }

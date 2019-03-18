@@ -7,6 +7,7 @@ import { MatCard } from '@angular/material';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { log } from 'util';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-icon-list',
@@ -17,8 +18,14 @@ export class IconListComponent implements OnInit {
 
   // @Input() color;
   @Output() colorEmit = new EventEmitter();
+  @Output() updateEvent=new EventEmitter();
   @Output() colorchange = new EventEmitter();
   @Input() card;
+
+  @Input() title;
+  @Input() description;
+
+ 
   constructor(private httpService: HttpService,
     private snackbar: MatSnackBar,
     private router: Router) { }
@@ -78,6 +85,7 @@ export class IconListComponent implements OnInit {
   //this.colorEmit.emit(colorId);
 
   colorsEdit(colorId) {
+    this.colorchange.emit(colorId);
     if (this.card.noteId != undefined) {
       console.log("card id is ",this.card.noteId);
       console.log("card data at icon", this.card);
@@ -85,7 +93,7 @@ export class IconListComponent implements OnInit {
 
       this.httpService.postRequestForNote('/color/'+this.card.noteId+'?color=' +colorId, '').subscribe(data => {
         this.snackbar.open(data.statusMessage, "End Now", { duration: 3000 });
-        this.colorchange.emit(colorId);
+        // this.colorchange.emit(colorId);
       })
     }
   }
@@ -105,10 +113,12 @@ export class IconListComponent implements OnInit {
     console.log("Archive note");
     this.httpService.putRequestForNote('/archiveNote/'+this.card.noteId).subscribe(data => {
       this.snackbar.open(data.statusMessage, "End Now", { duration: 3000 });
+      this.updateEvent.emit({type:'archive'});
     },
     error =>{
       this.snackbar.open('Retry', 'End Now', { duration: 3000 });
     }
     )
   }
+
 }

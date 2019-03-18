@@ -78,4 +78,16 @@ export class HttpService {
     }
     return this.http.put(this.baseUrl + url, "" ,httOption);
   }
+
+  updateRequestForNote(url, data): any {
+    console.log("updateNote url:",url)
+    console.log("updateNote data",data)
+    const httOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token')
+      })
+    }
+    return this.http.put(this.baseUrl + url, data, httOption);
+  }
 }

@@ -50,7 +50,7 @@ export class MaincardComponent implements OnInit {
       this.model = {
         "title": this.noteTitle.value,
         "description": this.noteContent.value,
-        "isPin": false,
+        "isPin": true,
         "color": this.color,
         "isArchive": false,
         "isTrash": false

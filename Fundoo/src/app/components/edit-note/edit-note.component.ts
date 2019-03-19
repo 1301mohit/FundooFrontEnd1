@@ -64,7 +64,7 @@ export class EditNoteComponent implements OnInit{
     this.data.title = this.title.value;
     this.data.description = this.description.value;
     console.log("Title",this.title.value);
-    console.log("Color",this.data.color);
+    console.log("Color",this.color);
     let object = {
       "title": this.title.value,
       "description": this.description.value,

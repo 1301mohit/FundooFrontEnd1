@@ -23,7 +23,7 @@
             </div>
             <div>{{items.description}}</div>
             <div class="icons-div">
-              <app-icon-list fxLayout="row" [card]="items" fxLayoutAlign="space-between end"
+              <app-icon-list fxLayout="row" [card]="items" fxLayoutAlign="space-between end" (updateEvent)=update($event)
                 (colorchange)="changeOfColor($event)">
               </app-icon-list>
             </div>

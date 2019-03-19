@@ -1,6 +1,10 @@
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
+import {Inject} from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, AUTOCOMPLETE_OPTION_HEIGHT, AUTOCOMPLETE_PANEL_HEIGHT} from '@angular/material';
+import { EditLabelComponent } from '../edit-label/edit-label.component';
+import { AUTO_STYLE } from '@angular/animations';
 //import {MediaMatcher} from '@angular/cdk/layout';
 //import {ChangeDetectorRef, OnDestroy} from '@angular/core';
 
@@ -22,7 +26,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router) {
+  constructor(changeDetectorRef: ChangeDetectorRef, 
+              media: MediaMatcher, 
+              private router: Router,
+              public dialog: MatDialog) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -48,6 +55,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   editLabels(){
     this.titleName = "EditLable"
+    const dialogRef = this.dialog.open(EditLabelComponent, {
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.animal = result;
+    });
   }
 
   archive(){

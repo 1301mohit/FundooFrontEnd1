@@ -1,0 +1,32 @@
+// .create{
+//     font-size: 17px;
+//     height: fit-content;
+// }
+
+// ::ng-deep .mat-dialog-container{
+//     padding:12px; 
+// }
+
+// .editlabel{
+//     font-size: inherit;
+// }
+
+// .cancle{
+//     font-size: 17px;
+//     height: fit-content;
+// }
+.label-content:hover .label{
+    visibility: hidden;
+}
+.label{
+    visibility: visible;
+  //  margin-left:100px;
+}
+
+.label-content:hover .delete{
+    visibility: visible;
+}
+.delete{
+    visibility: hidden;
+  //  margin-right:100px;
+}

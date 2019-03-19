@@ -2,14 +2,12 @@
   <button id="Remind" matTooltip="Remind me" mat-icon-button>
     <img id="remindmeImage" src="../../../assets/remindme.svg" />
   </button>
+
   <button id="collaborator" matTooltip="collaborator" mat-icon-button>
     <img id="collaborator" src="../../../assets/collaborator.svg" />
   </button>
 
-
-
-  <button [matMenuTriggerFor]="menu5" style="cursor: pointer;" aria-label="change color" matTooltip="change color"
-    mat-icon-button>
+  <button [matMenuTriggerFor]="menu5" style="cursor: pointer;" aria-label="change color" matTooltip="change color" mat-icon-button>
     <mat-icon>palette</mat-icon>
   </button>
   <mat-menu #menu5="matMenu" [overlapTrigger]="false">
@@ -25,13 +23,14 @@
     </ng-template>
   </mat-menu>
 
-
   <button id="addimage" matTooltip="Add image"  mat-icon-button>
     <img id="addimage" src="../../../assets/addimage.svg" />
   </button>
+
   <button id="archive" matTooltip="Archive" (click)='archiveNote()' mat-icon-button>
     <img id="archive" src="../../../assets/archive.svg" />
   </button>
+
   <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon>more_vert</mat-icon>
   </button>
@@ -49,6 +48,7 @@
       <span>show checkboxes</span>
     </button>
   </mat-menu>
+
 </div>
 
 

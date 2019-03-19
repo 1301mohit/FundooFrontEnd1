@@ -41,8 +41,7 @@
 
     <!-- <div>{{data.description}}</div> -->
     <div class="icons-div" fxLayout="row" fxLayoutAlign="space-between end" >
-      <app-icon-list fxLayout="row" [card]="data"
-        (colorchange)="changeOfColor($event)" (childObject)="update($event)">
+      <app-icon-list fxLayout="row" [card]="data" (colorchange)="changeOfColor($event)">
       </app-icon-list>
       <button class="updatenote" mat-button (click)="save()">close</button>
     </div>

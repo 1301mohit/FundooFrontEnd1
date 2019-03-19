@@ -46,9 +46,12 @@ export class DisplayNotesComponent implements OnInit {
 
   changeOfColor($event){
     this.color = $event;
+    console.log('event for color change ',$event);
+    
+    this.getAllCard();
   }
 
-  getNoteId(items){
+  openDialog(items){
     console.log(items);
     
     const dialogRef = this.dialog.open(EditNoteComponent, {

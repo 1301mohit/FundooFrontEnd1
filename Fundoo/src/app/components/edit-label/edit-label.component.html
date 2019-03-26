@@ -3,12 +3,12 @@
 <div mat-dialog-content fxLayout="row" fxLayoutAlign="center center">
 
   <div>
-    <button mat-icon-button (click)=create()>
-      <mat-icon class="create">clear</mat-icon>
+    <button mat-icon-button>
+      <mat-icon class="cancle" onclick="document.getElementById('labelInput').value = ''">clear</mat-icon>
     </button>
   </div>
   <div>
-    <input matInput placeholder="Create new label" [formControl]="name">
+    <input matInput placeholder="Create new label" [formControl]="name" id="labelInput">
   </div>
   <div>
     <button mat-icon-button (click)=create()>
@@ -22,14 +22,14 @@
 <div *ngFor="let item of label" class="card" >
   <div class="label-content" fxLayout="row" fxLayoutAlign="center center">
   <div fxLayout="row" fxLayoutAlign="center center">
-      <div class="label">
+      <div>
           <button mat-icon-button>
-            <mat-icon class="create">label</mat-icon>
+            <mat-icon class="label">label</mat-icon>
           </button>
       </div>
-      <div class="delete">
+      <div>
           <button mat-icon-button (click)=delete(item.labelId)>
-            <mat-icon class="create">delete</mat-icon>
+            <mat-icon class="delete">delete</mat-icon>
           </button>
       </div>
   </div>
@@ -40,16 +40,30 @@
   </div>
   <div class="edit">
     <button mat-icon-button (click)=update(item.labelId)>
-      <mat-icon class="create">edit</mat-icon>
+      <mat-icon class="edit">edit</mat-icon>
     </button>
   </div>
 </div>
 </div>
 
 <mat-divider></mat-divider>
-<div mat-dialog-actions>
-  <button mat-button cdkFocusInitial>Done</button>
+
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between end">
+  <div (click)="onNoClick()">
+    <button mat-button >Cancle</button>
+  </div>
+  <div (click)="done()">
+      <!-- <button mat-button (click)="onNoClick()">Cancle</button>  -->
+     <button mat-button>Done</button>
+  </div>
 </div>
+
+
+
+
+<!-- <div class = "close" fxLayoutAlign="end end" >
+  <button mat-button (click) = close()>Done</button>
+</div> -->
 
 <!-- <div mat-dialog-actions fxLayoutAlign="end end">
    <button mat-button (click)="onNoClick()">No Thanks</button> 

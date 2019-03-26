@@ -40,7 +40,7 @@ export class HttpService {
   }
 
   postRequestForNote(url, data): any {
-    console.log("my data", data);
+    console.log("my data in httpService", data);
     return this.http.post(this.baseUrl + url, data, header);
     // { responseType: 'text' });
   }

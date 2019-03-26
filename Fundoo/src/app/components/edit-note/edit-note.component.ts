@@ -7,6 +7,8 @@ import {ViewChild} from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {Inject} from '@angular/core';
 import { FormControl } from '@angular/forms';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { computeStyle } from '@angular/animations/browser/src/util';
 
 export interface DialogData {
   title: String,
@@ -15,6 +17,10 @@ export interface DialogData {
   color1: String,
   isArchive: boolean,
   isTrash: boolean
+}
+
+export interface Fruit {
+  name: string;
 }
 
 @Component({
@@ -28,7 +34,7 @@ export class EditNoteComponent implements OnInit{
   title : any = "";
   description : any = "";
   color : any=" white";
-
+  labelOfNote : [];
 
   id: any;
   constructor(private httpService: HttpService,
@@ -36,13 +42,12 @@ export class EditNoteComponent implements OnInit{
               private snackbar: MatSnackBar,
               public dialogRef: MatDialogRef<EditNoteComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any
-            ) {
+             ) {
                 this.title = new FormControl(data.title);
                 this.description = new FormControl(data.description);
                 this.color = data.color1;
                 console.log(data);
-                
-             }
+               }
 
   
 
@@ -53,6 +58,7 @@ export class EditNoteComponent implements OnInit{
   // flag1 = true;
   ngOnInit() {
     // console.log("Title:",this.title);
+    this.getLabelOfNote();
     
   }
 
@@ -101,5 +107,49 @@ export class EditNoteComponent implements OnInit{
     
     this.color = event;
   }
+
+    visible = true;
+    selectable = true;
+    removable = true;
+    addOnBlur = true;
+    readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+    // fruits: Fruit[] = [
+    //   {name: 'Lemon'},
+    //   {name: 'Lime'},
+    //   {name: 'Apple'},
+    // ];
+
+    // remove(fruit: Fruit): void {
+    //   const index = this.fruits.indexOf(fruit);
+  
+    //   if (index >= 0) {
+    //     this.fruits.splice(index, 1);
+    //   }
+    // }
+
+    remove(label){
+      console.log("Label"+label);
+      // const index = this.labelOfNote.indexOf(label);
+      this.httpService.deleteRequestForNote('/deleteLabelOfNote/'+label.labelId+'/'+this.data.noteId).subscribe( data => {
+        console.log("Delete label from note response"+data);
+        this.snackbar.open(data.statusMessage, "End-Now", { duration:3000 });
+      },
+      error => {
+        this.snackbar.open(error, "End-Now", { duration:3000 })
+      })
+    }
+
+    getLabelOfNote(){
+      console.log("note id ", this.data.noteId)
+      this.httpService.getRequestForNote('/getLabelOfNote/'+this.data.noteId).subscribe( data => {
+        console.log("getLabelOfNote response  data"+data)
+        this.labelOfNote = data;
+        console.log("getLabelOfNote data"+ this.labelOfNote)
+      },
+      error => {
+        this.snackbar.open(error, "End-Now", { duration:3000 })
+      }
+      )
+    }
 
 }

@@ -32,10 +32,11 @@
     <button mat-icon-button color="basic" (click)="pinned()">
 
       <div class="barpin" *ngIf="flag1==false">
-        <img src="../../../assets/barpin.svg">
+          <img src="../../../assets/pin.svg">
+        <!-- <img src="../../../assets/barpin.svg"> -->
       </div>
       <div class="pin" *ngIf="flag1==true">
-        <img src="../../../assets/pin.svg">
+        <img src="../../../assets/barpin.svg">
       </div>
     </button>
   </div>

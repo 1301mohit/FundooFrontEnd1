@@ -12,7 +12,7 @@ import { MatSnackBar } from '@angular/material';
 
 export class MaincardComponent implements OnInit {
   flag = true;
-  flag1 = true;
+  flag1 = false;
   // noteTitle = new FormControl('', Validators.required);
   // noteContent = new FormControl('', Validators.required);
   noteTitle = new FormControl('');
@@ -34,7 +34,11 @@ export class MaincardComponent implements OnInit {
 
 
 
-  
+  pinned() {
+    console.log(this.flag1);
+    this.flag1 = !this.flag1;
+    console.log(this.flag1);
+  }
   // @Output() messageEvent = new EventEmitter<string>();
 
 
@@ -50,12 +54,12 @@ export class MaincardComponent implements OnInit {
       this.model = {
         "title": this.noteTitle.value,
         "description": this.noteContent.value,
-        "isPin": true,
+        "pinned": this.flag1,
         "color": this.color,
-        "isArchive": false,
-        "isTrash": false
+        "archive": false
       }
-      console.log("model data", this.model);
+      //console.log("Type of title"+typeof this.noteTitle.value);
+      console.log("model data in addNote method", this.model);
       this.httpService.postRequestForNote('/addNote', this.model).subscribe(data => {
         console.log("addNotes data", data);
         this.snackbar.open(data.statusMessage, 'End now', { duration: 5000 });
@@ -71,15 +75,12 @@ export class MaincardComponent implements OnInit {
     }
   }
 
-   
   Changes($event){ 
      this.color=$event;
      console.log("im reached in main card",this.color);
    }
 
-  pinned() {
-    this.flag1 =! this.flag1;
-  }
+ 
 
   reverseFlag($event) {
     this.flag = !this.flag;

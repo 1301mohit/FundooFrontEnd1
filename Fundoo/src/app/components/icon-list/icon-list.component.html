@@ -31,24 +31,31 @@
     <img id="archive" src="../../../assets/archive.svg" />
   </button>
 
-  <button mat-icon-button [matMenuTriggerFor]="menu">
+  <button mat-icon-button [matMenuTriggerFor]="menu" (click)=getAllLabel()>
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="delete()">
       <span>Delete note</span>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item [matMenuTriggerFor] = "labelMenu" (click)="$event.stopPropagation()">
       <span>Add label</span>
     </button>
-    <button mat-menu-item disabled>
+    <!-- <button mat-menu-item disabled>
       <span>Add drawing</span>
     </button>
     <button mat-menu-item>
       <span>show checkboxes</span>
-    </button>
+    </button> -->
   </mat-menu>
 
+  <div (click) = "$event.stopPropagation()">
+    <mat-menu #labelMenu = "matMenu">
+      <div *ngFor = "let index of label">
+        <mat-checkbox (click)="$event.stopPropagation(); addLabelToNote(index)">{{index.name}}</mat-checkbox>
+      </div>
+    </mat-menu>
+  </div>
 </div>
 
 

@@ -16,6 +16,17 @@
     </div>
 
 
+    <div class="example-chip-list">
+      <mat-chip-list #chipList>
+        <mat-chip *ngFor="let label of labelOfNote" [selectable]="selectable"
+                 [removable]="removable" (removed)="remove(label)">
+          {{label.name}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+
+    
     <!-- <span #fontSize value="16px"></span>
                   <div [style.fontSize]="fontSize.value">
                     {{items.title}}

@@ -32,6 +32,7 @@ import { DisplayArchiveComponent } from './components/display-archive/display-ar
 import { DisplayTrashComponent } from './components/display-trash/display-trash.component';
 import { EditNoteComponent } from './components/edit-note/edit-note.component';
 import { EditLabelComponent } from './components/edit-label/edit-label.component';
+import { EditLabelNoteComponent } from './edit-label-note/edit-label-note.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { EditLabelComponent } from './components/edit-label/edit-label.component
     DisplayArchiveComponent,
     DisplayTrashComponent,
     EditNoteComponent,
-    EditLabelComponent
+    EditLabelComponent,
+    EditLabelNoteComponent
   ],
   imports: [
     BrowserModule,

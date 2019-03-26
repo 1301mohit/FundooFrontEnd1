@@ -12,6 +12,7 @@ import { DisplayArchiveComponent } from './components/display-archive/display-ar
 import { DisplayTrashComponent } from './components/display-trash/display-trash.component';
 import { EditNoteComponent } from './components/edit-note/edit-note.component';
 import { EditLabelComponent } from './components/edit-label/edit-label.component';
+import { EditLabelNoteComponent } from './edit-label-note/edit-label-note.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,10 @@ const routes: Routes = [
       {
         path : 'edit-label',
         component : EditLabelComponent
+      },
+      {
+        path : 'edit-label-note',
+        component : EditLabelNoteComponent
       }
     ]
   }

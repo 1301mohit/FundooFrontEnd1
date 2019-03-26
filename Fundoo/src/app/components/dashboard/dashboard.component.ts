@@ -5,6 +5,8 @@ import {Inject} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, AUTOCOMPLETE_OPTION_HEIGHT, AUTOCOMPLETE_PANEL_HEIGHT} from '@angular/material';
 import { EditLabelComponent } from '../edit-label/edit-label.component';
 import { AUTO_STYLE } from '@angular/animations';
+import { HttpService } from 'src/app/services/http.service';
+import { MatSnackBar } from '@angular/material';
 //import {MediaMatcher} from '@angular/cdk/layout';
 //import {ChangeDetectorRef, OnDestroy} from '@angular/core';
 
@@ -16,8 +18,10 @@ import { AUTO_STYLE } from '@angular/animations';
 export class DashboardComponent implements OnInit, OnDestroy {
 
   titleName : string
+  label : [];
 
   ngOnInit() {
+    this.getAllLabel();
   }
 
   mobileQuery: MediaQueryList;
@@ -26,7 +30,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, 
+  constructor(private httpService: HttpService,
+              changeDetectorRef: ChangeDetectorRef, 
+              private snackbar: MatSnackBar,
               media: MediaMatcher, 
               private router: Router,
               public dialog: MatDialog) {
@@ -45,8 +51,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   Note(){
-  this.titleName = "Note"
-  this.router.navigateByUrl('/dashboard/note')
+    this.titleName = "Note"
+    this.router.navigateByUrl('/dashboard/note')
   }
 
   Remainder(){
@@ -58,21 +64,32 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(EditLabelComponent, {
       data: {}
     });
-
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      //this.animal = result;
+      //this.router.navigate(['/dashboard/note']);
+      this.getAllLabel();
     });
   }
 
   archive(){
     this.titleName = "Archive"
     this.router.navigateByUrl('/dashboard/display-archive')
+    //this.httpService.postRequestForNote('/archiveNote/'+)
   }
 
   trash(){
     this.titleName = "Trash"
     this.router.navigateByUrl('/dashboard/display-trash')
+  }
+
+  getAllLabel(){
+    console.log("get All Labels");
+    this.httpService.getRequestForNote('/getAllLabels').subscribe(data => {
+      this.label = data;
+    }, err => {
+      this.snackbar.open(err, "End-Now", { duration : 3000 });
+    }
+    )
   }
 }
 

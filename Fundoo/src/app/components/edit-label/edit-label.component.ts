@@ -4,6 +4,11 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { log } from 'util';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { MatDialogRef} from '@angular/material';
+import { EditNoteComponent } from '../edit-note/edit-note.component';
+import {Inject} from '@angular/core';
+import { MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-edit-label',
@@ -14,7 +19,9 @@ export class EditLabelComponent implements OnInit {
 
   constructor(private httpService: HttpService,
     private router: Router,
-    private snackbar: MatSnackBar) { }
+    private snackbar: MatSnackBar,
+    public dialogRef: MatDialogRef<EditNoteComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   label=[];
 
@@ -42,6 +49,7 @@ export class EditLabelComponent implements OnInit {
       "name" : this.name.value
     }
     this.httpService.postRequestForNote('/createLabel', this.model).subscribe(data => {
+
       console.log('Create label');
       this.snackbar.open(data.statusMessage, "End-now", { duration : 3000 })
       this.getAllLabel();
@@ -71,5 +79,13 @@ export class EditLabelComponent implements OnInit {
     },err => {
       this.snackbar.open(err, "End-now", { duration : 3000 })
     })
+  }
+
+  done(){
+    this.dialogRef.close({ data : this.data });
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

@@ -20,7 +20,8 @@
 }
 .label{
     visibility: visible;
-  //  margin-left:100px;
+    margin-left: 72%;
+    font-size: larger;
 }
 
 .label-content:hover .delete{
@@ -28,5 +29,23 @@
 }
 .delete{
     visibility: hidden;
-  //  margin-right:100px;
+    margin-right:72%;
+    font-size: larger;
 }
+
+.edit{
+  margin-right: 5%;
+}
+
+.cancle{
+  font-size: larger;
+}
+
+.create{
+  font-size: larger;
+}
+
+.edit{
+  font-size: larger;
+}
+

@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 import { log } from 'util';
 import { Title } from '@angular/platform-browser';
 import { setDefaultService } from 'selenium-webdriver/edge';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, AUTOCOMPLETE_OPTION_HEIGHT, AUTOCOMPLETE_PANEL_HEIGHT} from '@angular/material';
+import { EditLabelComponent } from '../edit-label/edit-label.component';
+import { EditLabelNoteComponent } from 'src/app/edit-label-note/edit-label-note.component';
 
 @Component({
   selector: 'app-icon-list',
@@ -26,10 +29,12 @@ export class IconListComponent implements OnInit {
   @Input() title;
   @Input() description;
 
+  label : [];
  
   constructor(private httpService: HttpService,
     private snackbar: MatSnackBar,
-    private router: Router) { }
+    private router: Router,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -84,7 +89,40 @@ export class IconListComponent implements OnInit {
       this.updateEvent.emit({type:'archive'});
     },
     error =>{
-      this.snackbar.open('Retry', 'End Now', { duration: 3000 });
+      this.snackbar.open(error, 'End Now', { duration: 3000 });
+    }
+    )
+  }
+
+  // label(){
+  //   console.log("Label Note");
+  //   const dialogRef = this.dialog.open(EditLabelNoteComponent, {
+  //     data: {}
+  //   });
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed');
+  //     //this.router.navigate(['/dashboard/note']);
+  //     this.getAllLabel();
+  //   });
+  // }
+
+  getAllLabel(){
+    console.log("get All Labels");
+    this.httpService.getRequestForNote('/getAllLabels').subscribe(data => {
+      this.label = data;
+    }, err => {
+      this.snackbar.open(err, "End-Now", { duration : 3000 });
+    }
+    )
+  }
+
+  addLabelToNote(index){
+    console.log("Add label to note");
+    this.httpService.postRequestForNote('/addLabelInNote/'+index.labelId+'/'+this.card.noteId,"").subscribe(data => {
+    this.snackbar.open(data.statusMessage, "End Now", { duration: 3000 });
+    },
+    error =>{
+      this.snackbar.open(error, 'End Now', { duration: 3000 });
     }
     )
   }

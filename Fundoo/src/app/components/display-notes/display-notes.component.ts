@@ -26,7 +26,7 @@ export class DisplayNotesComponent implements OnInit {
 //@Input() card;
   color1 : String;
   card:[];
- // labelOfNote:[];
+  labelOfNote:[];
 
 
   // title: String
@@ -121,9 +121,9 @@ export class DisplayNotesComponent implements OnInit {
   //   }
   // }
 
-  // getLabelOfNote(){
-  //   console.log("note id ", this.card.noteId)
-  //   this.httpService.getRequestForNote('/getLabelOfNote/'+this.card.noteId).subscribe( data => {
+  // getLabelOfNote(card){
+  //   console.log("note id ", card.noteId)
+  //   this.httpService.getRequestForNote('/getLabelOfNote/'+card.noteId).subscribe( data => {
   //     console.log("getLabelOfNote responce  data"+data)
   //     this.labelOfNote = data;
   //     console.log("getLabelOfNote data"+ this.labelOfNote)
@@ -134,17 +134,18 @@ export class DisplayNotesComponent implements OnInit {
   //   )
   // }
 
-  // remove(label){
-  //   console.log("Label"+label);
-  //   // const index = this.labelOfNote.indexOf(label);
-  //   this.httpService.deleteRequestForNote('/deleteLabelOfNote/'+label.labelId+'/'+this.card.noteId).subscribe( data => {
-  //     console.log("Delete label from note response"+data);
-  //     this.snackbar.open(data.statusMessage, "End-Now", { duration:3000 });
-  //   },
-  //   error => {
-  //     this.snackbar.open(error, "End-Now", { duration:3000 })
-  //   })
-  // }
+  remove(label,noteId){
+    console.log("Label"+label);
+    console.log("Note"+noteId);
+    // const index = this.labelOfNote.indexOf(label);
+    this.httpService.deleteRequestForNote('/deleteLabelOfNote/'+label.labelId+'/'+noteId).subscribe( data => {
+      console.log("Delete label from note response"+data);
+      this.snackbar.open(data.statusMessage, "End-Now", { duration:3000 });
+    },
+    error => {
+      this.snackbar.open(error, "End-Now", { duration:3000 })
+    })
+  }
 
   // remove1(label){
   //   const index = this.

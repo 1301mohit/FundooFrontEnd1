@@ -4,7 +4,8 @@
     <!-- <div *ngFor="let items of cardsArray" class="card"> -->
     <div *ngFor="let items of card" class="card">
 
-      <div *ngIf="items.archive==false && items.trash==false && items.pinned==true">
+      <!-- <div *ngIf="items.archive==false && items.trash==false && items.pinned==true"> -->
+      <div *ngIf="items.archive==false && items.trash==false">
         <mat-card class="minicard" [style.backgroundColor]="items.color">
           <div fxLayout="row" fxLayoutAlign="space-between start">
             <div fxLayout="row" class="title">
@@ -24,15 +25,15 @@
 
           <div>{{items.description}}</div>
 
-          <!-- <div class="example-chip-list">
+          <div class="example-chip-list">
             <mat-chip-list #chipList>
-              <mat-chip *ngFor="let label of labelOfNote" [selectable]="selectable"
-                       [removable]="removable" (removed)="remove(label)">
+              <mat-chip *ngFor="let label of items.label" [selectable]="selectable" [removable]="removable"
+                (removed)="remove(label,items.noteId)">
                 {{label.name}}
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
               </mat-chip>
             </mat-chip-list>
-          </div> -->
+          </div>
 
           <div class="icons-div">
             <app-icon-list fxLayout="row" [card]="items" (updateEvent)=update($event) fxLayoutAlign="space-between end"
@@ -47,7 +48,7 @@
 
 
 
-      <div *ngIf="items.archive==false && items.trash==false && items.pinned==false">
+      <!-- <div *ngIf="items.archive==false && items.trash==false && items.pinned==false">
         <mat-card class="minicard" [style.backgroundColor]="items.color">
           <div fxLayout="row" fxLayoutAlign="space-between start">
             <div fxLayout="row" class="title">
@@ -64,15 +65,11 @@
               </button>
             </div>
           </div>
-          <!-- <div fxLayout="row" fxLayoutAlign="end start">
-                  <button mat-icon-button></button>
-                </div> -->
-
           <div>{{items.description}}</div>
           <div class="example-chip-list">
             <mat-chip-list #chipList>
-              <mat-chip *ngFor="let label of labelOfNote" [selectable]="selectable"
-                       [removable]="removable" (removed)="remove(label)">
+              <mat-chip *ngFor="let label of items.label" [selectable]="selectable"
+                [removable]="removable" (removed)="remove(label,items.noteId)">
                 {{label.name}}
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
               </mat-chip>
@@ -84,7 +81,7 @@
             </app-icon-list>
           </div>
         </mat-card>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

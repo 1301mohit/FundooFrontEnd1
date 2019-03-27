@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { log } from 'util';
+import { environment } from '../../environments/environment';
 
 
 const header = {
@@ -21,7 +22,8 @@ export class HttpService {
 
 
   constructor(private http: HttpClient) { }
-  private baseUrl = "http://localhost:8080";
+ // private baseUrl = "http://localhost:8080";
+ private baseUrl = environment.baseUrl;
   static postRequest: any;
   static putRequest: any;
 

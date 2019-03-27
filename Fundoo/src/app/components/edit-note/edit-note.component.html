@@ -19,8 +19,8 @@
     <div class="example-chip-list">
       <mat-chip-list #chipList>
         <mat-chip *ngFor="let label of labelOfNote" [selectable]="selectable"
-                 [removable]="removable" (removed)="remove(label)">
-          {{label.name}}
+        [removable]="removable" (removed)="remove(label)">
+        {{label.name}}
           <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
         </mat-chip>
       </mat-chip-list>

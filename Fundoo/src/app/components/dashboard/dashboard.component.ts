@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   titleName : string
   label : [];
+  isClicked = false;
 
   ngOnInit() {
     this.getAllLabel();
@@ -90,6 +91,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.snackbar.open(err, "End-Now", { duration : 3000 });
     }
     )
+  }
+
+  grid(){
+    this.isClicked = !this.isClicked;
+  }
+
+  change(){
+    
   }
 }
 

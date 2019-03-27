@@ -36,8 +36,9 @@
           </button>
         </div>
         <div>
-          <button mat-icon-button color="basic" id="grid" matTooltip="grid">
-            <mat-icon>border_all</mat-icon>
+          <button mat-icon-button color="basic" id="grid" matTooltip="grid" (click)="change()" (click)="grid()">
+           <div *ngIf = "isClicked == false"><mat-icon>border_all</mat-icon></div>
+           <div *ngIf = "isClicked == true"><mat-icon>view_agenda</mat-icon></div>
           </button>
         </div>
         <div>
@@ -112,7 +113,7 @@
           <mat-divider></mat-divider>
           <div>
             <p id="para">LABELS</p>
-            <div *ngFor="let item of label" class="label">
+            <div *ngFor="let item of label" class="label" >
               <mat-list-item role="listitem" routerLinkActive="router-link-active">
                 <img id="img1" src="../../../assets/label.svg" />
                 <span class="notes">{{item.name}}</span>

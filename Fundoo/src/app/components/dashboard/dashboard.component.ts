@@ -7,6 +7,7 @@ import { EditLabelComponent } from '../edit-label/edit-label.component';
 import { AUTO_STYLE } from '@angular/animations';
 import { HttpService } from 'src/app/services/http.service';
 import { MatSnackBar } from '@angular/material';
+import { ViewchangeService } from 'src/app/services/viewchange.service';
 //import {MediaMatcher} from '@angular/cdk/layout';
 //import {ChangeDetectorRef, OnDestroy} from '@angular/core';
 
@@ -36,7 +37,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
               private snackbar: MatSnackBar,
               media: MediaMatcher, 
               private router: Router,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private viewChange: ViewchangeService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -95,11 +97,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   grid(){
     this.isClicked = !this.isClicked;
+    console.log(this.isClicked);
   }
 
   change(){
-    
+    this.viewChange.onViewChange(this.isClicked);
   }
+
+  // change(){
+  //   this.viewChange.onViewChange();
+  // }
 }
 
 

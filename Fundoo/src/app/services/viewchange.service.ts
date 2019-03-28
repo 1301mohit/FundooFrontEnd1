@@ -6,15 +6,19 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ViewchangeService {
 
-  private messageSource = new BehaviorSubject(false);
-  currentMessage = this.messageSource.asObservable();
+  private currentView = new BehaviorSubject(false);
+  subscribeView = this.currentView.asObservable();
 
   constructor() { }
 
-  changeMessage() {
-    this.currentMessage.subscribe( response => {
-      this.messageSource.next(!response);
-    }
-    )
+  onViewChange(response : boolean){
+    this.currentView.next(response);
   }
+
+  // onViewChange() {
+  //     this.subscribeView.subscribe( (response) => {
+  //     this.currentView.next(!response);
+  //   }
+  //   )
+  // }
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { EditNoteComponent } from '../edit-note/edit-note.component';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { ViewchangeService } from 'src/app/services/viewchange.service';
 
 export interface Fruit {
   name: string;
@@ -20,13 +21,15 @@ export class DisplayNotesComponent implements OnInit {
   constructor(private httpService: HttpService,
               private router: Router,
               private snackbar : MatSnackBar,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private viewChange : ViewchangeService) { }
               
 //@Input() cardsArray=[];
 //@Input() card;
   color1 : String;
   card:[];
   labelOfNote:[];
+  private subscribeView : boolean;
 
 
   // title: String
@@ -41,6 +44,9 @@ export class DisplayNotesComponent implements OnInit {
   ngOnInit() {
     this.getAllCard();
    // this.getLabelOfNote();
+    this.viewChange.subscribeView.subscribe(view => {
+      this.subscribeView = view;
+    })
   }
 
   getAllCard(){

@@ -1,5 +1,6 @@
 <div class="display">
-  <div class="mininote" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex.xs="98" fxLayoutGap="10px" fxFlex="80">
+  <div *ngIf="!subscribeView" class="mininote" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex.xs="98"
+    fxLayoutGap="10px" fxFlex="80">
 
     <!-- <div *ngFor="let items of cardsArray" class="card"> -->
     <div *ngFor="let items of card" class="card">
@@ -42,13 +43,64 @@
           </div>
         </mat-card>
       </div>
+    </div>
+  </div>
+
+  
+  <div *ngIf="subscribeView" class="mininote" fxLayout="column wrap" fxLayoutAlign="center center" fxFlex.xs="98"
+    fxLayoutGap="10px" fxFlex="80">
+
+    <!-- <div *ngFor="let items of cardsArray" class="card"> -->
+    <div *ngFor="let items of card" class="card">
+
+      <!-- <div *ngIf="items.archive==false && items.trash==false && items.pinned==true"> -->
+      <div *ngIf="items.archive==false && items.trash==false">
+        <mat-card class="minicard" [style.backgroundColor]="items.color">
+          <div fxLayout="row" fxLayoutAlign="space-between start">
+            <div fxLayout="row" class="title">
+              <span (click)="openDialog(items)">{{items.title}}</span>
+            </div>
+            <div>
+              <button mat-icon-button color="basic" (click)="pinned(items)">
+                <div class="pin" *ngIf="items.pinned==false">
+                  <img src="../../../assets/pin.svg">
+                </div>
+                <div class="barpin" *ngIf="items.pinned==true">
+                  <img src="../../../assets/barpin.svg">
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <div>{{items.description}}</div>
+
+          <div class="example-chip-list">
+            <mat-chip-list #chipList>
+              <mat-chip *ngFor="let label of items.label" [selectable]="selectable" [removable]="removable"
+                (removed)="remove(label,items.noteId)">
+                {{label.name}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+
+          <div class="icons-div">
+            <app-icon-list fxLayout="row" [card]="items" (updateEvent)=update($event) fxLayoutAlign="space-between end"
+              (colorchange)="changeOfColor($event)">
+            </app-icon-list>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
 
 
 
-      <!-- <div *ngIf="items.archive==false && items.trash==false && items.pinned==false">
+<!-- <div *ngIf="items.archive==false && items.trash==false && items.pinned==false">
         <mat-card class="minicard" [style.backgroundColor]="items.color">
           <div fxLayout="row" fxLayoutAlign="space-between start">
             <div fxLayout="row" class="title">
@@ -82,6 +134,3 @@
           </div>
         </mat-card>
       </div> -->
-    </div>
-  </div>
-</div>

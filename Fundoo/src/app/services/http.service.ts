@@ -5,7 +5,6 @@ import { environment } from '../../environments/environment';
 
 
 const header = {
-
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
     'token': localStorage.getItem('token')
@@ -23,7 +22,7 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
  // private baseUrl = "http://localhost:8080";
- private baseUrl = environment.baseUrl;
+  private baseUrl = environment.baseUrl;
   static postRequest: any;
   static putRequest: any;
 
@@ -49,37 +48,53 @@ export class HttpService {
 
   getRequestForNote(url): any {
     console.log('token is  ', localStorage.getItem('token'))
-    const httOption = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'token': localStorage.getItem('token')
-      })
-    }
-    return this.http.get(this.baseUrl + url, httOption);
+    // const httOption = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json',
+    //     'token': localStorage.getItem('token')
+    //   })
+    // }
+    // return this.http.get(this.baseUrl + url, httOption);
+    return this.http.get(this.baseUrl + url, header);
   }
 
   deleteRequestForNote(url): any {
     console.log('token is ', localStorage.getItem('token'))
-    const httOption = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'token': localStorage.getItem('token')
-      })
-    }
-    return this.http.delete(this.baseUrl + url, httOption);
+    // const httOption = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json',
+    //     'token': localStorage.getItem('token')
+    //   })
+    // }
+   // return this.http.delete(this.baseUrl + url, httOption);
+   return this.http.delete(this.baseUrl + url, header);
   }
 
   putRequestForNote(url): any {
     console.log('token is  ', localStorage.getItem('token'))
     console.log("url:"+this.baseUrl + url);
-    const httOption = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'token': localStorage.getItem('token')
-      })
-    }
-    return this.http.put(this.baseUrl + url, "" ,httOption);
+    // const httOption = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json',
+    //     'token': localStorage.getItem('token')
+    //   })
+    // }
+    // return this.http.put(this.baseUrl + url, "" ,httOption);
+    return this.http.put(this.baseUrl + url, "" ,header);
   }
+
+  // putRequestForNote(url,data): any {
+  //   console.log('token is  ', localStorage.getItem('token'))
+  //   console.log("url:"+this.baseUrl + url);
+  //   // const httOption = {
+  //   //   headers: new HttpHeaders({
+  //   //     'Content-Type': 'application/json',
+  //   //     'token': localStorage.getItem('token')
+  //   //   })
+  //   // }
+  //   // return this.http.put(this.baseUrl + url, "" ,httOption);
+  //   return this.http.put(this.baseUrl + url, data ,header);
+  // }
 
   updateRequestForNote(url, data): any {
     console.log("updateNote url:",url)
@@ -91,5 +106,6 @@ export class HttpService {
       })
     }
     return this.http.put(this.baseUrl + url, data, httOption);
+    return this.http.put(this.baseUrl + url, header);
   }
 }

@@ -1,6 +1,6 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
 
-<!-- Toolbar Display -->
+  <!-- Toolbar Display -->
 
   <div fxLayout="row">
     <mat-toolbar class="example-toolbar">
@@ -37,8 +37,12 @@
         </div>
         <div>
           <button mat-icon-button color="basic" id="grid" matTooltip="grid" (click)="change()" (click)="grid()">
-           <div *ngIf = "isClicked == true"><mat-icon>border_all</mat-icon></div>
-           <div *ngIf = "isClicked == false"><mat-icon>view_agenda</mat-icon></div>
+            <div *ngIf="isClicked == true">
+              <mat-icon>border_all</mat-icon>
+            </div>
+            <div *ngIf="isClicked == false">
+              <mat-icon>view_agenda</mat-icon>
+            </div>
           </button>
         </div>
         <div>
@@ -67,15 +71,30 @@
           </button>
         </div>
         <div>
-          <button mat-mini-fab color="accent" [matMenuTriggerFor]="profileMenu">M</button>
+          <button mat-icon-button [matMenuTriggerFor]="accountMenu">
+            <img mat-card-avatar src="http://localhost:8080/getImage/{{token}}" />
+          </button>
+          <mat-menu #accountMenu="matMenu" >
+            <!-- <ng-template matMenuContent> -->
+              <mat-card class="example-card">
+                <mat-card-header>
+                  <div mat-card-avatar matTooltip="Profile" class="profile" (click)="ProfileSelect()">
+                    <img mat-card-avatar class="profile" src="http://localhost:8080/getImage/{{token}}" />
+                  </div>
+                </mat-card-header>
+                <mat-divider></mat-divider>
+                <mat-card-actions>
+                  <button mat-raised-button (click)="signout()">SignOut</button>
+                </mat-card-actions>
+              </mat-card>
+            <!-- </ng-template> -->
+          </mat-menu>
+          <!-- <button mat-mini-fab color="accent" [matMenuTriggerFor]="profileMenu">M</button> -->
         </div>
       </div>
       <div>
-        <mat-menu #profileMenu="matMenu" class="profileMenu">
+        <!-- <mat-menu #profileMenu="matMenu" class="profileMenu">
           <button mat-menu-item>
-            <!-- <div>
-              <img id="img" src="../../../assets/profilephoto.jpg" />
-            </div> -->
             <div>
               <button mat-mini-fab color="accent">M</button>
               <span class="name">Mohit Kumar</span>
@@ -85,13 +104,13 @@
           <div fxLayoutAlign="center center">
             <button mat-menu-item (click)="signOut()">Sign out</button>
           </div>
-        </mat-menu>
+        </mat-menu> -->
       </div>
     </mat-toolbar>
   </div>
   <mat-divider></mat-divider>
 
-<!-- Side-Menu-Display -->
+  <!-- Side-Menu-Display -->
 
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
@@ -113,8 +132,8 @@
           <mat-divider></mat-divider>
           <div>
             <p id="para">LABELS</p>
-            <div *ngFor="let item of label" class="label" >
-              <mat-list-item role="listitem" routerLinkActive="router-link-active">
+            <div *ngFor="let item of label" class="label">
+              <mat-list-item role="listitem" routerLinkActive="router-link-active" (click)="labelNote(item.labelId)">
                 <img id="img1" src="../../../assets/label.svg" />
                 <span class="notes">{{item.name}}</span>
               </mat-list-item>

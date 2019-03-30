@@ -17,11 +17,10 @@ export class NoteComponent implements OnInit {
               private router: Router,
               private snackbar : MatSnackBar) {}
 
-  
   ngOnInit() {
     // this.getAllCard();
   }
-// card=[];
+//card=[];
 
 
 // getAllCard(){

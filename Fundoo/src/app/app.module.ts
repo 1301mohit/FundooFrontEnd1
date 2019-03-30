@@ -33,6 +33,8 @@ import { DisplayTrashComponent } from './components/display-trash/display-trash.
 import { EditNoteComponent } from './components/edit-note/edit-note.component';
 import { EditLabelComponent } from './components/edit-label/edit-label.component';
 import { EditLabelNoteComponent } from './edit-label-note/edit-label-note.component';
+import { ProfilepicComponent } from './components/profilepic/profilepic.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { EditLabelNoteComponent } from './edit-label-note/edit-label-note.compon
     DisplayTrashComponent,
     EditNoteComponent,
     EditLabelComponent,
-    EditLabelNoteComponent
+    EditLabelNoteComponent,
+    ProfilepicComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -69,6 +73,7 @@ import { EditLabelNoteComponent } from './edit-label-note/edit-label-note.compon
     MatSnackBarModule,
     FlexLayoutModule,
     MaterialModule,
+    ImageCropperModule
   //  ChangeDetectorRef
  //   OnDestroy
   ],

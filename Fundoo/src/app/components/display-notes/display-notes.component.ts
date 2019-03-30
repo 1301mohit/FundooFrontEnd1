@@ -62,7 +62,6 @@ export class DisplayNotesComponent implements OnInit {
   changeOfColor($event){
     this.color1 = $event;
     console.log('event for color change ',$event);
-    
     this.getAllCard();
   }
 

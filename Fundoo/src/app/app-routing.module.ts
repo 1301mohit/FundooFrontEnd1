@@ -13,6 +13,7 @@ import { DisplayTrashComponent } from './components/display-trash/display-trash.
 import { EditNoteComponent } from './components/edit-note/edit-note.component';
 import { EditLabelComponent } from './components/edit-label/edit-label.component';
 import { EditLabelNoteComponent } from './edit-label-note/edit-label-note.component';
+import { ProfilepicComponent } from './components/profilepic/profilepic.component';
 
 const routes: Routes = [
   {
@@ -68,6 +69,10 @@ const routes: Routes = [
       {
         path : 'edit-label-note',
         component : EditLabelNoteComponent
+      },
+      {
+        path : 'profilepic',
+        component : ProfilepicComponent
       }
     ]
   }

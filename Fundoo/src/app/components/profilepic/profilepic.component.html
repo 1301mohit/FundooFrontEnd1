@@ -1,0 +1,29 @@
+<div  fxLayout="column" fxLayoutGap="15px">
+  <div>
+    <span>Select profile photo</span>
+  </div >
+
+  <div>
+      <input type="file" (change)="fileChangeEvent($event)" />
+
+      <image-cropper
+          [imageChangedEvent]="imageChangedEvent"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="4 / 3"
+          [resizeToWidth]="128"
+          format="png"
+          (imageCropped)="imageCropped($event)"
+          (imageLoaded)="imageLoaded()"
+          (loadImageFailed)="loadImageFailed()"
+      ></image-cropper>
+      
+      <img [src]="croppedImage" />
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="10px">
+      <!-- <button mat-raised-button color="primary">Set profile photo</button> -->
+      <button mat-raised-button color = "primary" (click)="setProfile()" cdkFocusInitial>Set profile photo</button>
+      <button mat-button (click)="onNoClick()">Cancle</button>
+  </div>
+    
+</div>

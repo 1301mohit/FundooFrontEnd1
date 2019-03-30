@@ -8,6 +8,7 @@ import { AUTO_STYLE } from '@angular/animations';
 import { HttpService } from 'src/app/services/http.service';
 import { MatSnackBar } from '@angular/material';
 import { ViewchangeService } from 'src/app/services/viewchange.service';
+import { ProfilepicComponent } from '../profilepic/profilepic.component';
 //import {MediaMatcher} from '@angular/cdk/layout';
 //import {ChangeDetectorRef, OnDestroy} from '@angular/core';
 
@@ -18,12 +19,15 @@ import { ViewchangeService } from 'src/app/services/viewchange.service';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
+  token : string = localStorage.getItem('token');
   titleName : string
   label : [];
   isClicked = false;
+  card1 : [];
 
   ngOnInit() {
     this.getAllLabel();
+    console.log("Token:",this.token);
   }
 
   mobileQuery: MediaQueryList;
@@ -104,6 +108,43 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.viewChange.onViewChange(this.isClicked);
   }
 
+  labelNote(labelId){
+    //var labelId = localStorage.getItem('labelId');
+    localStorage.setItem('labelId', labelId);
+    let labelId1 = localStorage.getItem('labelId');
+    console.log("Labelid",labelId);
+    console.log("Labelid",labelId1);
+    // this.httpService.getRequestForNote('/getNoteOfLabel/'+labelId).subscribe( data => {
+    //   console.log("Card",data);
+    //   this.card1 = data;
+    //   console.log("Card",this.card1);
+    // },error=>
+    // {
+    //   this.snackbar.open("Error in getNoteOfLabel", "End-Now", { duration : 3000 });
+    // }
+    //   )
+    this.router.navigate(['/dashboard/edit-label-note']);
+  }
+
+  ProfileSelect(){
+    const dialogRef = this.dialog.open(ProfilepicComponent, {
+      width: '300px',
+    });
+    dialogRef.afterClosed().subscribe((image:any) => {
+      console.log('The dialog was closed');
+      console.log('Image',image.file);
+      this.httpService.uploadProfilePic("/imageUpload", image.file).subscribe( response => {
+        this.snackbar.open(response.statusMessage, 'Success', { duration:3000 });
+      },error => {
+          this.snackbar.open(error, 'fail', { duration:3000 });
+      });
+    })
+  }
+  
+
+  // getMoreInformation(): string {
+  //   return "Fundoo Account \n"+
+  // }
   // change(){
   //   this.viewChange.onViewChange();
   // }

@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   response: Object;
   message1='';
 
+
   firstName = new FormControl('', [Validators.required]);
   lastName = new FormControl('', [Validators.required]);
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -29,7 +30,8 @@ export class RegisterComponent implements OnInit {
   password = new FormControl('', [Validators.required]);
   confirmPassword = new FormControl('', [Validators.required]);
   
-
+  
+  //localStorage.setItem('fName', this.firstName.value);
   constructor(private httpService: HttpService, 
               private router: Router,
               private snackbar : MatSnackBar
@@ -64,6 +66,9 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
+    // localStorage.setItem(fName,this.firstName.value);
+    // localStorage.setItem('lName',this.lastName.value);
+    // localStorage.setItem('emailId',this.email.value);
     console.log("model----",this.model);
     try{
       if(this.password.value != this.confirmPassword.value) throw "password and confirmpassword does not match"

@@ -2,28 +2,34 @@
   <div>
     <span>Select profile photo</span>
   </div >
-
   <div>
-      <input type="file" (change)="fileChangeEvent($event)" />
-
-      <image-cropper
-          [imageChangedEvent]="imageChangedEvent"
-          [maintainAspectRatio]="true"
-          [aspectRatio]="4 / 3"
-          [resizeToWidth]="128"
-          format="png"
-          (imageCropped)="imageCropped($event)"
-          (imageLoaded)="imageLoaded()"
-          (loadImageFailed)="loadImageFailed()"
-      ></image-cropper>
-      
-      <img [src]="croppedImage" />
+    <b>Upload photos</b>
   </div>
-
-  <div fxLayout="row" fxLayoutGap="10px">
-      <!-- <button mat-raised-button color="primary">Set profile photo</button> -->
-      <button mat-raised-button color = "primary" (click)="setProfile()" cdkFocusInitial>Set profile photo</button>
-      <button mat-button (click)="onNoClick()">Cancle</button>
-  </div>
+  <mat-divider></mat-divider>
+  <div  fxLayout="column" fxLayoutAlign="space-between center">
+      <div>
+          <input type="file" (change)="fileChangeEvent($event)" />
     
+          <image-cropper
+              [imageChangedEvent]="imageChangedEvent"
+              [maintainAspectRatio]="true"
+              [aspectRatio]="4 / 3"
+              [resizeToWidth]="128"
+              format="png"
+              (imageCropped)="imageCropped($event)"
+          ></image-cropper>
+          
+          <img [src]="croppedImage" />
+      </div>
+    
+      <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start end">
+          <button mat-raised-button color = "primary"  [mat-dialog-close]="croppedImage" cdkFocusInitial>Set profile photo</button>
+          <button mat-button (click)="onNoClick()">Cancel</button>
+          <!-- <button mat-button (click)="onNoClick()">Cancle</button> -->
+      </div>
+  </div>
 </div>
+
+
+  <!-- (imageLoaded)="imageLoaded()"
+          (loadImageFailed)="loadImageFailed()"  -->

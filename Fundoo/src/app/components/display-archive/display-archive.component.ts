@@ -12,7 +12,6 @@ export class DisplayArchiveComponent implements OnInit {
 
   color : String;
   card=[];
-
   constructor(private httpService: HttpService,
               private router: Router,
               private snackbar : MatSnackBar) { }
@@ -28,6 +27,19 @@ export class DisplayArchiveComponent implements OnInit {
     },err=>{
       console.log(err);
     })
+  }
+
+  pinned(card){
+    console.log("pin:",card.pinned);
+    console.log("Note ID:",card.noteId);
+    this.httpService.putRequestForNote('/pinNote/'+card.noteId).subscribe(data => {
+      console.log("pin note card");
+     // this.flag1 = !this.flag1;
+      this.snackbar.open(data.statusMessage, "Pinned", { duration : 5000 });
+      this.getAllCard();
+    },err => {
+      this.snackbar.open(err);
+    }) 
   }
 
   changeOfColor($event){

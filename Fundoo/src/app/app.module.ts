@@ -35,6 +35,7 @@ import { EditLabelComponent } from './components/edit-label/edit-label.component
 import { EditLabelNoteComponent } from './edit-label-note/edit-label-note.component';
 import { ProfilepicComponent } from './components/profilepic/profilepic.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
  //   OnDestroy
   ],
   entryComponents: [EditNoteComponent],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

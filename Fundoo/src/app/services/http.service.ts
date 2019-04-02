@@ -108,11 +108,15 @@ export class HttpService {
     //   })
     // }
     // return this.http.put(this.baseUrl + url, data, httOption);
-    return this.http.put(this.baseUrl + url, header);
+    return this.http.put(this.baseUrl + url, data, header);
   }
 
   uploadProfilePic(url, file): any{
     console.log("file",file);
-    return this.http.post(this.baseUrl+url,file, header);
+    const formData = new FormData();
+    formData.append('file', file);
+    console.log(file);
+    
+    return this.http.post(this.baseUrl+url,formData, header);
   }
 }

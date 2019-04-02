@@ -66,6 +66,7 @@ export class IconListComponent implements OnInit {
 
       this.httpService.postRequestForNote('/color/'+this.card.noteId+'?color=' +colorId, '').subscribe(data => {
         this.snackbar.open(data.statusMessage, "End Now", { duration: 3000 });
+       // this.updateEvent.emit({});
       })
     }
   }
@@ -75,10 +76,11 @@ export class IconListComponent implements OnInit {
     console.log("CardId", this.card.noteId);
     this.httpService.deleteRequestForNote('/deleteNote/'+this.card.noteId).subscribe(data => {
       this.snackbar.open(data.statusMessage, "End Now", { duration: 3000 });
-      this.updateEvent.emit({type:'trash'});
+      this.updateEvent.emit({});
+     // this.updateEvent.emit({type:'trash'});
     },
       error => {
-        this.snackbar.open('Retry', 'End Now', { duration: 3000 });
+        this.snackbar.open(error, 'End Now', { duration: 3000 });
       });
   }
 
@@ -86,7 +88,8 @@ export class IconListComponent implements OnInit {
     console.log("Archive note");
     this.httpService.putRequestForNote('/archiveNote/'+this.card.noteId).subscribe(data => {
       this.snackbar.open(data.statusMessage, "End Now", { duration: 3000 });
-      this.updateEvent.emit({type:'archive'});
+      this.updateEvent.emit({});
+      //this.updateEvent.emit({type:'archive'});
     },
     error =>{
       this.snackbar.open(error, 'End Now', { duration: 3000 });

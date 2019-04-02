@@ -22,11 +22,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
   token : string = localStorage.getItem('token');
   titleName : string
   label : [];
-  isClicked = false;
+  isClicked = true;
   card1 : [];
-
+  fName : string;
+  
+  email = localStorage.getItem('email');
   ngOnInit() {
     this.getAllLabel();
+    console.log("Email in dashboard",this.email)
     console.log("Token:",this.token);
   }
 
@@ -52,7 +55,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  signOut(){
+  signOut(): void{
     localStorage.clear();
     this.router.navigate(['/login']);
   }
@@ -128,12 +131,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ProfileSelect(){
     const dialogRef = this.dialog.open(ProfilepicComponent, {
-      width: '300px',
+      width: '900px',
+      height: '600px',
     });
     dialogRef.afterClosed().subscribe((image:any) => {
       console.log('The dialog was closed');
-      console.log('Image',image.file);
-      this.httpService.uploadProfilePic("/imageUpload", image.file).subscribe( response => {
+      console.log('Image',image);
+      console.log('Image file',typeof image);
+      
+      this.httpService.uploadProfilePic("/imageUpload/",image).subscribe( response => {
+        console.log(response);
+        
         this.snackbar.open(response.statusMessage, 'Success', { duration:3000 });
       },error => {
           this.snackbar.open(error, 'fail', { duration:3000 });

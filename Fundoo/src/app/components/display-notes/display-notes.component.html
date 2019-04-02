@@ -24,7 +24,7 @@
             </div>
           </div>
 
-          <div>{{items.description}}</div>
+          <div (click)="openDialog(items)">{{items.description}}</div>
 
           <div class="example-chip-list">
             <mat-chip-list #chipList>
@@ -48,18 +48,20 @@
 
   
   <div *ngIf="subscribeView" class="mininote" fxLayout="column wrap" fxLayoutAlign="center center" fxFlex.xs="98"
-    fxLayoutGap="10px" fxFlex="80">
+    fxLayoutGap="10px" >
 
     <!-- <div *ngFor="let items of cardsArray" class="card"> -->
     <div *ngFor="let items of card" class="card">
 
       <!-- <div *ngIf="items.archive==false && items.trash==false && items.pinned==true"> -->
-      <div *ngIf="items.archive==false && items.trash==false">
+      <div class = "matcard" *ngIf="items.archive==false && items.trash==false">
         <mat-card class="minicard" [style.backgroundColor]="items.color">
-          <div fxLayout="row" fxLayoutAlign="space-between start">
+          <div fxLayout="row" fxLayoutAlign="space-between start" >
+
             <div fxLayout="row" class="title">
               <span (click)="openDialog(items)">{{items.title}}</span>
             </div>
+
             <div>
               <button mat-icon-button color="basic" (click)="pinned(items)">
                 <div class="pin" *ngIf="items.pinned==false">
@@ -70,9 +72,12 @@
                 </div>
               </button>
             </div>
+            
           </div>
 
-          <div>{{items.description}}</div>
+          <div>
+            <span (click)="openDialog(items)">{{items.description}}</span>
+          </div>
 
           <div class="example-chip-list">
             <mat-chip-list #chipList>

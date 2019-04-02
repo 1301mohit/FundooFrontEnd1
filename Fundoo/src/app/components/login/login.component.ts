@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
            console.log(data.token);
            var token = localStorage.getItem('token')
            console.log("token 2",token);
+           localStorage.setItem('email',this.email.value);
            this.router.navigateByUrl('/dashboard');
          }
       },

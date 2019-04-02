@@ -19,8 +19,8 @@
           <h5 *ngIf="titleName==null">Fundoo</h5>
         </div>
       </div>
-      <div fxFlex="55">
-        <mat-form-field appearance="outline" class="search" [style.fontSize.px]="2" fxFlex="90">
+      <div fxFlex="52">
+        <mat-form-field appearance="outline" class="search" [style.fontSize.px]="2" fxFlex="100">
           <button mat-icon-button>
             <mat-icon>search</mat-icon>
           </button>
@@ -29,23 +29,23 @@
           <!-- /*[(ngModel)]="Search"*/ -->
         </mat-form-field>
       </div>
-      <div class="settingbtn" fxFlex="15" fxLayout="row">
-        <div>
+      <div class="settingbtn" fxFlex="25" fxLayout="row" fxLayoutAlign="center none">
+        <!-- <div>
           <button mat-icon-button color="basic" id="refresh" fxHide.xs matTooltip="refresh">
             <mat-icon>refresh</mat-icon>
           </button>
-        </div>
-        <div>
-          <button mat-icon-button color="basic" id="grid" matTooltip="grid" (click)="change()" (click)="grid()">
-            <div *ngIf="isClicked == true">
-              <mat-icon>border_all</mat-icon>
+        </div> -->
+        <!-- <div fxFlex="70"> -->
+          <button mat-icon-button color="basic" class="view" (click)="change()" (click)="grid()" >
+            <div class="grid_view" *ngIf="isClicked == false">
+              <mat-icon matTooltip="Grid view">border_all</mat-icon>
             </div>
-            <div *ngIf="isClicked == false">
-              <mat-icon>view_agenda</mat-icon>
+            <div class="list_view" *ngIf="isClicked == true">
+              <mat-icon matTooltip="List view">view_agenda</mat-icon>
             </div>
           </button>
-        </div>
-        <div>
+        <!-- </div> -->
+        <!-- <div>
           <div class="settings">
             <button mat-icon-button [matMenuTriggerFor]="menu" color="basic" matTooltip="settings">
               <mat-icon>settings</mat-icon>
@@ -57,10 +57,10 @@
               <button mat-menu-item>Keyboard Shortcuts</button>
             </mat-menu>
           </div>
-        </div>
+        </div> -->
       </div>
       <div fxLayout="row">
-        <div>
+        <!-- <div>
           <button mat-icon-button color="basic" fxHide.xs matTooltip="Notification">
             <mat-icon>notification_important</mat-icon>
           </button>
@@ -69,24 +69,30 @@
           <button mat-icon-button color="basic" matTooltip="Apps">
             <mat-icon>apps</mat-icon>
           </button>
-        </div>
-        <div>
+        </div> -->
+        <div >
           <button mat-icon-button [matMenuTriggerFor]="accountMenu">
             <img mat-card-avatar src="http://localhost:8080/getImage/{{token}}" />
           </button>
-          <mat-menu #accountMenu="matMenu" >
+          <mat-menu #accountMenu="matMenu">
             <!-- <ng-template matMenuContent> -->
-              <mat-card class="example-card">
-                <mat-card-header>
-                  <div mat-card-avatar matTooltip="Profile" class="profile" (click)="ProfileSelect()">
-                    <img mat-card-avatar class="profile" src="http://localhost:8080/getImage/{{token}}" />
-                  </div>
-                </mat-card-header>
-                <mat-divider></mat-divider>
-                <mat-card-actions>
-                  <button mat-raised-button (click)="signout()">SignOut</button>
-                </mat-card-actions>
-              </mat-card>
+            <div class="example-card" class="q">
+              <!-- <mat-card-header> -->
+                <div mat-card-avatar matTooltip="Profile" class="profile" (click)="ProfileSelect()" fxLayout="row">
+                  <img mat-card-avatar class="profile" src="http://localhost:8080/getImage/{{token}}" />
+                  <span class="email">{{email}}</span>
+                </div>
+                <br>
+              <!-- </mat-card-header> -->
+              <mat-divider></mat-divider>
+              <br>
+              <!-- <mat-card-actions> -->
+                <div fxLayoutAlign="end end" class = "signout">
+                    <button mat-raised-button (click)="signOut()">SignOut</button>
+                </div>
+                
+              <!-- </mat-card-actions> -->
+            </div>
             <!-- </ng-template> -->
           </mat-menu>
           <!-- <button mat-mini-fab color="accent" [matMenuTriggerFor]="profileMenu">M</button> -->

@@ -2,9 +2,10 @@
 //     margin-bottom: 24px
 // }
 .mininote{
+
     display: flex;
-min-width: 406px;
-padding: 20px;
+    min-width: 406px;
+    padding: 20px;
 }
 // .display{
 //     justify-content:center;
@@ -12,6 +13,7 @@ padding: 20px;
 .textArea{
     background-color: transparent;
     border: none;
+    width : 400px;
 }
 
 ::ng-deep .mat-dialog-container{
@@ -20,4 +22,8 @@ padding: 20px;
 
 .example-chip-list {
     width: 100%;
+}
+
+.updatenote{
+    margin-left: 80px;
 }

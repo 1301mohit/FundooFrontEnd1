@@ -42,6 +42,7 @@ export class HttpService {
 
   postRequestForNote(url, data): any {
     console.log("my data in httpService", data);
+    console.log("Url",url);
     return this.http.post(this.baseUrl + url, data, header);
     // { responseType: 'text' });
   }
@@ -111,12 +112,25 @@ export class HttpService {
     return this.http.put(this.baseUrl + url, data, header);
   }
 
-  uploadProfilePic(url, file): any{
-    console.log("file",file);
-    const formData = new FormData();
-    formData.append('file', file);
-    console.log(file);
+  // uploadProfilePic(url, file): any{
+  //   console.log("file",file);
+
+  // let formData: FormData = new FormData();
+  // //formdata.append('File',file);
+  //  // const formData = new FormData();
+  //   formData.append('file', file);
+  //   console.log(file);
     
-    return this.http.post(this.baseUrl+url,formData, header);
-  }
+  //   return this.http.post(this.baseUrl+url,formData, header);
+  // }
+
+
+  public   uploadProfilePic(url,file: File):any
+{
+  let formdata: FormData = new FormData();
+  formdata.append('file',file);
+  return this.http.post(this.baseUrl+url,formdata,{
+    headers:new HttpHeaders().set("token",localStorage.getItem("token")), 
+  observe:'response'});
+}
 }

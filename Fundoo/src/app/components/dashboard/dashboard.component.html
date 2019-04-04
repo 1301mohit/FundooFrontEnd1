@@ -16,7 +16,7 @@
         <!-- <div fxFlex="5" fxlayout.gt-xs="row" fxFlex.gt-xs="500" fxHide.xs> -->
         <div>
           <h5 class="example-app-name">{{titleName}}</h5>
-          <h5 *ngIf="titleName==null">Fundoo</h5>
+          <h5 *ngIf="titleName == null">Fundoo</h5>
         </div>
       </div>
       <div fxFlex="52">
@@ -77,19 +77,22 @@
           <mat-menu #accountMenu="matMenu">
             <!-- <ng-template matMenuContent> -->
             <div class="example-card" class="q">
+              <!-- <mat-card> -->
+                  <div mat-card-avatar matTooltip="Profile" class="profile" (click)="ProfileSelect()" fxLayout="row">
+                      <img mat-card-avatar class="profile" src="http://localhost:8080/getImage/{{token}}" />
+                      <span class="email">{{email}}</span>
+                    </div>
+                    <br>
+                  <!-- </mat-card-header> -->
+                  <mat-divider></mat-divider>
+                  <br>
+                  <!-- <mat-card-actions> -->
+                    <div fxLayoutAlign="end end" class = "signout">
+                        <button mat-raised-button (click)="signOut()">SignOut</button>
+                    </div>
+              <!-- </mat-card> -->
               <!-- <mat-card-header> -->
-                <div mat-card-avatar matTooltip="Profile" class="profile" (click)="ProfileSelect()" fxLayout="row">
-                  <img mat-card-avatar class="profile" src="http://localhost:8080/getImage/{{token}}" />
-                  <span class="email">{{email}}</span>
-                </div>
-                <br>
-              <!-- </mat-card-header> -->
-              <mat-divider></mat-divider>
-              <br>
-              <!-- <mat-card-actions> -->
-                <div fxLayoutAlign="end end" class = "signout">
-                    <button mat-raised-button (click)="signOut()">SignOut</button>
-                </div>
+               
                 
               <!-- </mat-card-actions> -->
             </div>

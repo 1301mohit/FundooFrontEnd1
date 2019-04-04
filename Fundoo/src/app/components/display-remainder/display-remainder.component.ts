@@ -1,35 +1,30 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
 import { Router } from '@angular/router';
 import { MatSnackBar, MatDialog } from '@angular/material';
-import { EditNoteComponent } from '../edit-note/edit-note.component';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { ViewchangeService } from 'src/app/services/viewchange.service';
-
-export interface Fruit {
-  name: string;
-}
-
+import { EditNoteComponent } from '../edit-note/edit-note.component';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
 
 @Component({
-  selector: 'app-display-notes',
-  templateUrl: './display-notes.component.html',
-  styleUrls: ['./display-notes.component.scss']
+  selector: 'app-display-remainder',
+  templateUrl: './display-remainder.component.html',
+  styleUrls: ['./display-remainder.component.scss']
 })
-export class DisplayNotesComponent implements OnInit {
+export class DisplayRemainderComponent implements OnInit {
 
   constructor(private httpService: HttpService,
-              private router: Router,
-              private snackbar : MatSnackBar,
-              private dialog: MatDialog,
-              private viewChange : ViewchangeService) { }
-              
-//@Input() cardsArray=[];
-//@Input() card;
-  color1 : String;
-  card:[];
-  labelOfNote:[];
-  private subscribeView : boolean;
+    private router: Router,
+    private snackbar: MatSnackBar,
+    private dialog: MatDialog,
+    private viewChange: ViewchangeService) { }
+
+  //@Input() cardsArray=[];
+  //@Input() card;
+  color1: String;
+  card: [];
+  labelOfNote: [];
+  private subscribeView: boolean;
 
 
   // title: String
@@ -43,29 +38,29 @@ export class DisplayNotesComponent implements OnInit {
   //flag1 = true;
   ngOnInit() {
     this.getAllCard();
-   // this.getLabelOfNote();
+    // this.getLabelOfNote();
     this.viewChange.subscribeView.subscribe(view => {
       this.subscribeView = view;
     })
   }
 
-  getAllCard(){
-    this.httpService.getRequestForNote('/getAllNotes').subscribe(data=>{
+  getAllCard() {
+    this.httpService.getRequestForNote('/getAllNotes').subscribe(data => {
       console.log('get all cards');
-      console.log('data is in note',data);
-      this.card=data;
-    },err=>{
+      console.log('data is in note', data);
+      this.card = data;
+    }, err => {
       console.log(err);
     })
   }
 
-  changeOfColor($event){
+  changeOfColor($event) {
     this.color1 = $event;
-    console.log('event for color change ',$event);
+    console.log('event for color change ', $event);
     this.getAllCard();
   }
 
-  openDialog(items){
+  openDialog(items) {
     console.log(items);
     const dialogRef = this.dialog.open(EditNoteComponent, {
       width: 'auto',
@@ -77,7 +72,7 @@ export class DisplayNotesComponent implements OnInit {
         color: items.color,
         archive: items.archive,
         trash: items.trash,
-        noteId:items.noteId
+        noteId: items.noteId
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -90,20 +85,20 @@ export class DisplayNotesComponent implements OnInit {
 
   // }
 
-  pinned(card){
-    console.log("pin:",card.pinned);
-    console.log("Note ID:",card.noteId);
-    this.httpService.putRequestForNote('/pinNote/'+card.noteId).subscribe(data => {
+  pinned(card) {
+    console.log("pin:", card.pinned);
+    console.log("Note ID:", card.noteId);
+    this.httpService.putRequestForNote('/pinNote/' + card.noteId).subscribe(data => {
       console.log("pin note card");
-     // this.flag1 = !this.flag1;
-      this.snackbar.open(data.statusMessage, "Pinned", { duration : 5000 });
+      // this.flag1 = !this.flag1;
+      this.snackbar.open(data.statusMessage, "Pinned", { duration: 5000 });
       this.getAllCard();
-    },err => {
+    }, err => {
       this.snackbar.open(err);
-    }) 
+    })
   }
 
-  update(event){
+  update(event) {
     this.getAllCard();
   }
 
@@ -139,32 +134,27 @@ export class DisplayNotesComponent implements OnInit {
   //   )
   // }
 
-  remove(label,noteId){
-    console.log("Label"+label);
-    console.log("Note"+noteId);
+  remove(label, noteId) {
+    console.log("Label" + label);
+    console.log("Note" + noteId);
     // const index = this.labelOfNote.indexOf(label);
-    this.httpService.deleteRequestForNote('/deleteLabelOfNote/'+label.labelId+'/'+noteId).subscribe( data => {
-      console.log("Delete label from note response"+data);
-      this.snackbar.open(data.statusMessage, "End-Now", { duration:3000 });
+    this.httpService.deleteRequestForNote('/deleteLabelOfNote/' + label.labelId + '/' + noteId).subscribe(data => {
+      console.log("Delete label from note response" + data);
+      this.snackbar.open(data.statusMessage, "End-Now", { duration: 3000 });
     },
-    error => {
-      this.snackbar.open(error, "End-Now", { duration:3000 })
-    })
+      error => {
+        this.snackbar.open(error, "End-Now", { duration: 3000 })
+      })
   }
 
   removeRemainder(card): void {
-    this.httpService.deleteRequestForNote('/deleteRemainder/'+card.noteId).subscribe( data => {
+    this.httpService.deleteRequestForNote('/deleteRemainder/' + card.noteId).subscribe(data => {
       console.log("Remove remainder from note");
-      this.snackbar.open(data.statusMessage, "End-Now", { duration : 3000 });
+      this.snackbar.open(data.statusMessage, "End-Now", { duration: 3000 });
     },
-    error => {
-      this.snackbar.open(error, "End-Now", { duration:3000 });
-    }
-      )
+      error => {
+        this.snackbar.open(error, "End-Now", { duration: 3000 });
+      }
+    )
   }
-
-  // remove1(label){
-  //   const index = this.
-  // }
-
 }

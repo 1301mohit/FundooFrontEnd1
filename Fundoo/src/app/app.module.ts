@@ -36,6 +36,8 @@ import { EditLabelNoteComponent } from './edit-label-note/edit-label-note.compon
 import { ProfilepicComponent } from './components/profilepic/profilepic.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { AuthGuard } from './auth.guard';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { DisplayRemainderComponent } from './components/display-remainder/display-remainder.component';
 
 @NgModule({
   declarations: [
@@ -55,10 +57,13 @@ import { AuthGuard } from './auth.guard';
     EditLabelComponent,
     EditLabelNoteComponent,
     ProfilepicComponent,
+    DisplayRemainderComponent,
     
   ],
   imports: [
     BrowserModule,
+    OwlDateTimeModule, 
+    OwlNativeDateTimeModule,
     AppRoutingModule,
     MatFormFieldModule,
     MatInputModule,
@@ -75,6 +80,8 @@ import { AuthGuard } from './auth.guard';
     FlexLayoutModule,
     MaterialModule,
     ImageCropperModule
+    // OwlDateTimeModule,
+    // OwlNativeDateTimeModule
   //  ChangeDetectorRef
  //   OnDestroy
   ],

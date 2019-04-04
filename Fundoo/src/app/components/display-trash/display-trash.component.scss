@@ -13,3 +13,11 @@
 .title{
     margin-bottom: 5%;
 }
+
+.minicard:hover .icons-div{
+    visibility: visible;
+}
+.icons-div{
+    visibility: hidden;
+}
+

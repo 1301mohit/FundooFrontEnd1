@@ -15,6 +15,7 @@ import { EditLabelComponent } from './components/edit-label/edit-label.component
 import { EditLabelNoteComponent } from './edit-label-note/edit-label-note.component';
 import { ProfilepicComponent } from './components/profilepic/profilepic.component';
 import { AuthGuard } from './auth.guard';
+import { DisplayRemainderComponent } from './components/display-remainder/display-remainder.component';
 
 const routes: Routes = [
   {
@@ -75,6 +76,10 @@ const routes: Routes = [
       {
         path : 'profilepic',
         component : ProfilepicComponent
+      },
+      {
+        path : 'display-remainder',
+        component : DisplayRemainderComponent
       }
     ]
   }

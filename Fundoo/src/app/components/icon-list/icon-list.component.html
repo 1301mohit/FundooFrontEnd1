@@ -1,95 +1,45 @@
-<div fxLayout="row" fxFlex="100"  fxLayoutAlign="start end">
-  <button id="Remind" matTooltip="Remind me" mat-icon-button [matMenuTriggerFor]="menu4">
-    <img id="remindmeImage" src="../../../assets/remindme.svg" />
+<div fxLayout="row" fxFlex="100" fxLayoutAlign="start end">
+  <button id="Remind" matTooltip="Remind me" mat-icon-button [matMenuTriggerFor]="remainder">
+    <img class="icon" id="remindmeImage" src="../../../assets/remindme.svg" />
   </button>
 
-  <!-- <mat-menu #menu4="matMenu" class="matmenu">
-    <div class="remindMenu">
-      <mat-nav-list>
-        <mat-list role="List">
-          <mat-list-item role="listitem">
-            <p>Reminder :</p>
-          </mat-list-item>
-          <mat-list-item>
-            <p>Later Today &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8:00 PM</p>
-          </mat-list-item>
-          <mat-list-item>
-            <p>Tomorrow &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              8:00 AM</p>
-          </mat-list-item>
-          <mat-list-item>
-            <p>Next week Monday, 8:00 AM</p>
-          </mat-list-item>
-          <mat-list-item>
-            <mat-icon>schedule</mat-icon>
-            <span class="date" [matMenuTriggerFor]="menu5">pick date and time</span>
-          </mat-list-item>
-            <mat-menu #menu5="matMenu" class="matmenu">
-              <mat-nav-list>
-                <mat-list role="List">
-                  <mat-list-item role="listitem">
-                    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                  </mat-list-item>
-                </mat-list>
-              </mat-nav-list>
-            </mat-menu>
-        </mat-list>
-      </mat-nav-list>
-    </div>
-  </mat-menu> -->
+  <mat-menu #remainder="matMenu" class="matmenu">
+    <p>Remainder :</p>
+    <!-- <button mat-menu-item>Reminder :</button> -->
+    <button mat-menu-item (click) = setRemainderForToday()>Later Today &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8:00 PM</button>
+    <button mat-menu-item (click) = setRemainderForTommorow()>Tomorrow &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8:00 PM</button>
+    <button mat-menu-item (click) = setRemainderForNextWeek()>Next week Monday, 8:00 AM</button>
+    <button mat-menu-item [matMenuTriggerFor]="dateandtime">
+      <mat-icon>schedule</mat-icon>
+      <span class="date">pick date and time</span>
+    </button>
 
-  <mat-menu #menu4="matMenu" class="matmenu">
-      <button mat-menu-item>Reminder :</button>
-      <button mat-menu-item>Later Today &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8:00 PM</button>
-      <button mat-menu-item>Tomorrow &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8:00 PM</button>
-      <button mat-menu-item>Next week Monday, 8:00 AM</button>
-      <button mat-menu-item [matMenuTriggerFor]="menu6">
-        <mat-icon>schedule</mat-icon>
-        <span class="date">pick date and time</span>
-      </button>
-            <!-- <mat-list-item role="listitem">
-              <p>Reminder :</p>
-            </mat-list-item> -->
-            <!-- <mat-list-item>
-              <p>Later Today &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8:00 PM</p>
-            </mat-list-item> -->
-            <!-- <mat-list-item>
-              <p>Tomorrow &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                8:00 AM</p>
-            </mat-list-item> -->
-            <!-- <mat-list-item>
-              <p>Next week Monday, 8:00 AM</p>
-            </mat-list-item> -->
-            <!-- <mat-list-item>
-              <mat-icon>schedule</mat-icon>
-              <span class="date" [matMenuTriggerFor]="menu5">pick date and time</span>
-            </mat-list-item> -->
-              <mat-menu #menu6="matMenu" class="matmenu">
-                    <mat-form-field role="listitem" fxFlexLayout="row">
-                      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                      <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
-                    <!-- <mat-form-field [matMenuTriggerFor]="menu7"]>
-                      <span>Choose time</span>
-                    </mat-form-field> -->
-                    <!-- <mat-menu #menu7="matMenu" class="matmenu1">
-                      <mat-form-field>
-                        <span>Morning 8:00AM</span>
-                      </mat-form-field>
-                    </mat-menu> -->
-              </mat-menu>
-    </mat-menu> 
+    <mat-menu #dateandtime="matMenu" class="matmenu">
+      <mat-form-field role="listitem" fxFlexLayout="row">
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)] = "dateNow">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <!-- <div>
+          Date Time:
+          <input [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
+          <owl-date-time #dt></owl-date-time>
+        </div> -->
+      </mat-form-field>
+      <div>
+        <button mat-raised-button color="primary" (click)="setReminder()">Save</button>
+      </div>
+     
+      <!-- <button mat-menu-item >save</button> -->
+    </mat-menu>
+  </mat-menu>
 
   <button id="collaborator" matTooltip="collaborator" mat-icon-button>
-    <img id="collaborator" src="../../../assets/collaborator.svg" />
+    <img class="icon" id="collaborator" src="../../../assets/collaborator.svg" />
   </button>
 
   <button [matMenuTriggerFor]="menu5" style="cursor: pointer;" aria-label="change color" matTooltip="change color"
     mat-icon-button>
-    <mat-icon>palette</mat-icon>
+    <mat-icon class="icon">palette</mat-icon>
   </button>
   <mat-menu #menu5="matMenu" [overlapTrigger]="false">
     <ng-template matMenuContent>
@@ -105,15 +55,15 @@
   </mat-menu>
 
   <button id="addimage" matTooltip="Add image" mat-icon-button>
-    <img id="addimage" src="../../../assets/addimage.svg" />
+    <img class="icon" id="addimage" src="../../../assets/addimage.svg" />
   </button>
 
   <button id="archive" matTooltip="Archive" (click)='archiveNote()' mat-icon-button>
-    <img id="archive" src="../../../assets/archive.svg" />
+    <img class="icon" id="archive" src="../../../assets/archive.svg" />
   </button>
 
   <button mat-icon-button [matMenuTriggerFor]="menu" (click)=getAllLabel()>
-    <mat-icon>more_vert</mat-icon>
+    <mat-icon class="icon">more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="delete()">
@@ -122,12 +72,7 @@
     <button mat-menu-item [matMenuTriggerFor]="labelMenu" (click)="$event.stopPropagation()">
       <span>Add label</span>
     </button>
-    <!-- <button mat-menu-item disabled>
-        <span>Add drawing</span>
-      </button>
-      <button mat-menu-item>
-        <span>show checkboxes</span>
-      </button> -->
+
   </mat-menu>
 
   <div (click)="$event.stopPropagation()">
@@ -172,3 +117,85 @@
       </mat-nav-list>
     </div>
   </mat-menu> -->
+
+
+<!-- <mat-menu #menu4="matMenu" class="matmenu">
+    <div class="remindMenu">
+      <mat-nav-list>
+        <mat-list role="List">
+          <mat-list-item role="listitem">
+            <p>Reminder :</p>
+          </mat-list-item>
+          <mat-list-item>
+            <p>Later Today &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8:00 PM</p>
+          </mat-list-item>
+          <mat-list-item>
+            <p>Tomorrow &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              8:00 AM</p>
+          </mat-list-item>
+          <mat-list-item>
+            <p>Next week Monday, 8:00 AM</p>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon>schedule</mat-icon>
+            <span class="date" [matMenuTriggerFor]="menu5">pick date and time</span>
+          </mat-list-item>
+            <mat-menu #menu5="matMenu" class="matmenu">
+              <mat-nav-list>
+                <mat-list role="List">
+                  <mat-list-item role="listitem">
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-list-item>
+                </mat-list>
+              </mat-nav-list>
+            </mat-menu>
+        </mat-list>
+      </mat-nav-list>
+    </div>
+  </mat-menu> -->
+
+
+
+<!-- <mat-list-item role="listitem">
+              <p>Reminder :</p>
+            </mat-list-item> -->
+<!-- <mat-list-item>
+              <p>Later Today &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8:00 PM</p>
+            </mat-list-item> -->
+<!-- <mat-list-item>
+              <p>Tomorrow &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                8:00 AM</p>
+            </mat-list-item> -->
+<!-- <mat-list-item>
+              <p>Next week Monday, 8:00 AM</p>
+            </mat-list-item> -->
+<!-- <mat-list-item>
+              <mat-icon>schedule</mat-icon>
+              <span class="date" [matMenuTriggerFor]="menu5">pick date and time</span>
+            </mat-list-item> -->
+
+
+
+<!-- <button mat-menu-item>Morning 8:00AM</button>
+                    <button mat-menu-item>Afternoon 1:00PM</button>
+                    <button mat-menu-item>Evening 1:00PM</button>
+                    <button mat-menu-item>Night 8:00PM</button> -->
+<!-- <mat-form-field [matMenuTriggerFor]="menu7"]>
+                      <span>Choose time</span>
+                    </mat-form-field> -->
+<!-- <mat-menu #menu7="matMenu" class="matmenu1">
+                      <mat-form-field>
+                        <span>Morning 8:00AM</span>
+                      </mat-form-field>
+                    </mat-menu> -->
+
+
+
+<!-- <button mat-menu-item disabled>
+        <span>Add drawing</span>
+      </button>
+      <button mat-menu-item>
+        <span>show checkboxes</span>
+      </button> -->

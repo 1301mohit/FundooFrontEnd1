@@ -13,6 +13,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, AUTOCOMPLETE_OPTION_HEIGHT, AU
 import { EditLabelComponent } from '../edit-label/edit-label.component';
 import { EditLabelNoteComponent } from 'src/app/edit-label-note/edit-label-note.component';
 
+
 @Component({
   selector: 'app-icon-list',
   templateUrl: './icon-list.component.html',
@@ -25,12 +26,12 @@ export class IconListComponent implements OnInit {
   @Output() updateEvent = new EventEmitter();
   @Output() colorchange = new EventEmitter();
   @Input() card;
-
   @Input() title;
   @Input() description;
 
   label : [];
- 
+  dateNow : Date = new Date();
+  dateInIso : any;
   constructor(private httpService: HttpService,
     private snackbar: MatSnackBar,
     private router: Router,
@@ -57,14 +58,13 @@ export class IconListComponent implements OnInit {
 
   colorsEdit(colorId) {
     this.colorchange.emit(colorId);
- 
-    
     if (this.card != undefined) {
       console.log("card id is ",this.card.noteId);
       console.log("card data at icon", this.card);
       console.log("card color set", colorId);
 
-      this.httpService.postRequestForNote('/color/'+this.card.noteId+'?color=' +colorId, '').subscribe(data => {
+      this.httpService.postRequestForNote('/color/'+this.card.noteId+'?color='+colorId,"").subscribe(data => {
+        // this.httpService.postRequestForNote('/color/'+this.card.noteId+'/'+colorId,"").subscribe(data => {
         this.snackbar.open(data.statusMessage, "End Now", { duration: 3000 });
        // this.updateEvent.emit({});
       })
@@ -97,6 +97,10 @@ export class IconListComponent implements OnInit {
     )
   }
 
+  // setRemainder(){
+  //   console.log("Remainder Note");
+  //   this.httpService.postRequestForNote
+  // }
   // label(){
   //   console.log("Label Note");
   //   const dialogRef = this.dialog.open(EditLabelNoteComponent, {
@@ -122,12 +126,72 @@ export class IconListComponent implements OnInit {
   addLabelToNote(index){
     console.log("Add label to note");
     this.httpService.postRequestForNote('/addLabelInNote/'+index.labelId+'/'+this.card.noteId,"").subscribe(data => {
-    this.snackbar.open(data.statusMessage, "End Now", { duration: 3000 });
+      this.snackbar.open(data.statusMessage, "End Now", { duration: 3000 });
+      // this.updateEvent.emit({});
     },
     error =>{
-      this.snackbar.open(error, 'End Now', { duration: 3000 });
+      this.snackbar.open(error, 'End Now', { duration : 3000 });
     }
     )
+  }
+
+  setRemainderForNextWeek(){
+    this.dateNow.setDate(this.dateNow.getDate() + 7);
+    console.log("Set remainder for today date");
+    console.log("Date:",this.dateNow);
+    this.dateInIso = this.dateNow.toISOString();
+    console.log("Date in ISO:",this.dateInIso);
+    this.httpService.postRequestForNote('/addRemainder/'+this.card.noteId+'?date='+this.dateInIso,"").subscribe(data => {
+      this.snackbar.open(data.statusMessage, "End-Now", { duration:3000 });
+      this.updateEvent.emit({});
+    },
+    error => {
+      this.snackbar.open(error, "End-Now", { duration : 3000 });
+    })
+  }
+
+  setRemainderForTommorow(){
+    this.dateNow.setDate(this.dateNow.getDate() + 1);
+    console.log("Set remainder for today date");
+    console.log("Date:",this.dateNow);
+    this.dateInIso = this.dateNow.toISOString();
+    console.log("Date in ISO:",this.dateInIso);
+    this.httpService.postRequestForNote('/addRemainder/'+this.card.noteId+'?date='+this.dateInIso,"").subscribe(data => {
+      this.snackbar.open(data.statusMessage, "End-Now", { duration:3000 });
+      this.updateEvent.emit({});
+    },
+    error => {
+      this.snackbar.open(error, "End-Now", { duration : 3000 });
+    })
+  }
+
+  setRemainderForToday(){
+    console.log("Set remainder for today date");
+    console.log("Date:",this.dateNow);
+    this.dateInIso = this.dateNow.toISOString();
+    console.log("Date in ISO:",this.dateInIso);
+    this.httpService.postRequestForNote('/addRemainder/'+this.card.noteId+'?date='+this.dateInIso,"").subscribe(data => {
+      this.snackbar.open(data.statusMessage, "End-Now", { duration:3000 });
+      this.updateEvent.emit({});
+    },
+    error => {
+      this.snackbar.open(error, "End-Now", { duration : 3000 });
+    })
+  }
+
+  setReminder(){
+    console.log("Set remainder in note");
+    console.log("Date:",this.dateNow);
+    console.log("Card:",this.card.noteId);
+    this.dateInIso = this.dateNow.toISOString();
+    console.log("Date in ISO:",this.dateInIso);
+    this.httpService.postRequestForNote('/addRemainder/'+this.card.noteId+'?date='+this.dateInIso,"").subscribe(data => {
+      this.snackbar.open(data.statusMessage, "End-Now", { duration:3000 });
+      this.updateEvent.emit({});
+    },
+    error => {
+      this.snackbar.open(error, "End-Now", { duration : 3000 });
+    })
   }
 
 }

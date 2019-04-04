@@ -67,6 +67,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   Remainder(){
     this.titleName = "Reminder"
+    this.router.navigate(['/dashboard/display-remainder']);
   }
 
   editLabels(){
@@ -129,26 +130,60 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.router.navigate(['/dashboard/edit-label-note']);
   }
 
-  ProfileSelect(){
-    const dialogRef = this.dialog.open(ProfilepicComponent, {
-      width: '900px',
-      height: '600px',
-    });
-    dialogRef.afterClosed().subscribe((image:any) => {
-      console.log('The dialog was closed');
-      console.log('Image',image);
-      console.log('Image file',typeof image);
+  // ProfileSelect(){
+  //   const dialogRef = this.dialog.open(ProfilepicComponent, {
+  //     width: '900px',
+  //     height: '600px',
+  //   });
+  //   dialogRef.afterClosed().subscribe((image:any) => {
+  //     console.log('The dialog was closed');
+  //     console.log('Image',image);
+  //     console.log('Image file',typeof image);
       
-      this.httpService.uploadProfilePic("/imageUpload/",image).subscribe( response => {
-        console.log(response);
+  //     this.httpService.uploadProfilePic("/imageUpload",image.file).subscribe( response => {
+  //       console.log(response);
+
         
-        this.snackbar.open(response.statusMessage, 'Success', { duration:3000 });
-      },error => {
-          this.snackbar.open(error, 'fail', { duration:3000 });
-      });
-    })
-  }
+        
+  //       this.snackbar.open(response.statusMessage, 'Success', { duration:3000 });
+  //     },error => {
+  //         this.snackbar.open(error, 'fail', { duration:3000 });
+  //     });
+  //   })
+  // }
   
+
+
+
+
+  ProfileSelect() {
+  const dialogRef = this.dialog.open(ProfilepicComponent,
+    {
+      width: '900px',
+      height:'600px'
+    });
+
+    dialogRef.afterClosed().subscribe(
+      (x:any) =>
+      {
+        if(x!=null)
+        { 
+          console.log('The dialog was closed');
+          console.log("Image",x.file)
+         // this.httpService.uploadProfilePic("/imageUpload",x.file).subscribe( response => {
+            //       console.log(response);
+          
+          this.httpService.uploadProfilePic('/imageUpload',x.file).subscribe(
+          response =>
+          {
+            console.log("Response",response);
+            this.snackbar.open(response.statusMessage, 'Success', { duration:3000 });
+          }
+        );
+        }
+})
+}
+
 
   // getMoreInformation(): string {
   //   return "Fundoo Account \n"+

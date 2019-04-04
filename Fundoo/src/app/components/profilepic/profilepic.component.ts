@@ -14,31 +14,50 @@ export class ProfilepicComponent implements OnInit {
 
   ngOnInit() {
   }
+  imageChangedEvent: any = '';
+  croppedImage;
 
-imageChangedEvent: any = '';
-croppedImage: any = '';
-crop:any;
-
-fileChangeEvent(event: any): void {
+  fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
-}
+  }
 
-imageCropped(event: ImageCroppedEvent) {
+  imageCropped(event:any) {
   console.log(event);
-  
-    this.croppedImage = event.base64;
-    this.crop=event.file;
-}
-// imageLoaded() {
-//     // show cropper
-// }
-// loadImageFailed() {
-//     // show message
+  this.croppedImage = event;
+  }
+   
+  setProfile()
+  {
+    if(this.croppedImage!=null)
+    {
+      this.dialogRef.close(this.croppedImage);
+    }
+  }
+
+// imageChangedEvent: any = '';
+// croppedImage: any = '';
+// crop:any;
+
+// fileChangeEvent(event: any): void {
+//     this.imageChangedEvent = event;
 // }
 
-setProfile(){
-  console.log("Cropped Image:",this.croppedImage);
-  this.dialogRef.close(this.croppedImage);
-}
+// imageCropped(event: ImageCroppedEvent) {
+//   console.log(event);
+  
+//     this.croppedImage = event.base64;
+//     this.crop=event;
+// }
+// // imageLoaded() {
+// //     // show cropper
+// // }
+// // loadImageFailed() {
+// //     // show message
+// // }
+
+// setProfile(){
+//   console.log("Cropped Image:",this.croppedImage);
+//   this.dialogRef.close(this.croppedImage);
+// }
 
 }

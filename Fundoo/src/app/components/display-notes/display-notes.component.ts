@@ -146,6 +146,7 @@ export class DisplayNotesComponent implements OnInit {
     this.httpService.deleteRequestForNote('/deleteLabelOfNote/'+label.labelId+'/'+noteId).subscribe( data => {
       console.log("Delete label from note response"+data);
       this.snackbar.open(data.statusMessage, "End-Now", { duration:3000 });
+      this.getAllCard();
     },
     error => {
       this.snackbar.open(error, "End-Now", { duration:3000 })
@@ -156,6 +157,7 @@ export class DisplayNotesComponent implements OnInit {
     this.httpService.deleteRequestForNote('/deleteRemainder/'+card.noteId).subscribe( data => {
       console.log("Remove remainder from note");
       this.snackbar.open(data.statusMessage, "End-Now", { duration : 3000 });
+      this.getAllCard();
     },
     error => {
       this.snackbar.open(error, "End-Now", { duration:3000 });

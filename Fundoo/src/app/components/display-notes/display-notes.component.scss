@@ -47,3 +47,11 @@
 // .example-chip-list{
 //     visibility: hidden;
 // }
+
+// ::ng-deep .mat-standard-chip{
+//     min-height: 25px;
+// }
+
+.chip{
+    min-height: 22px;
+}

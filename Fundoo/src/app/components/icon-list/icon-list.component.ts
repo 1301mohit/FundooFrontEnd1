@@ -32,6 +32,7 @@ export class IconListComponent implements OnInit {
   label : [];
   dateNow : Date = new Date();
   dateInIso : any;
+
   constructor(private httpService: HttpService,
     private snackbar: MatSnackBar,
     private router: Router,
@@ -66,7 +67,8 @@ export class IconListComponent implements OnInit {
       this.httpService.postRequestForNote('/color/'+this.card.noteId+'?color='+colorId,"").subscribe(data => {
         // this.httpService.postRequestForNote('/color/'+this.card.noteId+'/'+colorId,"").subscribe(data => {
         this.snackbar.open(data.statusMessage, "End Now", { duration: 3000 });
-       // this.updateEvent.emit({});
+        console.log("ColorId",colorId);
+        //this.updateEvent.emit({});
       })
     }
   }

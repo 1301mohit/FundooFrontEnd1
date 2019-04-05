@@ -62,12 +62,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   Note(){
     this.titleName = "Note"
-    this.router.navigateByUrl('/dashboard/note')
+    // this.router.navigateByUrl('/dashboard/note')
   }
 
   Remainder(){
     this.titleName = "Reminder"
-    this.router.navigate(['/dashboard/display-remainder']);
+    // this.router.navigate(['/dashboard/display-remainder']);
   }
 
   editLabels(){
@@ -84,13 +84,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   archive(){
     this.titleName = "Archive"
-    this.router.navigateByUrl('/dashboard/display-archive')
+    //this.router.navigateByUrl('/dashboard/display-archive')
     //this.httpService.postRequestForNote('/archiveNote/'+)
   }
 
   trash(){
     this.titleName = "Trash"
-    this.router.navigateByUrl('/dashboard/display-trash')
+    //this.router.navigateByUrl('/dashboard/display-trash')
   }
 
   getAllLabel(){

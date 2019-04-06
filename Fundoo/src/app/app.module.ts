@@ -79,7 +79,9 @@ import { DisplayRemainderComponent } from './components/display-remainder/displa
     MatSnackBarModule,
     FlexLayoutModule,
     MaterialModule,
-    ImageCropperModule
+    ImageCropperModule,
+    OwlDateTimeModule, 
+         OwlNativeDateTimeModule,
     // OwlDateTimeModule,
     // OwlNativeDateTimeModule
   //  ChangeDetectorRef

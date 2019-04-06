@@ -14,17 +14,22 @@
       <span class="date">pick date and time</span>
     </button>
 
-    <mat-menu #dateandtime="matMenu" class="matmenu">
-      <mat-form-field role="listitem" fxFlexLayout="row">
+    <mat-menu #dateandtime="matMenu" >
+      <!-- <mat-form-field role="listitem" fxFlexLayout="row">
         <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)] = "dateNow">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <!-- <div>
+        <div>
           Date Time:
           <input [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
           <owl-date-time #dt></owl-date-time>
         </div> -->
-      </mat-form-field>
+      <!-- </mat-form-field>  -->
+      <label>
+        Date Time:
+        <input [owlDateTimeTrigger]="dt5" [owlDateTime]="dt5" [(ngModel)] = "dateNow">
+        <owl-date-time [pickerMode]="'dialog'" #dt5></owl-date-time>
+    </label>
       <div>
         <button mat-raised-button color="primary" (click)="setReminder()">Save</button>
       </div>

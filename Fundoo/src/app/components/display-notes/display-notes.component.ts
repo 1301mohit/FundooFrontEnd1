@@ -31,6 +31,10 @@ export class DisplayNotesComponent implements OnInit {
   labelOfNote:[];
   private subscribeView : boolean;
 
+  token : any = localStorage.getItem('token');
+
+  //collaborators : [];
+
 
   // title: String
   // description: String
@@ -47,7 +51,15 @@ export class DisplayNotesComponent implements OnInit {
     this.viewChange.subscribeView.subscribe(view => {
       this.subscribeView = view;
     })
+    console.log("Card--------------------->",this.card);
+    //this.collaborators = this.card.collaboratedUser;
   }
+@Input()
+public set childMessage(v : string) {
+console.log(v);
+this.getAllCard();
+
+}
 
   getAllCard(){
     this.httpService.getRequestForNote('/getAllNotes').subscribe(data=>{
@@ -104,6 +116,8 @@ export class DisplayNotesComponent implements OnInit {
   }
 
   update(event){
+    console.log('event in display');
+    
     this.getAllCard();
   }
 

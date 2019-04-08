@@ -16,6 +16,7 @@ import { EditLabelNoteComponent } from './edit-label-note/edit-label-note.compon
 import { ProfilepicComponent } from './components/profilepic/profilepic.component';
 import { AuthGuard } from './auth.guard';
 import { DisplayRemainderComponent } from './components/display-remainder/display-remainder.component';
+import { CollaboratorDialogComponent } from './components/collaborator-dialog/collaborator-dialog.component';
 
 const routes: Routes = [
   {
@@ -70,7 +71,7 @@ const routes: Routes = [
         component : EditLabelComponent
       },
       {
-        path : 'edit-label-note',
+        path : 'edit-label-note/:labelId',
         component : EditLabelNoteComponent
       },
       {
@@ -80,6 +81,10 @@ const routes: Routes = [
       {
         path : 'display-remainder',
         component : DisplayRemainderComponent
+      },
+      {
+        path : 'collaborator-dialog',
+        component : CollaboratorDialogComponent
       }
     ]
   }

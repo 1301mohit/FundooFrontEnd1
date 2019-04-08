@@ -38,8 +38,8 @@
     </mat-menu>
   </mat-menu>
 
-  <button id="collaborator" matTooltip="collaborator" mat-icon-button>
-    <img class="icon" id="collaborator" src="../../../assets/collaborator.svg" />
+  <button class="collaborator" matTooltip="collaborator" mat-icon-button (click)="openDialog()">
+    <img class="icon" src="../../../assets/collaborator.svg" />
   </button>
 
   <button [matMenuTriggerFor]="menu5" style="cursor: pointer;" aria-label="change color" matTooltip="change color"

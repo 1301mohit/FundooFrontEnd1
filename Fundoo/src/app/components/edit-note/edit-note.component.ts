@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import {CdkTextareaAutosize} from '@angular/cdk/text-field';
 import {ViewChild} from '@angular/core';
@@ -39,7 +39,7 @@ export class EditNoteComponent implements OnInit{
   id: any;
   constructor(private httpService: HttpService,
               private router: Router,
-              private snackbar: MatSnackBar,
+              private snackbar: MatSnackBar,private route :ActivatedRoute,
               public dialogRef: MatDialogRef<EditNoteComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any
              ) {
@@ -56,11 +56,14 @@ export class EditNoteComponent implements OnInit{
   // color: String;
   // card = [];
   // flag1 = true;
+
   ngOnInit() {
     // console.log("Title:",this.title);
     this.getLabelOfNote();
+   
     
   }
+
 
   
  

@@ -12,6 +12,7 @@ import { setDefaultService } from 'selenium-webdriver/edge';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, AUTOCOMPLETE_OPTION_HEIGHT, AUTOCOMPLETE_PANEL_HEIGHT} from '@angular/material';
 import { EditLabelComponent } from '../edit-label/edit-label.component';
 import { EditLabelNoteComponent } from 'src/app/edit-label-note/edit-label-note.component';
+import { CollaboratorDialogComponent } from '../collaborator-dialog/collaborator-dialog.component';
 
 
 @Component({
@@ -68,7 +69,7 @@ export class IconListComponent implements OnInit {
         // this.httpService.postRequestForNote('/color/'+this.card.noteId+'/'+colorId,"").subscribe(data => {
         this.snackbar.open(data.statusMessage, "End Now", { duration: 3000 });
         console.log("ColorId",colorId);
-        //this.updateEvent.emit({});
+        this.updateEvent.emit({});
       })
     }
   }
@@ -196,6 +197,18 @@ export class IconListComponent implements OnInit {
     })
   }
 
+  openDialog(): void{
+    console.log("Open Collaborator");
+    const dialogRef = this.dialog.open(CollaboratorDialogComponent, {
+      width: '600px',
+      height: '400px',
+      data: this.card
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    console.log('Data--->',result);
+  });
+}
 }
 
 

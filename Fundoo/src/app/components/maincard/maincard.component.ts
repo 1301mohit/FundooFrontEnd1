@@ -39,7 +39,7 @@ export class MaincardComponent implements OnInit {
     this.flag1 = !this.flag1;
     console.log(this.flag1);
   }
-  // @Output() messageEvent = new EventEmitter<string>();
+  @Output() messageEvent = new EventEmitter<string>();
 
 
   addNote() {
@@ -63,7 +63,7 @@ export class MaincardComponent implements OnInit {
       this.httpService.postRequestForNote('/addNote', this.model).subscribe(data => {
         console.log("addNotes data", data);
         this.snackbar.open(data.statusMessage, 'End now', { duration: 5000 });
-      //this.messageEvent.emit(this.model);
+      this.messageEvent.emit(this.model);
       },
       err => {
         this.snackbar.open(err, 'End now', { duration: 5000 });

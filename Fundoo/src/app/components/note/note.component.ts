@@ -12,16 +12,20 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./note.component.scss']
 })
 export class NoteComponent implements OnInit {
+  even='';
   
   constructor(private httpService: HttpService,
               private router: Router,
               private snackbar : MatSnackBar) {}
 
+
   ngOnInit() {
     // this.getAllCard();
   }
 //card=[];
-
+update(value){
+this.even=value;
+}
 
 // getAllCard(){
 //   this.httpService.getRequestForNote('/getAllNotes').subscribe(data=>{

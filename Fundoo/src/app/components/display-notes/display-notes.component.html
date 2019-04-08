@@ -1,12 +1,12 @@
 <div class="display">
-  <div *ngIf="!subscribeView" class="mininote" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex.xs="98"
+  <div *ngIf="!subscribeView" class="mininote" fxLayout="row wrap" fxLayoutAlign="start start" fxFlex.xs="98"
     fxLayoutGap="10px" fxFlex="80">
 
     <!-- <div *ngFor="let items of cardsArray" class="card"> -->
     <div *ngFor="let items of card" class="card">
 
       <!-- <div *ngIf="items.archive==false && items.trash==false && items.pinned==true"> -->
-      <div *ngIf="items.archive==false && items.trash==false">
+      <div *ngIf="items.archive == false && items.trash == false">
         <mat-card class="minicard" [style.backgroundColor]="items.color">
           <div fxLayout="row" fxLayoutAlign="space-between start">
             <div fxLayout="row" class="title">
@@ -48,10 +48,25 @@
             </div>
           </div>
           
+          <!-- <div class="example-chip-list">
+              <mat-chip-list #chipList>
+                <mat-chip class="chip" *ngFor="let collaborator of items.collaboratedUser" [selectable]="selectable" [removable]="removable"
+                  (removed)="remove(label,items.noteId)">
+                  {{label.name}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+            </div> -->
+            <div *ngFor="let collaborator of items.collaboratedUser">
+                <button mat-mini-fab matTooltip = "items.collaborator.email">
+                    <img mat-card-avatar src="http://localhost:8080/getImage/{{token}}" />
+                </button>
+            </div>
+            
 
           <div class="icons-div">
             <app-icon-list fxLayout="row" [card]="items" (updateEvent)=update($event) fxLayoutAlign="space-between end"
-              (colorchange)="changeOfColor($event)">
+              >
             </app-icon-list>
           </div>
         </mat-card>
@@ -117,8 +132,7 @@
           </div>
 
           <div class="icons-div">
-            <app-icon-list fxLayout="row" [card]="items" (updateEvent)=update($event) fxLayoutAlign="space-between end"
-              (colorchange)="changeOfColor($event)">
+            <app-icon-list fxLayout="row" [card]="items" (updateEvent)=update($event) fxLayoutAlign="space-between end">
             </app-icon-list>
           </div>
         </mat-card>

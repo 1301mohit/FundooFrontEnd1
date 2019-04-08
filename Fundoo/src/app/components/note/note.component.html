@@ -1,12 +1,12 @@
 
 
 <!-- take a note -->
-<app-maincard ></app-maincard>
+<app-maincard (messageEvent)='update($event)' ></app-maincard>
 
 
 
 <!-- display card -->
-<app-display-notes></app-display-notes>
+<app-display-notes [childMessage]='even' ></app-display-notes>
 <!-- <app-display-notes [cardsArray]=(card) ></app-display-notes> -->
 
 

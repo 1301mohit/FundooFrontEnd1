@@ -127,7 +127,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     //   this.snackbar.open("Error in getNoteOfLabel", "End-Now", { duration : 3000 });
     // }
     //   )
-    this.router.navigate(['/dashboard/edit-label-note']);
+    this.router.navigate(['/dashboard/edit-label-note/'+labelId]);
   }
 
   // ProfileSelect(){

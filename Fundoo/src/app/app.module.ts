@@ -38,6 +38,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { AuthGuard } from './auth.guard';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { DisplayRemainderComponent } from './components/display-remainder/display-remainder.component';
+import { CollaboratorDialogComponent } from './components/collaborator-dialog/collaborator-dialog.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { DisplayRemainderComponent } from './components/display-remainder/displa
     EditLabelNoteComponent,
     ProfilepicComponent,
     DisplayRemainderComponent,
+    CollaboratorDialogComponent,
     
   ],
   imports: [

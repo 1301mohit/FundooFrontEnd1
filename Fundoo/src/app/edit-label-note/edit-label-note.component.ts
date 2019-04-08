@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from 'selenium-webdriver/http';
 import { HttpService } from '../services/http.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -12,18 +12,21 @@ import { MatSnackBar } from '@angular/material';
 export class EditLabelNoteComponent implements OnInit {
 
   constructor(private httpService: HttpService,
-              private router : Router,
+              private router : Router,private route:ActivatedRoute,
               private snackbar : MatSnackBar) { }
-
   ngOnInit() {
-    this.getNoteOfLabel();
+this.route.params.subscribe(data=>{
+  this.getNoteOfLabel(data.labelId);
+  
+},err=>{
+  console.log('error in param',err);
+  
+})
   }
   
   card1 : [];
-  getNoteOfLabel(){
+  getNoteOfLabel(labelId){
     console.log("Get note of Label");
-    let labelId = localStorage.getItem('labelId');
-    console.log("labelId in getNoteOfLabel:",labelId);
     this.httpService.getRequestForNote('/getNoteOfLabel/'+labelId).subscribe( data => {
       console.log("Card",data);
       this.card1 = data;

@@ -15,10 +15,22 @@
 <br>
 <div *ngFor="let collaborator of collaborators">
     <div fxLayoutGap="3%" fxLayout="row">
-        <button mat-icon-button>
+
+         <!-- <img mat-card-avtar src="collaborator.profileImage" /> -->
+        <!-- <button mat-icon-button>
             <img mat-card-avatar src="http://localhost:8080/getImage/{{token}}" />
-            <!-- <img mat-card-avtar src="collaborator.profileImage" /> -->
+           
+        </button> -->
+        <button mat-mini-fab matTooltip="items.collaborator.email" color="primary">
+                <!-- <img mat-card-avatar src="http://localhost:8080/getImage/{{token}}" /> -->
+            <mat-icon>account_circle</mat-icon>
         </button>
+
+        <!-- <button mat-icon-button> -->
+            <!-- <img mat-card-avatar src="http://localhost:8080/getImage/{{token}}" />
+            <mat-icon>account_circle</mat-icon>
+        </button> -->
+
         <div fxFlex = 90 fxLayout="column">
             <B><span>{{collaborator.firstName}}&nbsp;{{collaborator.lastName}}</span></B>
             <span class="email">{{collaborator.email}}</span>
@@ -31,7 +43,8 @@
 <br>
 <div class="example-full-width" fxLayoutGap="3%" fxLayout="row">
     <button mat-icon-button>
-        <img mat-card-avatar src="http://localhost:8080/getImage/{{token}}" />
+        <mat-icon>account_circle</mat-icon>
+        <!-- <img mat-card-avatar src="http://localhost:8080/getImage/{{token}}" /> -->
                 <!-- <img mat-card-avtar src="collaborator.profileImage" /> -->
     </button>
     <input matInput placeholder="email to share with" [(ngModel)]="email1">

@@ -83,7 +83,7 @@ import { CollaboratorDialogComponent } from './components/collaborator-dialog/co
     MaterialModule,
     ImageCropperModule,
     OwlDateTimeModule, 
-         OwlNativeDateTimeModule,
+    OwlNativeDateTimeModule,
     // OwlDateTimeModule,
     // OwlNativeDateTimeModule
   //  ChangeDetectorRef

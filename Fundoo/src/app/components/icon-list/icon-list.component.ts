@@ -126,6 +126,15 @@ export class IconListComponent implements OnInit {
     )
   }
 
+  getAllCard() {
+    this.httpService.getRequestForNote('/getAllNotes').subscribe(data => {
+      console.log('data is in note', data);
+      this.card = data;
+    }, err => {
+      console.log(err);
+    })
+  }
+
   addLabelToNote(index){
     console.log("Add label to note");
     this.httpService.postRequestForNote('/addLabelInNote/'+index.labelId+'/'+this.card.noteId,"").subscribe(data => {
@@ -207,6 +216,7 @@ export class IconListComponent implements OnInit {
   dialogRef.afterClosed().subscribe(result => {
     console.log('The dialog was closed');
     console.log('Data--->',result);
+    this.getAllCard();
   });
 }
 }

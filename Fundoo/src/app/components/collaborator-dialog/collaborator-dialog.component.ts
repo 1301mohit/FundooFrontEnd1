@@ -33,6 +33,8 @@ export class CollaboratorDialogComponent implements OnInit {
   ngOnInit() {
     console.log("Data --->",this.data);
     this.collaborators = this.data.collaboratedUser;
+    console.log("Collaborator ---->",this.collaborators);
+    this.getAllCards();
   }
 
   onNoClick(): void {

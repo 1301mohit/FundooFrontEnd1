@@ -5,6 +5,7 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 import { EditNoteComponent } from '../edit-note/edit-note.component';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { ViewchangeService } from 'src/app/services/viewchange.service';
+import { CollaboratorDialogComponent } from '../collaborator-dialog/collaborator-dialog.component';
 
 export interface Fruit {
   name: string;
@@ -98,6 +99,19 @@ this.getAllCard();
     });
   }
 
+  openDialog1(card1): void{
+    console.log("Open Collaborator");
+    console.log("Collaborator dialog component card --->",card1);
+    const dialogRef = this.dialog.open(CollaboratorDialogComponent, {
+      width: '600px',
+      height: '400px',
+      data: card1
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    console.log('Data--->',result);
+  });
+}
   // :host/ deep/ {
 
   // }
@@ -126,32 +140,8 @@ this.getAllCard();
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  // fruits: Fruit[] = [
-  //   {name: 'Lemon'},
-  //   {name: 'Lime'},
-  //   {name: 'Apple'},
-  // ];
 
-  // remove(fruit: Fruit): void {
-  //   const index = this.fruits.indexOf(fruit);
-
-  //   if (index >= 0) {
-  //     this.fruits.splice(index, 1);
-  //   }
-  // }
-
-  // getLabelOfNote(card){
-  //   console.log("note id ", card.noteId)
-  //   this.httpService.getRequestForNote('/getLabelOfNote/'+card.noteId).subscribe( data => {
-  //     console.log("getLabelOfNote responce  data"+data)
-  //     this.labelOfNote = data;
-  //     console.log("getLabelOfNote data"+ this.labelOfNote)
-  //   },
-  //   error => {
-  //     this.snackbar.open(error, "End-Now", { duration:3000 })
-  //   }
-  //   )
-  // }
+  
 
   remove(label,noteId){
     console.log("Label"+label);
@@ -179,8 +169,34 @@ this.getAllCard();
       )
   }
 
-  // remove1(label){
-  //   const index = this.
-  // }
 
+
+
+ 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // getLabelOfNote(card){
+  //   console.log("note id ", card.noteId)
+  //   this.httpService.getRequestForNote('/getLabelOfNote/'+card.noteId).subscribe( data => {
+  //     console.log("getLabelOfNote responce  data"+data)
+  //     this.labelOfNote = data;
+  //     console.log("getLabelOfNote data"+ this.labelOfNote)
+  //   },
+  //   error => {
+  //     this.snackbar.open(error, "End-Now", { duration:3000 })
+  //   }
+  //   )
+  // }

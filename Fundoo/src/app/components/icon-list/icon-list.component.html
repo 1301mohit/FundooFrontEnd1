@@ -6,15 +6,17 @@
   <mat-menu #remainder="matMenu" class="matmenu">
     <p class="para">Remainder :</p>
     <!-- <button mat-menu-item>Reminder :</button> -->
-    <button mat-menu-item (click) = setRemainderForToday()>Later Today &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8:00 PM</button>
-    <button mat-menu-item (click) = setRemainderForTommorow()>Tomorrow &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8:00 PM</button>
-    <button mat-menu-item (click) = setRemainderForNextWeek()>Next week Monday, 8:00 AM</button>
+    <button mat-menu-item (click)=setRemainderForToday()>Later Today
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8:00 PM</button>
+    <button mat-menu-item (click)=setRemainderForTommorow()>Tomorrow
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8:00 PM</button>
+    <button mat-menu-item (click)=setRemainderForNextWeek()>Next week Monday, 8:00 AM</button>
     <button mat-menu-item [matMenuTriggerFor]="dateandtime">
       <mat-icon>schedule</mat-icon>
       <span class="date">pick date and time</span>
     </button>
 
-    <mat-menu #dateandtime="matMenu" >
+    <mat-menu #dateandtime="matMenu">
       <!-- <mat-form-field role="listitem" fxFlexLayout="row">
         <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)] = "dateNow">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -27,13 +29,13 @@
       <!-- </mat-form-field>  -->
       <label>
         Date Time:
-        <input [owlDateTimeTrigger]="dt5" [owlDateTime]="dt5" [(ngModel)] = "dateNow">
+        <input [owlDateTimeTrigger]="dt5" [owlDateTime]="dt5" [(ngModel)]="dateNow">
         <owl-date-time [pickerMode]="'dialog'" #dt5></owl-date-time>
-    </label>
+      </label>
       <div>
         <button mat-raised-button color="primary" (click)="setReminder()">Save</button>
       </div>
-     
+
       <!-- <button mat-menu-item >save</button> -->
     </mat-menu>
   </mat-menu>
@@ -63,35 +65,65 @@
     <img class="icon" id="addimage" src="../../../assets/addimage.svg" />
   </button>
 
-  <button id="archive" matTooltip="Archive" (click)='archiveNote()' mat-icon-button>
+  <!-- <button id="archive" matTooltip="Archive" (click)='archiveNote()' mat-icon-button>
     <img class="icon" id="archive" src="../../../assets/archive.svg" />
-  </button>
+  </button> -->
 
-  <button mat-icon-button [matMenuTriggerFor]="menu" (click)=getAllLabel()>
+  <div *ngIf=" card.archive == false ">
+    <button id="archive" matTooltip="Archive" (click)='archiveNote()' mat-icon-button>
+      <img class="icon" id="archive" src="../../../assets/archive.svg" />
+    </button>
+  </div>
+  <div *ngIf=" card.archive == true ">
+    <button id="archive" matTooltip="Unarchive" (click)='archiveNote()' mat-icon-button>
+      <!-- <img class="icon" id="unarchive" src="../../../assets/archive.svg" /> -->
+      <mat-icon>unarchive</mat-icon>
+    </button>
+  </div>
+
+  <!-- <div *ngIf = "card.trash == false"> -->
+  <button mat-icon-button [matMenuTriggerFor]="menu" >
     <mat-icon class="icon">more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="delete()">
       <span>Delete note</span>
     </button>
-    <button mat-menu-item [matMenuTriggerFor]="labelMenu" (click)="$event.stopPropagation()">
+    <button mat-menu-item [matMenuTriggerFor]="labelMenu" (click)="$event.stopPropagation()" (click)="getAllLabel()">
       <span>Add label</span>
     </button>
-
   </mat-menu>
+</div>
 
-  <div (click)="$event.stopPropagation()">
-    <mat-menu #labelMenu="matMenu">
-      <div *ngFor="let index of label">
-        <mat-checkbox (click)="$event.stopPropagation(); addLabelToNote(index)">{{index.name}}</mat-checkbox>
-      </div>
-    </mat-menu>
-  </div>
+<div (click)="$event.stopPropagation()">
+  <mat-menu #labelMenu="matMenu">
+    <div *ngFor="let index of label">
+      <mat-checkbox (click)="$event.stopPropagation(); addLabelToNote(index)">{{index.name}}</mat-checkbox>
+    </div>
+  </mat-menu>
 </div>
 
 
 
 
+
+
+
+<!-- <div *ngIf = "card.trash == true">
+
+    <button mat-icon-button [matMenuTriggerFor]="menu" (click)=getAllLabel()>
+      <mat-icon class="icon">more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="delete()">
+        <span>Delete for ever</span>
+      </button>
+      <button mat-menu-item (click)="restore(items.noteId)">
+        <span>Restore</span>
+      </button>
+    </mat-menu>
+
+  </div> -->
 
 
 

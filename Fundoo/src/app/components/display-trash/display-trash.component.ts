@@ -22,8 +22,17 @@ export class DisplayTrashComponent implements OnInit {
     this.getAllCard();
   }
 
+  // getAllCard() {
+  //   this.httpService.getRequestForNote('/getAllNotes').subscribe(data => {
+  //     console.log('data is in note', data);
+  //     this.card = data;
+  //   }, err => {
+  //     console.log(err);
+  //   })
+  // }
+
   getAllCard() {
-    this.httpService.getRequestForNote('/getAllNotes').subscribe(data => {
+    this.httpService.getRequestForNote('/getAllListOfNotes?isArchive='+false+'&isTrash='+true).subscribe(data => {
       console.log('data is in note', data);
       this.card = data;
     }, err => {
@@ -39,17 +48,18 @@ export class DisplayTrashComponent implements OnInit {
     this.getAllCard();
   }
 
-  // delete() {
-  //   console.log("Delete note");
-  //   console.log("CardId", this.card.noteId);
-  //   this.httpService.deleteRequestForNote('/deleteNote/'+this.card.noteId).subscribe(data => {
-  //     this.snackbar.open(data.statusMessage, "End Now", { duration: 3000 });
-  //     this.updateEvent.emit({type:'trash'});
-  //   },
-  //     error => {
-  //       this.snackbar.open('Retry', 'End Now', { duration: 3000 });
-  //     });
-  // }
+  delete(card1) {
+    console.log("Delete note");
+    console.log("CardId", card1.noteId);
+    this.httpService.deleteRequestForNote('/deleteNote/'+card1.noteId).subscribe(data => {
+      this.snackbar.open(data.statusMessage, "End Now", { duration: 3000 });
+      this.getAllCard();
+      //this.updateEvent.emit({type:'trash'});
+    },
+      error => {
+        this.snackbar.open('Retry', 'End Now', { duration: 3000 });
+      });
+  }
 
   restore(noteId) {
     console.log("Restore note");

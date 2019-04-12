@@ -36,6 +36,7 @@
 
 .matcard{
     margin-top: 30px;
+    padding: 12px
 }
 .Border :focus{
     outline: white;
@@ -51,7 +52,8 @@ element.style {
 
 .title{
     margin-bottom: 20px;
-    color: rgb(173, 166, 166);
+  //  color: black;
+    color: rgb(8, 8, 8);
     border: none;
     outline: none;
     user-select: none;

@@ -27,6 +27,8 @@ export class DisplayNotesComponent implements OnInit {
               
 //@Input() cardsArray=[];
 //@Input() card;
+ // @Input() pin:[];
+ // @Input() unpin:[];
   color1 : String;
   card:[];
   labelOfNote:[];
@@ -48,6 +50,8 @@ export class DisplayNotesComponent implements OnInit {
   //flag1 = true;
   ngOnInit() {
     this.getAllCard();
+    console.log("Pinned note:",this.pin);
+    console.log("Unpinned note:",this.pin);
    // this.getLabelOfNote();
     this.viewChange.subscribeView.subscribe(view => {
       this.subscribeView = view;
@@ -62,12 +66,22 @@ this.getAllCard();
 
 }
 
-  getAllCard(){
-    this.httpService.getRequestForNote('/getAllNotes').subscribe(data=>{
-      console.log('get all cards');
-      console.log('data is in note',data);
-      this.card=data;
-    },err=>{
+  // getAllCard(){
+  //   this.httpService.getRequestForNote('/getAllNotes').subscribe(data=>{
+  //     console.log('get all cards');
+  //     console.log('data is in note',data);
+  //     this.card=data;
+  //   },err=>{
+  //     console.log(err);
+  //   })
+  // }
+
+
+  getAllCard() {
+    this.httpService.getRequestForNote('/getAllListOfNotes?isArchive='+false+'&isTrash='+false).subscribe(data => {
+      console.log('data is in note', data);
+      this.card = data;
+    }, err => {
       console.log(err);
     })
   }

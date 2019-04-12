@@ -2,11 +2,10 @@
   <div *ngIf="!subscribeView" class="mininote" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex.xs="98"
     fxLayoutGap="10px" fxFlex="80">
 
-    <!-- <div *ngFor="let items of cardsArray" class="card"> -->
+    
     <div *ngFor="let items of card" class="card">
 
-      <!-- <div *ngIf="items.archive==false && items.trash==false && items.pinned==true"> -->
-      <div *ngIf="items.archive==true && items.trash==false">
+     
         <mat-card class="minicard" [style.backgroundColor]="items.color">
           <div fxLayout="row" fxLayoutAlign="space-between start">
             <div fxLayout="row" class="title">
@@ -43,7 +42,6 @@
                   {{items.remainder | date}}
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                 </mat-chip>
-                <!-- <input [matChipInputFor]="chipList"> -->
               </mat-chip-list>
             </div>
           </div>
@@ -55,18 +53,14 @@
             </app-icon-list>
           </div>
         </mat-card>
-      </div>
     </div>
   </div>
 
   
   <div *ngIf="subscribeView" class="mininote" fxLayout="column wrap" fxLayoutAlign="center center" fxFlex.xs="98"
     fxLayoutGap="10px" >
-
-    <!-- <div *ngFor="let items of cardsArray" class="card"> -->
     <div *ngFor="let items of card" class="card">
 
-      <!-- <div *ngIf="items.archive==false && items.trash==false && items.pinned==true"> -->
       <div class = "matcard" *ngIf="items.archive==true && items.trash==false">
         <mat-card class="minicard" [style.backgroundColor]="items.color">
           <div fxLayout="row" fxLayoutAlign="space-between start" >
@@ -113,6 +107,7 @@
   </div>
 </div>
 
+<!-- <app-display-notes [pin]="pincard" [unpin]="unpincard"></app-display-notes> -->
 
 
 
@@ -127,6 +122,10 @@
 
 
 
+<!-- <div *ngFor="let items of cardsArray" class="card"> -->
+
+   <!-- <div *ngIf="items.archive==false && items.trash==false && items.pinned==true"> -->
+      <!-- <div *ngIf="items.archive==true && items.trash==false"> -->
 
 <!-- <div class="display">
   <div class="mininote" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex.xs="98" fxLayoutGap="10px" fxFlex="80">

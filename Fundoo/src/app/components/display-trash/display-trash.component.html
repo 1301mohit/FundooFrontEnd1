@@ -1,3 +1,28 @@
+<!-- <div class="display">
+  <div class="mininote" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex.xs="98" fxLayoutGap="10px" fxFlex="80">
+    <div *ngFor="let items of card" class="card">
+      <div *ngIf="items.trash == true">
+        <mat-card class="minicard" [style.backgroundColor]="items.color">
+          <div>
+            <div fxLayout="row" class="title">
+              <span (click)="getNoteId(items)">{{items.title}}</span>
+            </div>
+            <div>{{items.description}}</div>
+            <div class="icons-div">
+              <app-icon-list fxLayout="row" [card]="items" fxLayoutAlign="space-between end"
+                (updateEvent)=update($event) (colorchange)="changeOfColor($event)">
+              </app-icon-list>
+            </div>
+            <button mat-button (click)="restore(items.noteId)">Restore</button>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
 <div class="display">
   <div class="mininote" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex.xs="98" fxLayoutGap="10px" fxFlex="80">
     <div *ngFor="let items of card" class="card">
@@ -7,13 +32,26 @@
             <div fxLayout="row" class="title">
               <span (click)="getNoteId(items)">{{items.title}}</span>
             </div>
-             <div>{{items.description}}</div>
+            <div>{{items.description}}</div>
             <div class="icons-div">
-              <app-icon-list fxLayout="row" [card]="items" fxLayoutAlign="space-between end" (updateEvent)=update($event)
-                (colorchange)="changeOfColor($event)">
-              </app-icon-list>
+              <!-- <app-icon-list fxLayout="row" [card]="items" fxLayoutAlign="space-between end"
+                  (updateEvent)=update($event) (colorchange)="changeOfColor($event)">
+                </app-icon-list> -->
+
+              <button mat-icon-button [matMenuTriggerFor]="menu" (click)=getAllLabel()>
+                <mat-icon class="icon">more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="delete(items)">
+                  <span>Delete for ever</span>
+                </button>
+                <button mat-menu-item (click)="restore(items.noteId)">
+                  <span>Restore</span>
+                </button>
+              </mat-menu>
+
             </div>
-            <button mat-button (click)="restore(items.noteId)">Restore</button>
+            <!-- <button mat-button (click)="restore(items.noteId)">Restore</button> -->
           </div>
         </mat-card>
       </div>

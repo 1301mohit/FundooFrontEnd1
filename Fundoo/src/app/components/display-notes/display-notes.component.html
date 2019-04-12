@@ -1,12 +1,12 @@
 <div class="display">
   <div *ngIf="!subscribeView" class="mininote" fxLayout="row wrap" fxLayoutAlign="start start" fxFlex.xs="98"
-    fxLayoutGap="10px" fxFlex="80">
+    fxLayoutGap="10px" fxFlex="88">
 
     <!-- <div *ngFor="let items of cardsArray" class="card"> -->
     <div *ngFor="let items of card" class="card">
 
       <!-- <div *ngIf="items.archive==false && items.trash==false && items.pinned==true"> -->
-      <div *ngIf="items.archive == false && items.trash == false">
+      <!-- <div *ngIf="items.archive == false && items.trash == false"> -->
         <mat-card class="minicard" [style.backgroundColor]="items.color">
           <div fxLayout="row" fxLayoutAlign="space-between start">
             <div fxLayout="row" class="title">
@@ -42,7 +42,8 @@
               <mat-chip-list #chipList class="remainder">
                 <mat-chip class="chip" [removable]="removable" [selectable]="selectable"
                   (removed)="removeRemainder(items)">
-                  {{items.remainder | date:'medium'}}
+                  {{items.remainder | date:'MMM'}}&nbsp;{{items.remainder | date:'d'}},&nbsp;{{items.remainder | date:'shortTime'}}
+                  <!-- {{items.remainder | date:'medium'}} -->
                   <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                 </mat-chip>
                 <!-- <input [matChipInputFor]="chipList"> -->
@@ -73,7 +74,7 @@
           </div>
           
         </mat-card>
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 

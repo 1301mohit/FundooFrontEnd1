@@ -23,6 +23,8 @@ export class DisplayArchiveComponent implements OnInit {
 //@Input() card;
 color1 : String;
 card:[];
+pincard=[];
+unpincard=[];
 labelOfNote:[];
 private subscribeView : boolean;
 
@@ -37,6 +39,7 @@ private subscribeView : boolean;
 
 //flag1 = true;
 ngOnInit() {
+console.log("Archive");
 this.getAllCard();
 // this.getLabelOfNote();
 this.viewChange.subscribeView.subscribe(view => {
@@ -44,14 +47,34 @@ this.subscribeView = view;
 })
 }
 
-getAllCard(){
-this.httpService.getRequestForNote('/getAllNotes').subscribe(data=>{
-console.log('get all cards');
-console.log('data is in note',data);
-this.card=data;
-},err=>{
-console.log(err);
-})
+// getAllCard(){
+// this.httpService.getRequestForNote('/getAllNotes').subscribe(data=>{
+// console.log('get all cards');
+// console.log('data is in note',data);
+// this.card=data;
+// },err=>{
+// console.log(err);
+// })
+// }
+
+getAllCard() {
+  this.httpService.getRequestForNote('/getAllListOfNotes?isArchive='+true+'&isTrash='+false).subscribe(data => {
+    console.log('data is in note', data);
+    this.card = data;
+    var i = 0;
+    for(i=0; i<data.length; i++){
+      if(data[i].pinned){
+        this.pincard.push(data[i]);
+      }
+      else{
+        this.unpincard.push(data[i]);
+      }
+    }
+    console.log("Pinnednote:",this.pincard);
+    console.log("Unpinnednote",this.unpincard);
+  }, err => {
+    console.log(err);
+  })
 }
 
 changeOfColor($event){

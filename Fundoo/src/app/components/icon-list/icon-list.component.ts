@@ -40,6 +40,7 @@ export class IconListComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit() {
+   
   }
 
   colorArray = [[{ 'color': '#FFFFFF', 'name': 'White' },
@@ -126,14 +127,24 @@ export class IconListComponent implements OnInit {
     )
   }
 
-  getAllCard() {
-    this.httpService.getRequestForNote('/getAllNotes').subscribe(data => {
-      console.log('data is in note', data);
-      this.card = data;
-    }, err => {
-      console.log(err);
-    })
-  }
+  // getAllCard() {
+  //   this.httpService.getRequestForNote('/getAllNotes').subscribe(data => {
+  //     console.log('data is in note', data);
+  //     this.card = data;
+  //   }, err => {
+  //     console.log(err);
+  //   })
+  // }
+
+  // getAllCard() {
+  //   this.httpService.getRequestForNote('/getAllListOfNotes?isArchive='+false+'&isTrash='+false).subscribe(data => {
+  //     console.log('data is in note', data);
+  //     this.card = data;
+  //   }, err => {
+  //     console.log(err);
+  //   })
+  // }
+
 
   addLabelToNote(index){
     console.log("Add label to note");
@@ -216,9 +227,21 @@ export class IconListComponent implements OnInit {
   dialogRef.afterClosed().subscribe(result => {
     console.log('The dialog was closed');
     console.log('Data--->',result);
-    this.getAllCard();
+   // this.getAllCard();
   });
-}
+  }
+
+  // restore(noteId) {
+  //   console.log("Restore note");
+  //   this.httpService.postRequestForNote('/restoreNote/'+noteId,"").subscribe(data => {
+  //     this.snackbar.open(data.statusMessage, "End-Now", { duration:3000 });
+  //    // this.getAllCard();
+  //    // this.updateEvent.emit({type:'trash'});
+  //   }),
+  //   error => {
+  //     this.snackbar.open(error, "End Now", { duration:3000 });
+  //   }
+  // }
 }
 
 

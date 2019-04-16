@@ -127,47 +127,47 @@
       <mat-nav-list class="navList">
         <mat-list role="list">
          
-          <div >
-            <mat-list-item  class="list-color" role="listitem" routerLinkActive="active" routerLink="/dashboard/note" (click)="Note()">
+          <div  [ngClass]="titleName=='Note'?'active':'deActive'">
+            <mat-list-item  class="list-color" role="listitem"  routerLink="/dashboard/note"  (click)="Note()">
               <img id="img1" src="../../../assets/noteImg.svg" />
               <span class="notes">Notes</span>
             </mat-list-item>
           </div>
-          <div>
-            <mat-list-item class="list-color" role="listitem" routerLinkActive="active" routerLink="/dashboard/display-remainder" (click)="Remainder()">
+          <div [ngClass]="titleName=='Reminder'?'active':'deActive'">
+            <a mat-list-item class="list-color" role="listitem"   routerLink="/dashboard/display-remainder" (click)="Remainder()">
               <img id="img2" src="../../../assets/remainder.svg" />
               <span class="remainders">Remainders</span>
-            </mat-list-item>
+            </a>
           </div>
           <mat-divider></mat-divider>
           <div>
             <p class="para">LABELS</p>
-            <div *ngFor="let item of label" class="label">
-              <mat-list-item class="list-color" role="listitem" routerLinkActive="active" (click)="labelNote(item.labelId)">
+            <div [ngClass]="item.labelId==labelId?'active':'deActive'" *ngFor="let item of label" class="label">
+              <a mat-list-item class="list-color" role="listitem"  (click)="labelNote(item.labelId,item)">
                 <img id="img1" src="../../../assets/label.svg" />
                 <span class="notes">{{item.name}}</span>
-              </mat-list-item>
+              </a>
               <!-- <button mat-button>{{item.name}}</button> -->
             </div>
-            <div>
-              <mat-list-item class="list-color" role="listitem" routerLinkActive="active" (click)="editLabels()">
+            <div [ngClass]="titleName=='EditLable'?'active':'deActive'">
+              <a mat-list-item class="list-color" role="listitem"  (click)="editLabels()">
                 <img id="img2" src="../../../assets/editLabel.svg" />
                 <span class="labels">Edit labels</span>
-              </mat-list-item>
+              </a>
             </div>
           </div>
           <mat-divider></mat-divider>
-          <div>
-            <mat-list-item class="list-color" role="listitem" routerLinkActive="active" routerLink="/dashboard/display-archive" (click)="archive()">
+          <div [ngClass]="titleName=='Archive'?'active':'deActive'">
+            <a mat-list-item class="list-color" role="listitem"  routerLink="/dashboard/display-archive" (click)="archive()">
               <img id="img3" src="../../../assets/archive.svg" />
               <span class="archive">Archive</span>
-            </mat-list-item>
+            </a>
           </div>
-          <div>
-            <mat-list-item  class="list-color" role="listitem" routerLinkActive="active" routerLink="/dashboard/display-trash" (click)="trash()">
+          <div [ngClass]="titleName=='Trash'?'active':'deActive'">
+            <a mat-list-item  class="list-color" role="listitem"  routerLink="/dashboard/display-trash" (click)="trash()">
               <img id="img3" src="../../../assets/trash.svg" />
               <span class="trash">Trash</span>
-            </mat-list-item>
+            </a>
           </div>
         </mat-list>
       </mat-nav-list>

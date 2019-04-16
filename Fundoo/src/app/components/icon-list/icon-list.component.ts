@@ -61,12 +61,17 @@ export class IconListComponent implements OnInit {
 
   colorsEdit(colorId) {
     this.colorchange.emit(colorId);
+    console.log(colorId);
+    
     if (this.card != undefined) {
       console.log("card id is ",this.card.noteId);
       console.log("card data at icon", this.card);
-      console.log("card color set", colorId);
+      console.log("card color set", typeof colorId);
+      var newStr = colorId.replace(/#/g, "%23");
+      console.log('color is ',newStr);
 
-      this.httpService.postRequestForNote('/color/'+this.card.noteId+'?color='+colorId,"").subscribe(data => {
+// http://localhost:8080/color/44?color=%23sachin
+      this.httpService.postRequestForNote('/color/'+this.card.noteId+'?color='+newStr,"").subscribe(data => {
         // this.httpService.postRequestForNote('/color/'+this.card.noteId+'/'+colorId,"").subscribe(data => {
         this.snackbar.open(data.statusMessage, "End Now", { duration: 3000 });
         console.log("ColorId",colorId);

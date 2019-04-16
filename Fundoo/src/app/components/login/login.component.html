@@ -13,14 +13,14 @@
       <div>
           <mat-form-field appearance="outline" fxFlex = "95">
               <mat-label>email</mat-label>
-              <input matInput placeholder="" [formControl]="email" required>
+              <input matInput placeholder="" autocomplete="off" [formControl]="email" required>
               <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
       </div>
       <div>
           <mat-form-field appearance="outline" fxFlex="95">
               <mat-label>password</mat-label>
-              <input matInput placeholder="" [formControl]="password" [type]="hide ? 'password' : 'text'" required>
+              <input matInput placeholder="" autocomplete="off" [formControl]="password" [type]="hide ? 'password' : 'text'" required>
               <mat-error *ngIf="email.invalid">{{getErrorMessage1()}}</mat-error>
               <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </mat-form-field>

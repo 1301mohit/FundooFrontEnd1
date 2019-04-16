@@ -20,17 +20,25 @@ import { ProfilepicComponent } from '../profilepic/profilepic.component';
 export class DashboardComponent implements OnInit, OnDestroy {
 
   token: string = localStorage.getItem('token');
-  titleName: string
+  titleName='Note';
   label: [];
   isClicked = true;
   card1: [];
   fName: string;
-
+  flag=false;
+labelId:string;
   email = localStorage.getItem('email');
+
+
+
   ngOnInit() {
     this.getAllLabel();
     console.log("Email in dashboard", this.email)
     console.log("Token:", this.token);
+     this.titleName=localStorage.getItem('title')
+    if(this.titleName==null){
+      this.titleName="Note"
+    }
   }
 
   mobileQuery: MediaQueryList;
@@ -62,16 +70,24 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   Note() {
     this.titleName = "Note"
+    localStorage.setItem('title',"Note")
+    this.labelId=''
     // this.router.navigateByUrl('/dashboard/note')
   }
 
   Remainder() {
     this.titleName = "Reminder"
+    localStorage.setItem('title',"Reminder")
+
+    this.labelId=''
     // this.router.navigate(['/dashboard/display-remainder']);
   }
 
   editLabels() {
     this.titleName = "EditLable"
+    localStorage.setItem('title',"EditLable")
+
+    this.labelId=''
     const dialogRef = this.dialog.open(EditLabelComponent, {
       data: {}
     });
@@ -84,12 +100,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   archive() {
     this.titleName = "Archive"
+    localStorage.setItem('title',"Archive")
+
+    this.labelId=''
     //this.router.navigateByUrl('/dashboard/display-archive')
     //this.httpService.postRequestForNote('/archiveNote/'+)
   }
 
   trash() {
     this.titleName = "Trash"
+    localStorage.setItem('title',"Trash")
+
+    this.labelId=''
     //this.router.navigateByUrl('/dashboard/display-trash')
   }
 
@@ -112,12 +134,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.viewChange.onViewChange(this.isClicked);
   }
 
-  labelNote(labelId) {
+  labelNote(labelId,item) {
     //var labelId = localStorage.getItem('labelId');
-    localStorage.setItem('labelId', labelId);
+    this.titleName=item.name;
+    localStorage.setItem('labelId', this.titleName);
+
     let labelId1 = localStorage.getItem('labelId');
     console.log("Labelid", labelId);
     console.log("Labelid", labelId1);
+    this.labelId=labelId;
     // this.httpService.getRequestForNote('/getNoteOfLabel/'+labelId).subscribe( data => {
     //   console.log("Card",data);
     //   this.card1 = data;

@@ -27,8 +27,8 @@ export class DisplayNotesComponent implements OnInit {
               
 //@Input() cardsArray=[];
 //@Input() card;
- // @Input() pin:[];
- // @Input() unpin:[];
+  @Input() pin:[];
+  @Input() unpin:[];
   color1 : String;
   card:[];
   labelOfNote:[];

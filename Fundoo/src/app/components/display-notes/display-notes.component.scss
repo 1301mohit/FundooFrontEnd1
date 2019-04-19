@@ -1,6 +1,6 @@
 .minicard{
     margin-bottom: 24px;
-    width:min-content;
+  //  width:min-content;
 }
 .mininote{
     display: flex;
@@ -59,4 +59,22 @@
 
 .collaborator{
     margin-top: 5%;
+}
+
+.row{
+    flex-flow: row wrap;
+    box-sizing: border-box;
+    display: flex;
+    place-content: flex-start;
+    align-items: flex-start;
+    flex: 1 1 100%;
+    max-width: 88%;
+}
+
+.column{
+    flex-flow: column wrap;
+    box-sizing: border-box;
+    display: flex;
+    place-content: center;
+    align-items: center;
 }

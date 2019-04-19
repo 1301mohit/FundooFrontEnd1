@@ -33,11 +33,18 @@ export class IconListComponent implements OnInit {
   label : [];
   dateNow : Date = new Date();
   dateInIso : any;
-
+ // archive:boolean=false; 
   constructor(private httpService: HttpService,
     private snackbar: MatSnackBar,
     private router: Router,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog) {
+      // if(this.card!=null){
+      // this.archive =this.card.archive; 
+       console.log("Card in Constructor",this.card)
+      // else{
+      //   console.log(this.archive)
+      // }
+     }
 
   ngOnInit() {
    

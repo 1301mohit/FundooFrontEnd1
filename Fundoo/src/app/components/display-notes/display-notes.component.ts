@@ -49,9 +49,10 @@ export class DisplayNotesComponent implements OnInit {
 
   //flag1 = true;
   ngOnInit() {
+    console.log("Display-Notes");
     this.getAllCard();
-    console.log("Pinned note:",this.pin);
-    console.log("Unpinned note:",this.pin);
+   // console.log("Pinned note:",this.pin);
+    console.log("Unpinned note:",this.unpin);
    // this.getLabelOfNote();
     this.viewChange.subscribeView.subscribe(view => {
       this.subscribeView = view;
@@ -81,6 +82,11 @@ this.getAllCard();
     this.httpService.getRequestForNote('/getAllListOfNotes?isArchive='+false+'&isTrash='+false).subscribe(data => {
       console.log('data is in note', data);
       this.card = data;
+      console.log("Card---->",this.card);
+      // var i : Number;
+      // for(i=0; i<this.card.length; i++){
+      //   this.pin.push(this.card[i]);
+     // }
     }, err => {
       console.log(err);
     })

@@ -1,6 +1,5 @@
-<div *ngIf="flag==true" (click)="reverseFlag()" fxLayout="row" fxLayoutAlign="space-around start" fxFlex="100">
+<div *ngIf="flag==true" (click)="reverseFlag()" fxLayoutAlign="center center" fxFlex="100">
   <mat-card fxFlex="55" fxFlex.xs='97' class="matcard" fxLayoutAlign="space-between center" >
-    <!-- -->
 
     <div data-text="Take a note.." class="Border" id="noteTitle" fxLayout="column" contenteditable="true"
       class="maincard"></div>
@@ -19,7 +18,7 @@
 
 
 
-<div *ngIf="flag==false" fxLayout="row" fxLayoutAlign="space-around start" fxFlex="100">
+<div *ngIf="flag==false" fxLayout="row" fxLayoutAlign="center center" fxFlex="100">
 
   <mat-card fxLayout="column" class="matcard" fxFlex="50" fxFlexOffset.xl="20" fxFlex.xs='97'
     [style.backgroundColor]=color>
@@ -44,8 +43,8 @@
       <textarea class="textArea" matTextareaAutosize placeholder="Take a note.. " [formControl]="noteContent"
         class="textArea"></textarea>
     </div>
-    <div fxFlex="10" fxLayout="row" fxLayoutAlign="space-between end">
-      <app-icon-list fxLayoutAlign="end end" (colorchange)="Changes($event)"></app-icon-list>
+    <div fxLayout="row" fxLayoutAlign="space-between end">
+      <app-icon-list fxFlex="70" (colorchange)="Changes($event)" [card]="card1"></app-icon-list>
       <button class="addnote" mat-button (click)="addNote()">close</button>
     </div>
   </mat-card>

@@ -1,4 +1,49 @@
-<div fxLayout="row" fxLayoutAlign="center center">
+<div fxLayout="row" fxLayoutAlign="center center" fxFlex=100>
+  <mat-card class="main" fxLayout="column" fxLayoutAlign="center center" fxFlex="50" fxFlex.md="70" fxFlex.xs="100" fxFlex.sm="80">
+      <mat-card-header fxLayoutAlign="center center">
+          <mat-card-title class="fundoo" >
+             <div fxLayoutAlign="center center">
+               <h1>Fundoo</h1>
+             </div>
+          </mat-card-title>
+          <mat-card-subtitle class="signin">
+            <div fxLayoutAlign="center center"><h2>SIGN IN</h2></div>
+            <div fxLayoutAlign="center center"><h4>with your fundoo account</h4></div>
+          </mat-card-subtitle>
+      </mat-card-header>
+      <form class = "form" fxLayout=column fxFlex="100">
+          <mat-form-field appearance="outline" fxLayoutAlign="center center">
+              <mat-label>email</mat-label>
+              <input matInput placeholder="" [formControl]="email" required>
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" fxLayoutAlign="center center">
+              <mat-label>password</mat-label>
+              <input matInput placeholder="" [formControl]="password" [type]="hide ? 'password' : 'text'" required>
+              <mat-error *ngIf="email.invalid">{{getErrorMessage1()}}</mat-error>
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+      <div fxLayoutAlign="center center">
+          <button mat-raised-button color="primary" (click)="login()">Submit</button>
+      </div>
+      <div class="forgetpassword" fxLayoutAlign="center center" fxLayoutGap="30%" fxLayoutGap.sm="37%">
+          <a mat-button routerLink="/forgetpassword">Forget Password</a>
+          <a mat-button routerLink="/register">SIGN UP</a>
+      </div>
+      </form>
+  </mat-card>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- <div fxLayout="row" fxLayoutAlign="center center">
   <mat-card class="main" fxFlex="23">
       <mat-card-header fxLayoutAlign="center center">
           <mat-card-title class="fundoo" >
@@ -34,7 +79,7 @@
       </div>
       </form>
   </mat-card>
-</div>
+</div> -->
   
   
   

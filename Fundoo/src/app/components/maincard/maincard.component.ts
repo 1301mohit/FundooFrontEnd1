@@ -1,8 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpService } from 'src/app/services/http.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatCard } from '@angular/material';
 
 @Component({
   selector: 'app-maincard',
@@ -20,6 +20,7 @@ export class MaincardComponent implements OnInit {
   model: any;
   response: any;
   color = "#fafafa";
+  @Input() card1;
   
 
   constructor(private httpService: HttpService,
@@ -29,7 +30,8 @@ export class MaincardComponent implements OnInit {
 
               
   ngOnInit() {
-    
+    console.log("Maincard");
+    console.log("Maincard cards",this.card1);
   }
 
 

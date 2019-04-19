@@ -8,7 +8,14 @@
 
  .main{
     margin-top: 100px;
-    
+ }
+
+ @media only screen and (max-width: 600px){
+     .main{
+         margin-top: 0px;
+         size:100%;
+         height: -webkit-fill-available;
+     }
  }
  .fundoo{
     color:red;
@@ -16,3 +23,34 @@
  .signin{
      color:blue;
  }
+
+ .form{
+    width: -webkit-fill-available;
+ }
+
+ ::ng-deep .mat-form-field-wrapper{
+     width: 60%;
+ }
+
+
+
+
+
+// .divdetails{
+//     background-color: #ccc;
+//  }
+
+//  .forgetpassword{
+//      color: royalblue;
+//  }
+
+//  .main{
+//     margin-top: 100px;
+    
+//  }
+//  .fundoo{
+//     color:red;
+//  }
+//  .signin{
+//      color:blue;
+//  }

@@ -26,17 +26,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
   card1: [];
   fName: string;
   flag=false;
-labelId:string;
+  labelId:string;
   email = localStorage.getItem('email');
 
 
 
   ngOnInit() {
+    console.log("Dashboard");
     this.getAllLabel();
-    console.log("Email in dashboard", this.email)
-    console.log("Token:", this.token);
-     this.titleName=localStorage.getItem('title')
-    if(this.titleName==null){
+    this.titleName=localStorage.getItem('title')
+    if(this.titleName == null){
       this.titleName="Note"
     }
   }

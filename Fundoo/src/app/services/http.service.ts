@@ -49,7 +49,7 @@ export class HttpService {
 
   getRequestForNote(url): any {
     console.log('token is  ', localStorage.getItem('token'))
-    console.log('Url of get note of Label:',this.baseUrl+url);
+    console.log('Url',this.baseUrl+url);
     const httOption = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

@@ -31,6 +31,7 @@ export class CollaboratorDialogComponent implements OnInit {
   collaborators : [];
 
   ngOnInit() {
+    console.log("Collaborator");
     console.log("Data --->",this.data);
     this.collaborators = this.data.collaboratedUser;
     console.log("Collaborator ---->",this.collaborators);

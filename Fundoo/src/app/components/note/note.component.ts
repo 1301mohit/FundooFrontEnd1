@@ -13,18 +13,38 @@ import { MatSnackBar } from '@angular/material';
 })
 export class NoteComponent implements OnInit {
   even='';
+  card=[];
+  pin = [];
+  unpin = [];
   
   constructor(private httpService: HttpService,
               private router: Router,
-              private snackbar : MatSnackBar) {}
+              private snackbar : MatSnackBar) { 
+                 console.log("Note Component in constr");
+              this.getAllCard();
+              console.log("Card in note Component",this.card);}
 
 
   ngOnInit() {
-    // this.getAllCard();
+     console.log("Note Component in ng on in it");
+     this.getAllCard();
+     console.log("Card in note Component",this.card);
   }
 //card=[];
 update(value){
-this.even=value;
+  this.even=value;
+}
+
+getAllCard() {
+  console.log("GetAllCard in note");
+  this.httpService.getRequestForNote('/getAllListOfNotes?isArchive='+false+'&isTrash='+false).subscribe(data => {
+    console.log('Data in note', data);
+    this.card = data;
+    console.log("Card in note---->",this.card);
+    var i : Number;
+  }, err => {
+    console.log(err);
+  })
 }
 
 // getAllCard(){

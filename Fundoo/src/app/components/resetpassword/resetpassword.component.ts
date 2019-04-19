@@ -55,8 +55,6 @@ export class ResetpasswordComponent implements OnInit {
 }
 
 
-
-
 //   });
         //   this.snackbar.open('Your new password is reset', 'End Now', {duration: 3000});
         //   this.router.navigate(['/login']);

@@ -34,6 +34,8 @@
     visibility: hidden;
 }
 
+
+
 // .minicard:hover .pin{
 //     visibility: visible;
 // }
@@ -77,4 +79,46 @@
     display: flex;
     place-content: center;
     align-items: center;
+    .card{
+        width:63%;
+    }
 }
+
+@media screen and (max-width: 600px) {
+        .column{
+         
+            .card{
+                    width: 100%;
+            }
+        }
+}
+
+// .column{
+//     flex-flow: column wrap;
+//     box-sizing: border-box;
+//     display: flex;
+//     place-content: center;
+//     align-items: center;
+//     .card{
+//         width: -webkit-fill-available;
+//         flex-direction: row;
+//         box-sizing: border-box;
+//         display: flex;
+//         place-content: center;
+//         align-items: center;
+//         .minicard{
+//             width: 60%;
+//         }
+//     }
+// }
+// @media screen and (max-width: 600px) {
+//     .column{
+     
+//         .card{
+        
+//             .minicard{
+//                 width: 100%;
+//             }
+//         }
+//     }
+//   }

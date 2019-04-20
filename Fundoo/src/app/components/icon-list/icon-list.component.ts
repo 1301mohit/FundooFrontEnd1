@@ -239,6 +239,8 @@ export class IconListComponent implements OnInit {
   dialogRef.afterClosed().subscribe(result => {
     console.log('The dialog was closed');
     console.log('Data--->',result);
+    console.log("Collaborator dialog box");
+    this.updateEvent.emit({});
    // this.getAllCard();
   });
   }

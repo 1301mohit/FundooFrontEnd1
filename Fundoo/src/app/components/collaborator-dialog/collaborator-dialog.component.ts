@@ -29,25 +29,35 @@ export class CollaboratorDialogComponent implements OnInit {
   token = localStorage.getItem('token');
   //cards : [];
   collaborators : [];
+ // collaborators1 : [];
 
   ngOnInit() {
     console.log("Collaborator");
     console.log("Data --->",this.data);
-    this.collaborators = this.data.collaboratedUser;
+ //   this.collaborators = this.data.collaboratedUser;
     console.log("Collaborator ---->",this.collaborators);
-    this.getAllCards();
+    this.getAllCollaborators();
+   // this.getAllCards();
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
   
-  getAllCards(){
-    this.httpService.getRequestForNote('/getAllNotes').subscribe( response => {
-      console.log("Get all notes");
-      console.log("Response -->",response);
-    },error => {
-      this.snackbar.open(error,"Error", { duration:2000 });
+  // getAllCards(){
+  //   this.httpService.getRequestForNote('/getAllNotes').subscribe( response => {
+  //     console.log("Get all notes");
+  //     console.log("Response -->",response);
+  //   },error => {
+  //     this.snackbar.open(error,"Error", { duration:2000 });
+  //   })
+  // }
+  getAllCollaborators(){
+    console.log("Get All Collaborators");
+    this.httpService.getRequestForNote("/getAllCollaborator?noteId="+this.data.noteId).subscribe( response => {
+      console.log("Response of getAllCollaborators->>>>",response);
+      this.collaborators = response;
+      console.log("Get all collaborators:",this.collaborators);
     })
   }
 
@@ -57,7 +67,8 @@ export class CollaboratorDialogComponent implements OnInit {
     this.httpService.postRequestForNote("/addCollaborator/"+this.data.noteId+"?email="+email1,"").subscribe( response => {
       console.log("Add collaborator to note");
       this.snackbar.open(response.statusMessage, "End-Now", { duration:2000 });
-      this.getAllCards();
+      this.getAllCollaborators();
+    //  this.getAllCards();
     },error => {
       this.snackbar.open(error, "Error", { duration:2000 });
     })
@@ -67,7 +78,8 @@ export class CollaboratorDialogComponent implements OnInit {
     this.httpService.deleteRequestForNote("/removeCollaborator/"+this.data.noteId+"?email="+email1).subscribe( response => {
       console.log("Remove collaborator to note");
       this.snackbar.open(response.statusMessage, "End-Now", { duration:2000 });
-      this.getAllCards();
+      this.getAllCollaborators();
+    //  this.getAllCards();
     },error => {
       this.snackbar.open(error, "Error", { duration:2000 });
     })

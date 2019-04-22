@@ -34,6 +34,8 @@ export class DisplayNotesComponent implements OnInit {
   labelOfNote:[];
   private subscribeView : boolean;
 
+  dateNow : Date = new Date();
+
   token : any = localStorage.getItem('token');
 
   //collaborators : [];
@@ -56,9 +58,11 @@ export class DisplayNotesComponent implements OnInit {
    // this.getLabelOfNote();
     this.viewChange.subscribeView.subscribe(view => {
       this.subscribeView = view;
+     
     })
     console.log("Card--------------------->",this.card);
     //this.collaborators = this.card.collaboratedUser;
+    console.log(this.dateNow);
   }
 @Input()
 public set childMessage(v : string) {

@@ -1,7 +1,7 @@
 
 
 <div class="display">
-  <div [ngClass]="subscribeView==false?'row':'column'" class="mininote" fxFlex.xs="98" fxLayoutGap="10px" fxFlex="88">
+  <div [ngClass]="subscribeView == false?'row':'column'" class="mininote" fxFlex.xs="98" fxLayoutGap="10px" fxFlex="88">
 
    
     <div *ngFor="let items of card"  class="card">
@@ -41,6 +41,9 @@
               <mat-chip-list #chipList class="remainder">
                 <mat-chip class="chip" [removable]="removable" [selectable]="selectable"
                   (removed)="removeRemainder(items)">
+                  <!-- {{dateNow | }}
+                  <br> -->
+                  {{items.remainder}}
                   {{items.remainder | date:'MMM'}}&nbsp;{{items.remainder | date:'d'}},&nbsp;{{items.remainder | date:'shortTime'}}
                   <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                 </mat-chip>

@@ -35,16 +35,17 @@
             </mat-chip-list>
           </div>
 
-          <div *ngIf="items.remainder != null">
+          <div *ngIf="items.remainder != null && (dateNow | date:'shortDate') === (items.remainder | date:'shortDate')" >
             <div class="example-chip-list">
               <br>
               <mat-chip-list #chipList class="remainder">
                 <mat-chip class="chip" [removable]="removable" [selectable]="selectable"
                   (removed)="removeRemainder(items)">
-                  <!-- {{dateNow | }}
-                  <br> -->
-                  {{items.remainder}}
-                  {{items.remainder | date:'MMM'}}&nbsp;{{items.remainder | date:'d'}},&nbsp;{{items.remainder | date:'shortTime'}}
+                  <!-- <div *ngif = "(dateNow | date:'shortDate') === (items.remainder | date:'shortDate')">
+                      Today&nbsp;{{items.remainder | date:'d'}},&nbsp;{{items.remainder | date:'shortTime'}}
+                  </div> -->
+                  Today,&nbsp;{{items.remainder | date:'d'}},&nbsp;{{items.remainder | date:'shortTime'}}
+                  <!-- {{items.remainder | date:'MMM'}}&nbsp;{{items.remainder | date:'d'}},&nbsp;{{items.remainder | date:'shortTime'}} -->
                   <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                 </mat-chip>
               </mat-chip-list>

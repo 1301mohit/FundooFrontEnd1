@@ -12,11 +12,13 @@ import { DisplayArchiveComponent } from './components/display-archive/display-ar
 import { DisplayTrashComponent } from './components/display-trash/display-trash.component';
 import { EditNoteComponent } from './components/edit-note/edit-note.component';
 import { EditLabelComponent } from './components/edit-label/edit-label.component';
-import { EditLabelNoteComponent } from './edit-label-note/edit-label-note.component';
+//import { EditLabelNoteComponent } from './edit-label-note/edit-label-note.component';
 import { ProfilepicComponent } from './components/profilepic/profilepic.component';
 import { AuthGuard } from './auth.guard';
 import { DisplayRemainderComponent } from './components/display-remainder/display-remainder.component';
 import { CollaboratorDialogComponent } from './components/collaborator-dialog/collaborator-dialog.component';
+import { EditLabelNoteComponent } from './edit-label-note/edit-label-note.component';
+//import { EditLabelNoteComponent } from './components/edit-label-note/edit-label-note.component';
 
 const routes: Routes = [
   {

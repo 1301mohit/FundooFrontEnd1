@@ -2,7 +2,6 @@
 
 <div class="display">
   <div [ngClass]="subscribeView == false?'row':'column'" class="mininote" fxFlex.xs="98" fxLayoutGap="10px" fxFlex="88">
-
    
     <div *ngFor="let items of card"  class="card">
 
@@ -44,8 +43,38 @@
                   <!-- <div *ngif = "(dateNow | date:'shortDate') === (items.remainder | date:'shortDate')">
                       Today&nbsp;{{items.remainder | date:'d'}},&nbsp;{{items.remainder | date:'shortTime'}}
                   </div> -->
-                  Today,&nbsp;{{items.remainder | date:'d'}},&nbsp;{{items.remainder | date:'shortTime'}}
+                  Today,&nbsp;{{items.remainder | date:'shortTime'}}
                   <!-- {{items.remainder | date:'MMM'}}&nbsp;{{items.remainder | date:'d'}},&nbsp;{{items.remainder | date:'shortTime'}} -->
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+            </div>
+          </div>
+
+          <div *ngIf="items.remainder != null && (nextDate | date:'shortDate') === (items.remainder | date:'shortDate')" >
+            <div class="example-chip-list">
+              <br>
+              <mat-chip-list #chipList class="remainder">
+                <mat-chip class="chip" [removable]="removable" [selectable]="selectable"
+                  (removed)="removeRemainder(items)">
+                  <!-- <div *ngif = "(dateNow | date:'shortDate') === (items.remainder | date:'shortDate')">
+                      Today&nbsp;{{items.remainder | date:'d'}},&nbsp;{{items.remainder | date:'shortTime'}}
+                  </div> -->
+                  Tomorrow,&nbsp;{{items.remainder | date:'shortTime'}}
+                  <!-- {{items.remainder | date:'MMM'}}&nbsp;{{items.remainder | date:'d'}},&nbsp;{{items.remainder | date:'shortTime'}} -->
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+            </div>
+          </div>
+
+          <div *ngIf="items.remainder != null && (dateNow | date:'shortDate') != (items.remainder | date:'shortDate') && (nextDate | date:'shortDate') != (items.remainder | date:'shortDate')" >
+            <div class="example-chip-list">
+              <br>
+              <mat-chip-list #chipList class="remainder">
+                <mat-chip class="chip" [removable]="removable" [selectable]="selectable"
+                  (removed)="removeRemainder(items)">
+                  {{items.remainder | date:'MMM'}}&nbsp;{{items.remainder | date:'d'}},&nbsp;{{items.remainder | date:'shortTime'}}
                   <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                 </mat-chip>
               </mat-chip-list>
@@ -59,7 +88,6 @@
               <mat-icon>account_circle</mat-icon>
             </button>
           </div>
-
 
           <div class="icons-div">
             <app-icon-list fxLayout="row" [card]="items" (updateEvent)=update($event)>

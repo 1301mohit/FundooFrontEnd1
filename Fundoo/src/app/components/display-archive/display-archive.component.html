@@ -1,10 +1,109 @@
 <div class="display">
+  <div [ngClass]="subscribeView == false?'row':'column'" class="mininote" fxFlex.xs="98" fxLayoutGap="10px" fxFlex="88">
+    <div *ngFor="let items of card"  class="card">
+        <mat-card class="minicard" [style.backgroundColor]="items.color">
+          <div fxLayout="row" fxLayoutAlign="space-between start" class="title_pin">
+            <div fxLayout="row" class="title">
+              <span (click)="openDialog(items)">{{items.title}}</span>
+            </div>
+            <div class="icons-div">
+              <button mat-icon-button color="basic" (click)="pinned(items)">
+                <div class="pin" *ngIf="items.pinned==false">
+                  <img src="../../../assets/pin.svg">
+                </div>
+                <div class="barpin" *ngIf="items.pinned==true">
+                  <img src="../../../assets/barpin.svg">
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <div (click)="openDialog(items)">{{items.description}}</div>
+
+          <div class="example-chip-list">
+            <mat-chip-list #chipList>
+              <mat-chip class="chip" *ngFor="let label of items.label" [selectable]="selectable" [removable]="removable"
+                (removed)="remove(label,items.noteId)">
+                {{label.name}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+
+          <div *ngIf="items.remainder != null && (dateNow | date:'shortDate') === (items.remainder | date:'shortDate')" >
+            <div class="example-chip-list">
+              <br>
+              <mat-chip-list #chipList class="remainder">
+                <mat-chip class="chip" [removable]="removable" [selectable]="selectable"
+                  (removed)="removeRemainder(items)">
+                  Today,&nbsp;{{items.remainder | date:'shortTime'}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+            </div>
+          </div>
+
+          <div *ngIf="items.remainder != null && (nextDate | date:'shortDate') === (items.remainder | date:'shortDate')" >
+            <div class="example-chip-list">
+              <br>
+              <mat-chip-list #chipList class="remainder">
+                <mat-chip class="chip" [removable]="removable" [selectable]="selectable"
+                  (removed)="removeRemainder(items)">
+                  Tomorrow,&nbsp;{{items.remainder | date:'shortTime'}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+            </div>
+          </div>
+
+          <div *ngIf="items.remainder != null && (dateNow | date:'shortDate') != (items.remainder | date:'shortDate') && (nextDate | date:'shortDate') != (items.remainder | date:'shortDate')" >
+            <div class="example-chip-list">
+              <br>
+              <mat-chip-list #chipList class="remainder">
+                <mat-chip class="chip" [removable]="removable" [selectable]="selectable"
+                  (removed)="removeRemainder(items)">
+                  {{items.remainder | date:'MMM'}}&nbsp;{{items.remainder | date:'d'}},&nbsp;{{items.remainder | date:'shortTime'}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+            </div>
+          </div>
+
+         
+          <div *ngFor="let collaborator of items.collaboratedUser" >
+            <button class = "collaborator" mat-mini-fab matTooltip={{collaborator.email}} color="primary" (click)="openDialog1(items)">
+              
+              <mat-icon>account_circle</mat-icon>
+            </button>
+          </div>
+
+          <div class="icons-div">
+            <app-icon-list fxLayout="row" [card]="items" (updateEvent)=update($event)>
+            </app-icon-list>
+          </div>
+          
+        </mat-card>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <app-display-notes [archiveCard] = "card"></app-display-notes> -->
+<!-- <div class="display">
   <div *ngIf="!subscribeView" class="mininote" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex.xs="98"
     fxLayoutGap="10px" fxFlex="80">
-
     
     <div *ngFor="let items of card" class="card">
-
      
         <mat-card class="minicard" [style.backgroundColor]="items.color">
           <div fxLayout="row" fxLayoutAlign="space-between start">
@@ -105,7 +204,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- <app-display-notes [pin]="pincard" [unpin]="unpincard"></app-display-notes> -->
 

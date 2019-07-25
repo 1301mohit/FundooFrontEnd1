@@ -1,5 +1,6 @@
 .minicard{
-    margin-bottom: 24px
+    margin-bottom: 24px;
+  //  width:min-content;
 }
 .mininote{
     display: flex;
@@ -32,6 +33,120 @@
 .icons-div{
     visibility: hidden;
 }
+
+.chip{
+    min-height: 22px;
+}
+
+.collaborator{
+    margin-top: 5%;
+}
+
+.row{
+    flex-flow: row wrap;
+    box-sizing: border-box;
+    display: flex;
+    place-content: flex-start;
+    align-items: flex-start;
+    flex: 1 1 100%;
+    max-width: 88%;
+}
+
+.column{
+    flex-flow: column wrap;
+    box-sizing: border-box;
+    display: flex;
+    place-content: center;
+    align-items: center;
+    .card{
+        width:63%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+        .column{
+         
+            .card{
+                    width: 100%;
+            }
+        }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// .minicard{
+//     margin-bottom: 24px
+// }
+// .mininote{
+//     display: flex;
+//     flex-direction: row;
+//    margin-top: 3%
+// }
+// .display{
+//     justify-content:center;
+// }
+
+// .title{
+//     margin-bottom: 5%;
+// }
+
+// .example-chip-list {
+//     width: 100%;
+// }
+
+// .matcard{
+//     width: 645px;
+// }
+
+// .remainder{
+//     margin-top: 20px;
+// }
+
+// .minicard:hover .icons-div{
+//     visibility: visible;
+// }
+// .icons-div{
+//     visibility: hidden;
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // .minicard:hover .pin{
 //     visibility: visible;

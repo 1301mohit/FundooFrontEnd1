@@ -13,10 +13,10 @@ import { MatSnackBar, MatCard } from '@angular/material';
 export class MaincardComponent implements OnInit {
   flag = true;
   flag1 = false;
-  // noteTitle = new FormControl('', Validators.required);
-  // noteContent = new FormControl('', Validators.required);
-  noteTitle = new FormControl('');
-  noteContent = new FormControl('');
+  noteTitle = new FormControl('', Validators.required);
+  noteContent = new FormControl('', Validators.required);
+    //  noteTitle : any;
+    //  noteContent : any;
   model: any;
   response: any;
   color = "#fafafa";
@@ -66,6 +66,8 @@ export class MaincardComponent implements OnInit {
         console.log("addNotes data", data);
         this.snackbar.open(data.statusMessage, 'End now', { duration: 5000 });
       this.messageEvent.emit(this.model);
+      this.noteTitle = null;
+      this.noteContent = null;
       },
       err => {
         this.snackbar.open(err, 'End now', { duration: 5000 });
@@ -89,3 +91,8 @@ export class MaincardComponent implements OnInit {
   }
 
 }
+
+
+
+// noteTitle = new FormControl('', Validators.required);
+// noteContent = new FormControl('', Validators.required);

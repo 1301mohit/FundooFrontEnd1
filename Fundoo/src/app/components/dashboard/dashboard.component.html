@@ -24,8 +24,7 @@
           <button mat-icon-button>
             <mat-icon>search</mat-icon>
           </button>
-          <input fxFlex="90" type="input" matInput placeholder="Search" [style.fontSize.px]="18" class="searchText"
-            autocomplete="off">
+          <input fxFlex="90" type="input" matInput placeholder="Search" [style.fontSize.px]="18" class="searchText" (input)="onSearchChange($event.target.value)" autocomplete="off">
           <!-- /*[(ngModel)]="Search"*/ -->
         </mat-form-field>
       </div>

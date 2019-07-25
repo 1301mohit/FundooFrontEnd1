@@ -80,6 +80,11 @@
       <mat-icon>unarchive</mat-icon>
     </button>
   </div>
+  <div *ngIf=" card.archive == undefined ">
+      <button id="archive" matTooltip="Archive" (click)='archiveNote()' mat-icon-button>
+        <img class="icon" id="archive" src="../../../assets/archive.svg" />
+      </button>
+    </div>
 
   <!-- <div *ngIf = "card.trash == false"> -->
   <button mat-icon-button [matMenuTriggerFor]="menu" >

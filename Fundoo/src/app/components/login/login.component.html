@@ -14,17 +14,17 @@
       <form class = "form" fxLayout=column fxFlex="100">
           <mat-form-field appearance="outline" fxLayoutAlign="center center">
               <mat-label>email</mat-label>
-              <input matInput placeholder="" [formControl]="email" required>
-              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+              <input matInput placeholder="" [formControl]="email" autocomplete = "off" required>
+              <mat-error *ngIf="email.invalid">{{getErrorMessageOfEmail()}}</mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline" fxLayoutAlign="center center">
               <mat-label>password</mat-label>
-              <input matInput placeholder="" [formControl]="password" [type]="hide ? 'password' : 'text'" required>
-              <mat-error *ngIf="email.invalid">{{getErrorMessage1()}}</mat-error>
+              <input matInput placeholder="" [formControl]="password" autocomplete = "off" [type]="hide ? 'password' : 'text'" required>
+              <mat-error *ngIf="email.invalid">{{getErrorMessageOfPassword()}}</mat-error>
               <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </mat-form-field>
       <div fxLayoutAlign="center center">
-          <button mat-raised-button color="primary" (click)="login()">Submit</button>
+          <button mat-raised-button color="primary" (click)="submit()" [disabled]="getErrorMessageOfEmail() !='' || getErrorMessageOfPassword() != ''">Submit</button>
       </div>
       <div class="forgetpassword" fxLayoutAlign="center center" fxLayoutGap="30%" fxLayoutGap.sm="37%">
           <a mat-button routerLink="/forgetpassword">Forget Password</a>

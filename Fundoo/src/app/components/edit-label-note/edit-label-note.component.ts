@@ -1,32 +1,27 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar, MatDialog } from '@angular/material';
-import { EditNoteComponent } from '../edit-note/edit-note.component';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ViewchangeService } from 'src/app/services/viewchange.service';
-import { CollaboratorDialogComponent } from '../collaborator-dialog/collaborator-dialog.component';
-import { detectChangesInRootView } from '@angular/core/src/render3/instructions';
 import { SearchService } from 'src/app/services/search.service';
-
-export interface Fruit {
-  name: string;
-}
-
+import { EditNoteComponent } from '../edit-note/edit-note.component';
+import { CollaboratorDialogComponent } from '../collaborator-dialog/collaborator-dialog.component';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
 
 @Component({
-  selector: 'app-display-notes',
-  templateUrl: './display-notes.component.html',
-  styleUrls: ['./display-notes.component.scss']
+  selector: 'app-edit-label-note',
+  templateUrl: './edit-label-note.component.html',
+  styleUrls: ['./edit-label-note.component.scss']
 })
-export class DisplayNotesComponent implements OnInit {
+export class EditLabelNoteComponent implements OnInit {
 
   constructor(private httpService: HttpService,
     private router: Router,
     private snackbar: MatSnackBar,
     private dialog: MatDialog,
     private viewChange: ViewchangeService,
-    private search: SearchService) { }
+    private search: SearchService,
+    private route:ActivatedRoute) { }
 
   //@Input() cardsArray=[];
   //@Input() card;
@@ -58,8 +53,18 @@ export class DisplayNotesComponent implements OnInit {
 
   //flag1 = true;
   ngOnInit() {
+
+    this.route.params.subscribe(data=>{
+      this.getNoteOfLabel(data.labelId);
+      
+    },err=>{
+      console.log('error in param',err);
+      
+    })
+
+
     console.log("Display-Notes");
-    this.getAllCard();
+   // this.getNoteOfLabel(labelId);
     // console.log("Pinned note:",this.pin);
     console.log("Unpinned note:", this.unpin);
     // this.getLabelOfNote();
@@ -81,7 +86,14 @@ export class DisplayNotesComponent implements OnInit {
   @Input()
   public set childMessage(v: string) {
     console.log(v);
-    this.getAllCard();
+    this.route.params.subscribe(data=>{
+      this.getNoteOfLabel(data.labelId);
+      
+    },err=>{
+      console.log('error in param',err);
+      
+    })
+   // this.getAllCard();
 
   }
 
@@ -96,25 +108,45 @@ export class DisplayNotesComponent implements OnInit {
   // }
 
 
-  getAllCard() {
-    this.httpService.getRequestForNote('/getAllListOfNotes?isArchive=' + false + '&isTrash=' + false).subscribe(data => {
-      console.log("Type of card:" + typeof data);
-      console.log('data is in note', data);
+  // getAllCard() {
+  //   this.httpService.getRequestForNote('/getAllListOfNotes?isArchive=' + false + '&isTrash=' + false).subscribe(data => {
+  //     console.log("Type of card:" + typeof data);
+  //     console.log('data is in note', data);
+  //     this.card = data;
+  //     console.log("Card---->", this.card);
+  //     // var i : Number;
+  //     // for(i=0; i<this.card.length; i++){
+  //     //   this.pin.push(this.card[i]);
+  //     // }
+  //   }, err => {
+  //     console.log(err);
+  //   })
+  // }
+
+  getNoteOfLabel(labelId){
+    console.log("Get note of Label");
+    this.httpService.getRequestForNote('/getNoteOfLabel/'+labelId).subscribe( data => {
+      console.log("Card",data);
       this.card = data;
-      console.log("Card---->", this.card);
-      // var i : Number;
-      // for(i=0; i<this.card.length; i++){
-      //   this.pin.push(this.card[i]);
-      // }
-    }, err => {
-      console.log(err);
-    })
+      console.log("Card",this.card);
+    },error=>
+    {
+      this.snackbar.open("Error in getNoteOfLabel", "End-Now", { duration : 3000 });
+    }
+    )
   }
 
   changeOfColor($event) {
     this.color1 = $event;
     console.log('event for color change ', $event);
-    this.getAllCard();
+    this.route.params.subscribe(data=>{
+      this.getNoteOfLabel(data.labelId);
+      
+    },err=>{
+      console.log('error in param',err);
+      
+    })
+    //this.getAllCard();
   }
 
   openDialog(items) {
@@ -134,7 +166,14 @@ export class DisplayNotesComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.getAllCard();
+      this.route.params.subscribe(data=>{
+        this.getNoteOfLabel(data.labelId);
+        
+      },err=>{
+        console.log('error in param',err);
+        
+      })
+      //this.getAllCard();
     });
   }
 
@@ -162,7 +201,14 @@ export class DisplayNotesComponent implements OnInit {
       console.log("pin note card");
       // this.flag1 = !this.flag1;
       this.snackbar.open(data.statusMessage, "Pinned", { duration: 5000 });
-      this.getAllCard();
+      this.route.params.subscribe(data=>{
+        this.getNoteOfLabel(data.labelId);
+        
+      },err=>{
+        console.log('error in param',err);
+        
+      })
+      //this.getAllCard();
     }, err => {
       this.snackbar.open(err);
     })
@@ -170,8 +216,15 @@ export class DisplayNotesComponent implements OnInit {
 
   update(event) {
     console.log('event in display');
+    this.route.params.subscribe(data=>{
+      this.getNoteOfLabel(data.labelId);
+      
+    },err=>{
+      console.log('error in param',err);
+      
+    })
 
-    this.getAllCard();
+    //this.getAllCard();
   }
 
   visible = true;
@@ -189,7 +242,14 @@ export class DisplayNotesComponent implements OnInit {
     this.httpService.deleteRequestForNote('/deleteLabelOfNote/' + label.labelId + '/' + noteId).subscribe(data => {
       console.log("Delete label from note response" + data);
       this.snackbar.open(data.statusMessage, "End-Now", { duration: 3000 });
-      this.getAllCard();
+      this.route.params.subscribe(data=>{
+        this.getNoteOfLabel(data.labelId);
+        
+      },err=>{
+        console.log('error in param',err);
+        
+      })
+     // this.getAllCard();
     },
       error => {
         this.snackbar.open(error, "End-Now", { duration: 3000 })
@@ -200,7 +260,14 @@ export class DisplayNotesComponent implements OnInit {
     this.httpService.deleteRequestForNote('/deleteRemainder/' + card.noteId).subscribe(data => {
       console.log("Remove remainder from note");
       this.snackbar.open(data.statusMessage, "End-Now", { duration: 3000 });
-      this.getAllCard();
+      this.route.params.subscribe(data=>{
+        this.getNoteOfLabel(data.labelId);
+        
+      },err=>{
+        console.log('error in param',err);
+        
+      })
+      //this.getAllCard();
     },
       error => {
         this.snackbar.open(error, "End-Now", { duration: 3000 });
@@ -209,29 +276,3 @@ export class DisplayNotesComponent implements OnInit {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- // getLabelOfNote(card){
-  //   console.log("note id ", card.noteId)
-  //   this.httpService.getRequestForNote('/getLabelOfNote/'+card.noteId).subscribe( data => {
-  //     console.log("getLabelOfNote responce  data"+data)
-  //     this.labelOfNote = data;
-  //     console.log("getLabelOfNote data"+ this.labelOfNote)
-  //   },
-  //   error => {
-  //     this.snackbar.open(error, "End-Now", { duration:3000 })
-  //   }
-  //   )
-  // }

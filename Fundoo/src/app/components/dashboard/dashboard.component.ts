@@ -9,6 +9,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { MatSnackBar } from '@angular/material';
 import { ViewchangeService } from 'src/app/services/viewchange.service';
 import { ProfilepicComponent } from '../profilepic/profilepic.component';
+import { SearchService } from 'src/app/services/search.service';
 //import {MediaMatcher} from '@angular/cdk/layout';
 //import {ChangeDetectorRef, OnDestroy} from '@angular/core';
 
@@ -28,6 +29,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   flag=false;
   labelId:string;
   email = localStorage.getItem('email');
+  searchContent : string;
 
 
 
@@ -38,6 +40,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if(this.titleName == null){
       this.titleName="Note"
     }
+    // if(this.searchContent.length > 2){
+    //   this.searchService.changeMessage(this.searchContent);
+    // }
   }
 
   mobileQuery: MediaQueryList;
@@ -52,7 +57,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     media: MediaMatcher,
     private router: Router,
     public dialog: MatDialog,
-    private viewChange: ViewchangeService) {
+    private viewChange: ViewchangeService,
+    private searchService: SearchService
+    ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -154,7 +161,73 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.router.navigate(['/dashboard/edit-label-note/' + labelId]);
   }
 
-  // ProfileSelect(){
+  //search(){
+      
+   // this.searchService.changeMessage(this.searchContent);
+      // this.httpService.getRequestForNote("getAllSearchNotes?query="+searchContent).subscribe( data => {
+      // console.log("Search Content"+searchContent);
+      // console.log("Data in Search"+data);
+
+    //})
+  //}
+
+  ProfileSelect() {
+    const dialogRef = this.dialog.open(ProfilepicComponent,
+    {
+      width: '900px',
+      height: '600px'
+    });
+
+    dialogRef.afterClosed().subscribe(
+      (x: any) => {
+        if (x != null) {
+          console.log('The dialog was closed');
+          console.log("Image", x.file)
+          // this.httpService.uploadProfilePic("/imageUpload",x.file).subscribe( response => {
+          //       console.log(response);
+
+          this.httpService.uploadProfilePic('/imageUpload', x.file).subscribe(response => {
+            console.log("Response", response);
+            this.snackbar.open(response.statusMessage, 'Success', { duration: 3000 });
+          }
+          );
+        }
+      })
+  }
+
+  onSearchChange(event : string){
+
+      this.searchContent = event;
+      this.searchService.changeMessage(this.searchContent);
+
+  }
+    
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // getMoreInformation(): string {
+  //   return "Fundoo Account \n"+
+  // }
+  // change(){
+  //   this.viewChange.onViewChange();
+  // }
+
+
+
+// ProfileSelect(){
   //   const dialogRef = this.dialog.open(ProfilepicComponent, {
   //     width: '900px',
   //     height: '600px',
@@ -175,42 +248,3 @@ export class DashboardComponent implements OnInit, OnDestroy {
   //     });
   //   })
   // }
-
-
-
-
-
-  ProfileSelect() {
-    const dialogRef = this.dialog.open(ProfilepicComponent,
-      {
-        width: '900px',
-        height: '600px'
-      });
-
-    dialogRef.afterClosed().subscribe(
-      (x: any) => {
-        if (x != null) {
-          console.log('The dialog was closed');
-          console.log("Image", x.file)
-          // this.httpService.uploadProfilePic("/imageUpload",x.file).subscribe( response => {
-          //       console.log(response);
-
-          this.httpService.uploadProfilePic('/imageUpload', x.file).subscribe(response => {
-            console.log("Response", response);
-            this.snackbar.open(response.statusMessage, 'Success', { duration: 3000 });
-          }
-          );
-        }
-      })
-  }
-
-
-  // getMoreInformation(): string {
-  //   return "Fundoo Account \n"+
-  // }
-  // change(){
-  //   this.viewChange.onViewChange();
-  // }
-}
-
-

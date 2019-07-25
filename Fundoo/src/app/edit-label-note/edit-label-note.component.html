@@ -4,7 +4,7 @@
     <div class="mininote" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex.xs="98" fxLayoutGap="10px" fxFlex="80">
       <!-- <div *ngFor="let items of cardsArray" class="card"> -->
       <div *ngFor="let items of card1" class="card">
-        <div *ngIf="items.archive==false && items.trash==false">
+        <div *ngIf="items.archive == false && items.trash == false">
         <mat-card class="minicard" [style.backgroundColor]="items.color">
           <div>
             <div fxLayout="row" class="title">

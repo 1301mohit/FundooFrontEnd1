@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
   message1 : any;
   respose: any;
 
-  email = new FormControl('',[Validators.required, Validators.email]);
-  password = new FormControl('',[Validators.required]);
+  email = new FormControl('',[Validators.required, Validators.email, this.noWhitespaceValidator]);
+  password = new FormControl('',[Validators.required, this.noWhitespaceValidator, Validators.minLength(3), Validators.maxLength(10)]);
   response: Object;
 
   
@@ -31,16 +31,25 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-    this.email.hasError('email') ? 'Not a valid email' : '';
+  getErrorMessageOfEmail() {
+    return this.email.hasError('required') ? 'Enter email' :
+    this.email.hasError('email') ? 'Enter a valid email' : 
+    this.email.hasError('whitespace') ? 'Enter a value' : '';
   }
 
-  getErrorMessage1() {
-    return this.password.hasError('required') ? 'You must enter a value' : '';
+  getErrorMessageOfPassword() {
+    return this.password.hasError('required') ? 'You must enter a value' : 
+    this.password.hasError('minLength') ? 'Enter minimum 3 character' : 
+    this.password.hasError('maxLength') ? 'Enter maximum 10 character' : '';
   }
 
-  login()
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
+  }
+
+  submit()
   {
     try{
       if(this.email.value == '' || this.password.value == '') throw "Fields are missing";
